@@ -256,13 +256,13 @@ a {
 
 .tree-shell {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template-columns: minmax(0, 1fr);
   min-height: 720px;
 }
 
 .family-tree {
   overflow: auto;
-  padding: 24px;
+  padding: 32px 24px;
   background:
     radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.8), transparent 42%),
     linear-gradient(135deg, #fffaf1 0%, #f7efe3 100%);
@@ -276,8 +276,8 @@ a {
 
 .pedigree-chart {
   position: relative;
-  width: 1080px;
-  height: 1740px;
+  width: 1180px;
+  height: 1840px;
   margin: 0 auto;
   border-radius: var(--radius);
 }
@@ -285,8 +285,8 @@ a {
 .chart-lines {
   position: absolute;
   inset: 0;
-  width: 1080px;
-  height: 1740px;
+  width: 1180px;
+  height: 1840px;
   overflow: visible;
 }
 
@@ -357,7 +357,7 @@ a {
 }
 
 .person-panel {
-  border-left: 1px solid var(--line);
+  border-top: 1px solid var(--line);
   padding: 24px;
   background: #fbf4e8;
   overflow: auto;
@@ -484,11 +484,6 @@ a {
 
   .tree-shell {
     grid-template-columns: 1fr;
-  }
-
-  .person-panel {
-    border-left: 0;
-    border-top: 1px solid var(--line);
   }
 }
 
