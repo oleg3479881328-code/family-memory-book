@@ -1,7 +1,6 @@
 const family = window.FAMILY;
 const memoirs = window.MEMOIRS;
 const people = family.people;
-const expanded = new Set(["sergey-kuteinikov", "anna-kuteinikova", "natalya-kureneva", "alexandra-kureneva"]);
 
 const treeEl = document.querySelector("#family-tree");
 const panelEl = document.querySelector("#person-panel");
@@ -9,6 +8,75 @@ const searchEl = document.querySelector("#person-search");
 const tabsEl = document.querySelector("#memoir-tabs");
 const readerEl = document.querySelector("#memoir-reader");
 const photosEl = document.querySelector("#photo-grid");
+
+const chartNodes = {
+  "sergey-kuteinikov": { x: 390, y: 80, tone: "male" },
+  "maria-kuteinikova": { x: 790, y: 80, tone: "female" },
+  "anna-kuteinikova": { x: 460, y: 225, tone: "female" },
+  "dmitry-kurenev": { x: 715, y: 225, tone: "male" },
+  "natalya-kureneva": { x: 175, y: 405, tone: "female" },
+  "vera-kureneva": { x: 405, y: 405, tone: "female" },
+  "elizaveta-kureneva": { x: 620, y: 405, tone: "female" },
+  "alexandra-kureneva": { x: 875, y: 405, tone: "female" },
+  "nikolay-grigoryev": { x: 175, y: 545, tone: "male" },
+  "nikolay-podkovtsev": { x: 405, y: 545, tone: "male" },
+  "alexander-fateev": { x: 875, y: 545, tone: "male" },
+  "tamara-grigoryeva": { x: 125, y: 705, tone: "descendant" },
+  "igor-grigoryev": { x: 300, y: 705, tone: "descendant" },
+  "elena-podkovtseva": { x: 500, y: 705, tone: "descendant" },
+  "konstantin-fateev": { x: 720, y: 705, tone: "descendant" },
+  "pavel-fateev": { x: 915, y: 705, tone: "descendant" },
+  "igor-povalyukhin": { x: 125, y: 860, tone: "male" },
+  "tamara-zhuleva": { x: 600, y: 860, tone: "female" },
+  "marina-drozdova": { x: 785, y: 860, tone: "female" },
+  "vera-plitkina": { x: 960, y: 860, tone: "female" },
+  "oleg-povalyukhin": { x: 95, y: 1030, tone: "descendant" },
+  "anatoly-povalyukhin": { x: 285, y: 1030, tone: "descendant" },
+  "anna-fateeva": { x: 600, y: 1030, tone: "descendant" },
+  "nikita-fateev": { x: 785, y: 1030, tone: "descendant" },
+  "sasha-fateev": { x: 960, y: 1030, tone: "descendant" },
+  "vera-solovyova": { x: 95, y: 1200, tone: "female" },
+  "alexandra-pirina": { x: 285, y: 1200, tone: "female" },
+  "olga-tankova": { x: 455, y: 1200, tone: "female" },
+  "daryana-medvedeva": { x: 785, y: 1200, tone: "female" },
+  "natalya-povalyukhina": { x: 95, y: 1365, tone: "descendant" },
+  "anna-povalyukhina": { x: 285, y: 1365, tone: "descendant" },
+  "maria-povalyukhina": { x: 455, y: 1365, tone: "descendant" },
+  "daniil-fateev": { x: 785, y: 1365, tone: "descendant" },
+  "gerard-hurley": { x: 95, y: 1515, tone: "male" },
+  "hawkin-hurley": { x: 95, y: 1665, tone: "descendant" },
+};
+
+const spouseLinks = [
+  ["sergey-kuteinikov", "maria-kuteinikova"],
+  ["anna-kuteinikova", "dmitry-kurenev"],
+  ["natalya-kureneva", "nikolay-grigoryev"],
+  ["vera-kureneva", "nikolay-podkovtsev"],
+  ["alexandra-kureneva", "alexander-fateev"],
+  ["tamara-grigoryeva", "igor-povalyukhin"],
+  ["konstantin-fateev", "tamara-zhuleva"],
+  ["pavel-fateev", "marina-drozdova"],
+  ["pavel-fateev", "vera-plitkina"],
+  ["nikita-fateev", "daryana-medvedeva"],
+  ["natalya-povalyukhina", "gerard-hurley"],
+];
+
+const familyGroups = [
+  { parents: ["sergey-kuteinikov", "maria-kuteinikova"], children: ["anna-kuteinikova"] },
+  { parents: ["anna-kuteinikova", "dmitry-kurenev"], children: ["natalya-kureneva", "vera-kureneva", "elizaveta-kureneva", "alexandra-kureneva"] },
+  { parents: ["natalya-kureneva", "nikolay-grigoryev"], children: ["tamara-grigoryeva", "igor-grigoryev"] },
+  { parents: ["vera-kureneva", "nikolay-podkovtsev"], children: ["elena-podkovtseva"] },
+  { parents: ["alexandra-kureneva", "alexander-fateev"], children: ["konstantin-fateev", "pavel-fateev"] },
+  { parents: ["tamara-grigoryeva", "igor-povalyukhin"], children: ["oleg-povalyukhin", "anatoly-povalyukhin"] },
+  { parents: ["konstantin-fateev", "tamara-zhuleva"], children: ["anna-fateeva"] },
+  { parents: ["pavel-fateev", "marina-drozdova"], children: ["nikita-fateev"] },
+  { parents: ["pavel-fateev", "vera-plitkina"], children: ["sasha-fateev"] },
+  { parents: ["oleg-povalyukhin", "vera-solovyova"], children: ["natalya-povalyukhina"] },
+  { parents: ["oleg-povalyukhin", "alexandra-pirina"], children: ["anna-povalyukhina"] },
+  { parents: ["oleg-povalyukhin", "olga-tankova"], children: ["maria-povalyukhina"] },
+  { parents: ["nikita-fateev", "daryana-medvedeva"], children: ["daniil-fateev"] },
+  { parents: ["natalya-povalyukhina", "gerard-hurley"], children: ["hawkin-hurley"] },
+];
 
 function personName(id) {
   return people[id]?.name || id;
@@ -18,37 +86,61 @@ function relatedList(ids = []) {
   return ids.map((id) => `<button type="button" class="link-button" data-person="${id}">${personName(id)}</button>`).join("");
 }
 
-function renderPersonCard(id, depth = 0) {
-  const person = people[id];
-  if (!person) return "";
-  const children = person.children || [];
-  const hasChildren = children.length > 0;
-  const isOpen = expanded.has(id);
-  const match = searchEl.value.trim().toLowerCase();
-  const hidden = match && !person.name.toLowerCase().includes(match);
-
-  return `
-    <li class="tree-item ${hidden ? "is-dimmed" : ""}" style="--depth:${depth}">
-      <div class="tree-card">
-        <button class="toggle" type="button" data-toggle="${id}" ${hasChildren ? "" : "disabled"} aria-label="Раскрыть ветвь">
-          ${hasChildren ? (isOpen ? "−" : "+") : "•"}
-        </button>
-        <button class="person-button" type="button" data-person="${id}">
-          <strong>${person.name}</strong>
-          <span>${person.dates || "даты не указаны"}</span>
-        </button>
-      </div>
-      ${
-        hasChildren && isOpen
-          ? `<ul class="tree-children">${children.map((child) => renderPersonCard(child, depth + 1)).join("")}</ul>`
-          : ""
-      }
-    </li>
-  `;
-}
-
 function renderTree() {
-  treeEl.innerHTML = `<ul class="tree-root">${family.roots.map((root) => renderPersonCard(root)).join("")}</ul>`;
+  const match = searchEl.value.trim().toLowerCase();
+  const lines = [];
+  spouseLinks.forEach(([a, b]) => {
+    const first = chartNodes[a];
+    const second = chartNodes[b];
+    const horizontal = Math.abs(first.y - second.y) < Math.abs(first.x - second.x);
+    const startX = horizontal ? first.x + Math.sign(second.x - first.x) * 86 : first.x;
+    const startY = horizontal ? first.y : first.y + Math.sign(second.y - first.y) * 44;
+    const endX = horizontal ? second.x - Math.sign(second.x - first.x) * 86 : second.x;
+    const endY = horizontal ? second.y : second.y - Math.sign(second.y - first.y) * 44;
+    const markX = (startX + endX) / 2;
+    const markY = (startY + endY) / 2;
+    lines.push(`<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" class="marriage-line" />`);
+    lines.push(`<text x="${markX}" y="${markY - 10}" class="marriage-mark">∞</text>`);
+  });
+  familyGroups.forEach((group) => {
+    const parentXs = group.parents.map((id) => chartNodes[id].x);
+    const parentY = Math.max(...group.parents.map((id) => chartNodes[id].y));
+    const children = group.children.map((id) => chartNodes[id]);
+    const rootX = parentXs.reduce((sum, x) => sum + x, 0) / parentXs.length;
+    const joinY = parentY + 76;
+    const childJoinY = Math.min(...children.map((child) => child.y)) - 62;
+    const leftX = Math.min(...children.map((child) => child.x));
+    const rightX = Math.max(...children.map((child) => child.x));
+    lines.push(`<path d="M ${rootX} ${parentY + 44} V ${joinY} V ${childJoinY}" class="family-line" />`);
+    if (children.length > 1) {
+      lines.push(`<path d="M ${leftX} ${childJoinY} H ${rightX}" class="family-line" />`);
+    }
+    children.forEach((child) => {
+      lines.push(`<path d="M ${child.x} ${childJoinY} V ${child.y - 44}" class="family-line" />`);
+    });
+  });
+
+  const nodes = Object.entries(chartNodes)
+    .map(([id, position]) => {
+      const person = people[id];
+      const hidden = match && !person.name.toLowerCase().includes(match);
+      return `
+        <button class="chart-person ${position.tone} ${hidden ? "is-dimmed" : ""}" type="button" data-person="${id}" style="left:${position.x}px; top:${position.y}px">
+          <strong>${person.name}</strong>
+          <span>${person.dates || ""}</span>
+        </button>
+      `;
+    })
+    .join("");
+
+  treeEl.innerHTML = `
+    <div class="pedigree-chart" role="img" aria-label="Интерактивное родословное дерево">
+      <svg class="chart-lines" viewBox="0 0 1080 1740" aria-hidden="true">
+        ${lines.join("")}
+      </svg>
+      ${nodes}
+    </div>
+  `;
 }
 
 function showPerson(id) {
@@ -109,14 +201,6 @@ function renderPhotos() {
 }
 
 document.addEventListener("click", (event) => {
-  const toggle = event.target.closest("[data-toggle]");
-  if (toggle) {
-    const id = toggle.dataset.toggle;
-    expanded.has(id) ? expanded.delete(id) : expanded.add(id);
-    renderTree();
-    return;
-  }
-
   const personButton = event.target.closest("[data-person]");
   if (personButton) {
     showPerson(personButton.dataset.person);
@@ -132,13 +216,11 @@ document.addEventListener("click", (event) => {
 
 searchEl.addEventListener("input", renderTree);
 document.querySelector("#expand-all").addEventListener("click", () => {
-  Object.keys(people).forEach((id) => expanded.add(id));
+  searchEl.value = "";
   renderTree();
 });
 document.querySelector("#collapse-all").addEventListener("click", () => {
-  expanded.clear();
-  family.roots.forEach((id) => expanded.add(id));
-  renderTree();
+  showPerson("anna-kuteinikova");
 });
 
 renderTree();

@@ -222,7 +222,7 @@ a {
 }
 
 .tree-layout {
-  background: var(--paper);
+  background: linear-gradient(135deg, #fffdf7 0%, #fbf3e7 100%);
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: var(--shadow);
@@ -257,73 +257,103 @@ a {
 .tree-shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr) 360px;
-  min-height: 620px;
+  min-height: 720px;
 }
 
 .family-tree {
   overflow: auto;
-  padding: 22px;
+  padding: 24px;
+  background:
+    radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.8), transparent 42%),
+    linear-gradient(135deg, #fffaf1 0%, #f7efe3 100%);
 }
 
-.tree-root,
-.tree-children,
 .fact-list {
   list-style: none;
   margin: 0;
   padding: 0;
 }
 
-.tree-children {
-  margin-left: 34px;
-  padding-left: 18px;
-  border-left: 1px solid var(--line);
-}
-
-.tree-card {
-  display: flex;
-  align-items: stretch;
-  gap: 8px;
-  margin: 10px 0;
-}
-
-.toggle {
-  width: 36px;
-  min-width: 36px;
-  border: 1px solid var(--line);
+.pedigree-chart {
+  position: relative;
+  width: 1080px;
+  height: 1740px;
+  margin: 0 auto;
   border-radius: var(--radius);
-  background: #fffdf8;
-  color: var(--accent-dark);
+}
+
+.chart-lines {
+  position: absolute;
+  inset: 0;
+  width: 1080px;
+  height: 1740px;
+  overflow: visible;
+}
+
+.family-line,
+.marriage-line {
+  fill: none;
+  stroke: #2f2721;
+  stroke-width: 1.4;
+  vector-effect: non-scaling-stroke;
+}
+
+.marriage-mark {
+  fill: #2f2721;
+  font-size: 34px;
+  line-height: 1;
+  text-anchor: middle;
+  dominant-baseline: middle;
+}
+
+.chart-person {
+  position: absolute;
+  width: 172px;
+  min-height: 88px;
+  padding: 10px 12px;
+  transform: translate(-50%, -50%);
+  border: 1.4px solid #2f2721;
+  border-radius: 8px;
+  color: #120d0a;
+  text-align: center;
   cursor: pointer;
+  box-shadow: 0 5px 14px rgba(62, 43, 28, 0.08);
 }
 
-.toggle:disabled {
-  color: var(--line);
-  cursor: default;
-}
-
-.person-button {
-  width: min(520px, 100%);
-  padding: 12px 14px;
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  background: #fffdf8;
-  color: var(--ink);
-  text-align: left;
-  cursor: pointer;
-}
-
-.person-button strong,
-.person-button span {
+.chart-person strong,
+.chart-person span {
   display: block;
 }
 
-.person-button span {
-  color: var(--muted);
-  font-size: 14px;
+.chart-person strong {
+  font-size: 19px;
+  font-weight: 700;
+  line-height: 1.12;
+}
+
+.chart-person span {
+  margin-top: 5px;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
+.chart-person.female {
+  background: linear-gradient(135deg, #fff7f5 0%, #f8dedc 100%);
+  border-color: #8b413f;
+}
+
+.chart-person.male {
+  background: linear-gradient(135deg, #f8fbff 0%, #dfeaf6 100%);
+  border-color: #31445d;
+}
+
+.chart-person.descendant {
+  background: linear-gradient(135deg, #fffff4 0%, #edf1d9 100%);
+  border-color: #65733a;
 }
 
 .is-dimmed {
-  opacity: 0.34;
+  opacity: 0.2;
 }
 
 .person-panel {
@@ -501,12 +531,7 @@ a {
     font-size: 17px;
   }
 
-  .tree-children {
-    margin-left: 12px;
-    padding-left: 12px;
-  }
-
-  .person-button {
-    width: 100%;
+  .family-tree {
+    padding: 14px;
   }
 }
