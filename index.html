@@ -1,0 +1,105 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Книга памяти семьи</title>
+    <meta
+      name="description"
+      content="Семейная летопись с интерактивной родословной, мемуарами и фотоархивом."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="#top">Книга памяти семьи</a>
+      <nav class="top-nav" aria-label="Главная навигация">
+        <a href="#tree">Родословная</a>
+        <a href="#memoirs">Мемуары</a>
+        <a href="#photos">Фотоархив</a>
+      </nav>
+    </header>
+
+    <main id="top">
+      <section class="hero">
+        <div class="hero-text">
+          <h1>Книга памяти семьи</h1>
+          <p>
+            Родословная, фотографии и дословные русские воспоминания семьи:
+            бережно разложенные по разделам, без правки текста мемуаров.
+          </p>
+          <div class="hero-actions">
+            <a class="button primary" href="#tree">Открыть древо</a>
+            <a class="button secondary" href="#memoirs">Читать мемуары</a>
+          </div>
+        </div>
+        <div class="hero-photo">
+          <img src="assets/photos/photo-03.png" alt="Семейная фотография из архива" />
+        </div>
+      </section>
+
+      <section class="section-band intro-grid" aria-label="Краткая навигация">
+        <a href="#tree">
+          <span>01</span>
+          <strong>Интерактивная родословная</strong>
+          <small>Раскрытие ветвей, карточки людей, переходы к воспоминаниям.</small>
+        </a>
+        <a href="#memoirs">
+          <span>02</span>
+          <strong>Разделы книги</strong>
+          <small>Вера Дмитриевна, Наташа, русская печь, хроники, отец, родители.</small>
+        </a>
+        <a href="#photos">
+          <span>03</span>
+          <strong>Фотоархив</strong>
+          <small>Все 15 изображений из исходного документа, без изменений.</small>
+        </a>
+      </section>
+
+      <section id="tree" class="section">
+        <div class="section-heading">
+          <h2>Родословная</h2>
+          <p>Раскрывайте ветви семьи и выбирайте человека, чтобы увидеть связи и ссылки на тексты.</p>
+        </div>
+        <div class="tree-layout">
+          <div class="tree-toolbar" aria-label="Управление родословной">
+            <input id="person-search" type="search" placeholder="Поиск по имени" />
+            <button id="expand-all" type="button">Раскрыть всё</button>
+            <button id="collapse-all" type="button">Свернуть всё</button>
+          </div>
+          <div class="tree-shell">
+            <div id="family-tree" class="family-tree" aria-live="polite"></div>
+            <aside id="person-panel" class="person-panel" aria-label="Карточка человека">
+              <p class="panel-empty">Выберите карточку в родословной.</p>
+            </aside>
+          </div>
+        </div>
+      </section>
+
+      <section id="memoirs" class="section">
+        <div class="section-heading">
+          <h2>Мемуары</h2>
+          <p>Русский текст опубликован дословно, разделами, без пересказа и редактирования.</p>
+        </div>
+        <div id="memoir-tabs" class="memoir-tabs" role="tablist" aria-label="Разделы мемуаров"></div>
+        <article id="memoir-reader" class="memoir-reader"></article>
+      </section>
+
+      <section id="photos" class="section">
+        <div class="section-heading">
+          <h2>Фотоархив</h2>
+          <p>Все изображения извлечены из DOCX и сохранены как оригинальные файлы сайта.</p>
+        </div>
+        <div id="photo-grid" class="photo-grid"></div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <p>Книга памяти семьи. Материалы: родословная и DOCX «Мемуары воспоминания (1)».</p>
+    </footer>
+
+    <script src="data/memoirs.js"></script>
+    <script src="data/family.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
