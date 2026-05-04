@@ -327,7 +327,8 @@ a {
 }
 
 .chart-person.has-portrait {
-  padding-left: 60px;
+  width: 212px;
+  padding-left: 66px;
   text-align: left;
 }
 
@@ -335,13 +336,17 @@ a {
   position: absolute;
   left: 10px;
   top: 50%;
-  width: 42px;
-  height: 56px;
+  width: 48px;
+  height: 58px;
   transform: translateY(-50%);
   border: 1px solid rgba(47, 39, 33, 0.35);
   border-radius: 6px;
   object-fit: cover;
   background: #efe4d5;
+}
+
+.chart-person.has-portrait strong {
+  font-size: 18px;
 }
 
 .chart-person strong,
