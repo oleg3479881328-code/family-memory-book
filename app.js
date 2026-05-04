@@ -14,6 +14,12 @@ const photosEl = document.querySelector("#photo-grid");
 const photoModalEl = document.querySelector("#photo-modal");
 const photoViewerImageEl = document.querySelector("#photo-viewer-image");
 const photoViewerCaptionEl = document.querySelector("#photo-viewer-caption");
+const photoViewerCounterEl = document.querySelector("#photo-viewer-counter");
+const photoPrevButtonEl = document.querySelector("[data-photo-prev]");
+const photoNextButtonEl = document.querySelector("[data-photo-next]");
+
+let currentPhotoSet = [];
+let currentPhotoIndex = 0;
 
 const chartNodes = {
   "sergey-kuteinikov": { x: 490, y: 80, tone: "male" },
@@ -102,10 +108,14 @@ function closePhotoModal() {
   photoViewerImageEl.removeAttribute("src");
   photoViewerImageEl.alt = "";
   photoViewerCaptionEl.textContent = "";
+  photoViewerCounterEl.textContent = "";
+  currentPhotoSet = [];
+  currentPhotoIndex = 0;
   document.body.classList.remove("modal-open");
 }
 
-function openPhoto(photo) {
+function updatePhotoViewer() {
+  const photo = currentPhotoSet[currentPhotoIndex];
   if (!photo) {
     return;
   }
@@ -113,13 +123,35 @@ function openPhoto(photo) {
   photoViewerImageEl.src = photo.src;
   photoViewerImageEl.alt = photo.caption;
   photoViewerCaptionEl.textContent = photo.caption;
+  photoViewerCounterEl.textContent = `${currentPhotoIndex + 1} / ${currentPhotoSet.length}`;
+  photoPrevButtonEl.disabled = currentPhotoSet.length < 2;
+  photoNextButtonEl.disabled = currentPhotoSet.length < 2;
+}
+
+function openPhotoSet(photos, index = 0) {
+  if (!photos?.length) {
+    return;
+  }
+
+  currentPhotoSet = photos;
+  currentPhotoIndex = Math.min(Math.max(index, 0), photos.length - 1);
+  updatePhotoViewer();
   photoModalEl.hidden = false;
   document.body.classList.add("modal-open");
 }
 
-function photoButton(photo, label, className = "photo-open") {
+function showAdjacentPhoto(direction) {
+  if (currentPhotoSet.length < 2) {
+    return;
+  }
+
+  currentPhotoIndex = (currentPhotoIndex + direction + currentPhotoSet.length) % currentPhotoSet.length;
+  updatePhotoViewer();
+}
+
+function photoButton(photo, label, className = "photo-open", setId = "", index = 0) {
   return `
-    <button class="${className}" type="button" data-photo-src="${photo.src}" data-photo-caption="${photo.caption}" aria-label="${label}">
+    <button class="${className}" type="button" data-photo-set="${setId}" data-photo-index="${index}" data-photo-src="${photo.src}" data-photo-caption="${photo.caption}" aria-label="${label}">
       <img src="${photo.src}" alt="${photo.caption}" loading="lazy" />
     </button>
   `;
@@ -128,7 +160,7 @@ function photoButton(photo, label, className = "photo-open") {
 function renderPersonAlbum(album) {
   const thumbnails = album.photos
     .slice(0, 6)
-    .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb"))
+    .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb", album.personId, index))
     .join("");
 
   return `
@@ -263,18 +295,21 @@ function renderPhotos() {
       const cover = album.photos[0];
       const strip = album.photos
         .slice(0, 4)
-        .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb"))
+        .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb", album.personId, index))
         .join("");
 
       return `
         <article class="album-card" id="album-${album.personId}">
-          <button class="album-cover" type="button" data-person="${album.personId}" aria-label="Открыть карточку: ${album.title}">
+          <button class="album-cover" type="button" data-open-album="${album.personId}" aria-label="Открыть фотоальбом: ${album.title}">
             <img src="${cover.src}" alt="${album.title}" loading="lazy" />
             <span>Фотоальбом</span>
             <strong>${album.title}</strong>
             <small>${album.photos.length} фото</small>
           </button>
           <div class="album-strip">${strip}</div>
+          <button class="album-card-link" type="button" data-person="${album.personId}">
+            Открыть карточку в родословной
+          </button>
         </article>
       `;
     })
@@ -284,7 +319,7 @@ function renderPhotos() {
     .map(
       (photo, index) => `
         <figure class="photo-card">
-          ${photoButton(photo, `Открыть фотографию ${index + 1}`)}
+          ${photoButton(photo, `Открыть фотографию ${index + 1}`, "photo-open", "doc-archive", index)}
           <figcaption>${photo.caption}</figcaption>
         </figure>
       `,
@@ -311,10 +346,28 @@ document.addEventListener("click", (event) => {
 
   const directPhotoButton = event.target.closest("[data-photo-src]");
   if (directPhotoButton) {
-    openPhoto({
-      src: directPhotoButton.dataset.photoSrc,
-      caption: directPhotoButton.dataset.photoCaption,
-    });
+    const setId = directPhotoButton.dataset.photoSet;
+    const index = Number(directPhotoButton.dataset.photoIndex);
+    const album = albumsByPerson.get(setId);
+    const photos = album?.photos || memoirs.photos;
+    openPhotoSet(photos, Number.isFinite(index) ? index : 0);
+    return;
+  }
+
+  const albumButton = event.target.closest("[data-open-album]");
+  if (albumButton) {
+    const album = albumsByPerson.get(albumButton.dataset.openAlbum);
+    openPhotoSet(album?.photos || [], 0);
+    return;
+  }
+
+  if (event.target.closest("[data-photo-prev]")) {
+    showAdjacentPhoto(-1);
+    return;
+  }
+
+  if (event.target.closest("[data-photo-next]")) {
+    showAdjacentPhoto(1);
     return;
   }
 
@@ -345,6 +398,16 @@ document.addEventListener("click", (event) => {
 document.addEventListener("keydown", (event) => {
   if (event.key === "Escape" && !photoModalEl.hidden) {
     closePhotoModal();
+    return;
+  }
+
+  if (event.key === "ArrowLeft" && !photoModalEl.hidden) {
+    showAdjacentPhoto(-1);
+    return;
+  }
+
+  if (event.key === "ArrowRight" && !photoModalEl.hidden) {
+    showAdjacentPhoto(1);
     return;
   }
 

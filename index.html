@@ -109,14 +109,17 @@
       <button class="modal-backdrop" type="button" data-close-photo aria-label="Закрыть фотографию"></button>
       <figure class="photo-viewer" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
         <button class="modal-close" type="button" data-close-photo aria-label="Закрыть">×</button>
+        <button class="photo-nav photo-prev" type="button" data-photo-prev aria-label="Предыдущая фотография">‹</button>
         <img id="photo-viewer-image" src="" alt="" />
+        <button class="photo-nav photo-next" type="button" data-photo-next aria-label="Следующая фотография">›</button>
+        <div id="photo-viewer-counter" class="photo-counter"></div>
         <figcaption id="photo-viewer-caption"></figcaption>
       </figure>
     </div>
 
-    <script src="data/memoirs.js?v=20260504-tree-portrait-layout"></script>
-    <script src="data/family.js?v=20260504-tree-portrait-layout"></script>
-    <script src="data/photo-albums.js?v=20260504-tree-portrait-layout"></script>
-    <script src="app.js?v=20260504-tree-portrait-layout"></script>
+    <script src="data/memoirs.js?v=20260504-album-navigation"></script>
+    <script src="data/family.js?v=20260504-album-navigation"></script>
+    <script src="data/photo-albums.js?v=20260504-album-navigation"></script>
+    <script src="app.js?v=20260504-album-navigation"></script>
   </body>
 </html>

@@ -113,7 +113,8 @@ a {
 .memoir-tabs button,
 .link-button,
 .memoir-link,
-.album-link {
+.album-link,
+.album-card-link {
   border: 1px solid var(--line);
   border-radius: var(--radius);
   background: var(--paper);
@@ -146,7 +147,8 @@ a {
 .memoir-tabs button:hover,
 .link-button:hover,
 .memoir-link:hover,
-.album-link:hover {
+.album-link:hover,
+.album-card-link:hover {
   transform: translateY(-1px);
   border-color: var(--accent);
 }
@@ -557,6 +559,48 @@ a {
   box-shadow: 0 28px 90px rgba(45, 31, 22, 0.28);
 }
 
+.photo-nav {
+  position: absolute;
+  top: 50%;
+  z-index: 2;
+  width: 42px;
+  height: 56px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(218, 205, 190, 0.92);
+  border-radius: 999px;
+  background: rgba(255, 253, 248, 0.88);
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 34px;
+  line-height: 1;
+}
+
+.photo-nav:disabled {
+  cursor: default;
+  opacity: 0.32;
+}
+
+.photo-prev {
+  left: 26px;
+}
+
+.photo-next {
+  right: 26px;
+}
+
+.photo-counter {
+  position: absolute;
+  left: 18px;
+  bottom: 54px;
+  z-index: 2;
+  padding: 3px 9px;
+  border-radius: 999px;
+  background: rgba(36, 27, 22, 0.72);
+  color: #fffaf1;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
 .photo-viewer img {
   display: block;
   width: 100%;
@@ -564,6 +608,10 @@ a {
   object-fit: contain;
   background: #efe4d5;
   border-radius: 6px;
+}
+
+.photo-viewer .modal-close {
+  z-index: 3;
 }
 
 .photo-viewer figcaption {
@@ -687,6 +735,16 @@ a {
   grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 1px;
   background: var(--line);
+}
+
+.album-card-link {
+  width: 100%;
+  min-height: 40px;
+  border-width: 1px 0 0;
+  border-radius: 0;
+  background: #fffdf8;
+  color: var(--green);
+  font-size: 14px;
 }
 
 .archive-subtitle {
