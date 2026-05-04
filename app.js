@@ -179,9 +179,12 @@ function renderTree() {
   const nodes = Object.entries(chartNodes)
     .map(([id, position]) => {
       const person = people[id];
+      const album = albumsByPerson.get(id);
+      const portrait = album?.portrait || album?.photos?.[0]?.src;
       const hidden = match && !person.name.toLowerCase().includes(match);
       return `
-        <button class="chart-person ${position.tone} ${hidden ? "is-dimmed" : ""}" type="button" data-person="${id}" style="left:${position.x}px; top:${position.y}px">
+        <button class="chart-person ${position.tone} ${portrait ? "has-portrait" : ""} ${hidden ? "is-dimmed" : ""}" type="button" data-person="${id}" style="left:${position.x}px; top:${position.y}px">
+          ${portrait ? `<img class="chart-portrait" src="${portrait}" alt="Портрет: ${person.name}" loading="lazy" />` : ""}
           <strong>${person.name}</strong>
           <span>${person.dates || ""}</span>
         </button>

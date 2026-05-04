@@ -326,6 +326,24 @@ a {
   box-shadow: 0 5px 14px rgba(62, 43, 28, 0.08);
 }
 
+.chart-person.has-portrait {
+  padding-left: 60px;
+  text-align: left;
+}
+
+.chart-portrait {
+  position: absolute;
+  left: 10px;
+  top: 50%;
+  width: 42px;
+  height: 56px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(47, 39, 33, 0.35);
+  border-radius: 6px;
+  object-fit: cover;
+  background: #efe4d5;
+}
+
 .chart-person strong,
 .chart-person span {
   display: block;
