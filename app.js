@@ -185,13 +185,20 @@ function showPerson(id) {
     .join("");
 
   panelContentEl.innerHTML = `
-    <h3>${person.name}</h3>
-    <p class="dates">${person.dates || "даты не указаны"}</p>
-    ${person.notes?.length ? `<ul class="fact-list">${person.notes.map((note) => `<li>${note}</li>`).join("")}</ul>` : ""}
-    ${person.parents?.length ? `<h4>Родители</h4><div class="relation-list">${relatedList(person.parents)}</div>` : ""}
-    ${person.partners?.length ? `<h4>Связи</h4><div class="relation-list">${relatedList(person.partners)}</div>` : ""}
-    ${person.children?.length ? `<h4>Дети</h4><div class="relation-list">${relatedList(person.children)}</div>` : ""}
-    ${memoirLinks ? `<h4>Связанные тексты</h4><div class="relation-list">${memoirLinks}</div>` : ""}
+    <div class="person-modal-layout">
+      <div class="person-details">
+        <h3>${person.name}</h3>
+        <p class="dates">${person.dates || "даты не указаны"}</p>
+        ${person.notes?.length ? `<ul class="fact-list">${person.notes.map((note) => `<li>${note}</li>`).join("")}</ul>` : ""}
+        ${person.parents?.length ? `<h4>Родители</h4><div class="relation-list">${relatedList(person.parents)}</div>` : ""}
+        ${person.partners?.length ? `<h4>Связи</h4><div class="relation-list">${relatedList(person.partners)}</div>` : ""}
+        ${person.children?.length ? `<h4>Дети</h4><div class="relation-list">${relatedList(person.children)}</div>` : ""}
+        ${memoirLinks ? `<h4>Связанные тексты</h4><div class="relation-list">${memoirLinks}</div>` : ""}
+      </div>
+      <div class="person-photo-placeholder" aria-label="Место для фотоархива">
+        <span>Здесь может быть фотоархив</span>
+      </div>
+    </div>
   `;
   modalEl.hidden = false;
   document.body.classList.add("modal-open");

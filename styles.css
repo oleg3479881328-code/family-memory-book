@@ -363,7 +363,7 @@ a {
 .person-panel {
   position: relative;
   z-index: 1;
-  width: min(760px, calc(100vw - 32px));
+  width: min(880px, calc(100vw - 32px));
   max-height: min(78vh, 680px);
   padding: 18px 20px 16px;
   background: #fbf4e8;
@@ -371,6 +371,17 @@ a {
   border-radius: var(--radius);
   box-shadow: 0 28px 90px rgba(45, 31, 22, 0.24);
   overflow: auto;
+}
+
+.person-modal-layout {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 210px;
+  gap: 18px;
+  align-items: stretch;
+}
+
+.person-details {
+  min-width: 0;
 }
 
 .person-panel h3 {
@@ -409,6 +420,20 @@ a {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.2;
+}
+
+.person-photo-placeholder {
+  min-height: 190px;
+  padding: 14px;
+  display: grid;
+  place-items: center;
+  border: 1px dashed #b88f82;
+  border-radius: 8px;
+  background: rgba(255, 253, 248, 0.56);
+  color: var(--muted);
+  font-size: 15px;
+  line-height: 1.25;
+  text-align: center;
 }
 
 .person-modal[hidden],
@@ -587,6 +612,14 @@ a {
 
   .tree-shell {
     grid-template-columns: 1fr;
+  }
+
+  .person-modal-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .person-photo-placeholder {
+    min-height: 110px;
   }
 }
 
