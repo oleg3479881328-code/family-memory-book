@@ -358,32 +358,47 @@ a {
 
 .person-panel {
   border-top: 1px solid var(--line);
-  padding: 24px;
+  padding: 14px 16px 12px;
   background: #fbf4e8;
   overflow: auto;
 }
 
 .person-panel h3 {
   margin: 0;
-  font-size: 28px;
+  font-size: 24px;
   line-height: 1.1;
 }
 
+.person-panel .dates {
+  margin: 4px 0 10px;
+  font-size: 14px;
+}
+
 .person-panel h4 {
-  margin: 22px 0 8px;
+  margin: 12px 0 6px;
   color: var(--green);
-  font-size: 16px;
+  font-size: 14px;
 }
 
 .fact-list li {
-  padding: 8px 0;
+  padding: 5px 0;
   border-bottom: 1px solid rgba(218, 205, 190, 0.7);
+  font-size: 15px;
+  line-height: 1.35;
 }
 
 .relation-list {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 6px;
+}
+
+.person-panel .link-button,
+.person-panel .memoir-link {
+  min-height: 34px;
+  padding: 5px 10px;
+  font-size: 14px;
+  line-height: 1.2;
 }
 
 .memoir-tabs {
