@@ -193,7 +193,10 @@ window.FAMILY = {
       partners: ["vera-solovyova", "alexandra-pirina", "olga-tankova"],
       children: ["natalya-povalyukhina", "anna-povalyukhina", "maria-povalyukhina"],
       memoirs: ["семейные-хроники"],
-      notes: ["Сын Тамары Николаевны Повалюхиной и Игоря Петровича Повалюхина."]
+      notes: [
+        "Сын Тамары Николаевны Повалюхиной и Игоря Петровича Повалюхина.",
+        "Муж Веры Дмитриевны Соловьёвой, Александры Сергеевны Пириной и Ольги Александровны Таньковой."
+      ]
     },
     "anatoly-povalyukhin": {
       name: "Анатолий Игоревич Повалюхин",
@@ -207,21 +210,21 @@ window.FAMILY = {
       dates: "20.08.1968",
       partners: ["oleg-povalyukhin"],
       children: ["natalya-povalyukhina"],
-      notes: ["Партнёр Олега Игоревича Повалюхина."]
+      notes: ["Жена Олега Игоревича Повалюхина."]
     },
     "alexandra-pirina": {
       name: "Александра Сергеевна Пирина",
       dates: "17.10.1970",
       partners: ["oleg-povalyukhin"],
       children: ["anna-povalyukhina"],
-      notes: ["Партнёр Олега Игоревича Повалюхина."]
+      notes: ["Жена Олега Игоревича Повалюхина."]
     },
     "olga-tankova": {
       name: "Ольга Александровна Танькова",
       dates: "01.06.1983",
       partners: ["oleg-povalyukhin"],
       children: ["maria-povalyukhina"],
-      notes: ["Партнёр Олега Игоревича Повалюхина."]
+      notes: ["Жена Олега Игоревича Повалюхина."]
     },
     "natalya-povalyukhina": {
       name: "Наталья Олеговна Повалюхина",

@@ -191,7 +191,7 @@ function showPerson(id) {
         <p class="dates">${person.dates || "даты не указаны"}</p>
         ${person.notes?.length ? `<ul class="fact-list">${person.notes.map((note) => `<li>${note}</li>`).join("")}</ul>` : ""}
         ${person.parents?.length ? `<h4>Родители</h4><div class="relation-list">${relatedList(person.parents)}</div>` : ""}
-        ${person.partners?.length ? `<h4>Связи</h4><div class="relation-list">${relatedList(person.partners)}</div>` : ""}
+        ${person.partners?.length ? `<h4>Супруги</h4><div class="relation-list">${relatedList(person.partners)}</div>` : ""}
         ${person.children?.length ? `<h4>Дети</h4><div class="relation-list">${relatedList(person.children)}</div>` : ""}
         ${memoirLinks ? `<h4>Связанные тексты</h4><div class="relation-list">${memoirLinks}</div>` : ""}
       </div>
