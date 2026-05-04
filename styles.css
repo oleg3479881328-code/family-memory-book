@@ -29,6 +29,10 @@ body {
   overflow-x: hidden;
 }
 
+body.modal-open {
+  overflow: hidden;
+}
+
 button,
 input {
   font: inherit;
@@ -357,14 +361,20 @@ a {
 }
 
 .person-panel {
-  border-top: 1px solid var(--line);
-  padding: 14px 16px 12px;
+  position: relative;
+  z-index: 1;
+  width: min(760px, calc(100vw - 32px));
+  max-height: min(78vh, 680px);
+  padding: 18px 20px 16px;
   background: #fbf4e8;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 28px 90px rgba(45, 31, 22, 0.24);
   overflow: auto;
 }
 
 .person-panel h3 {
-  margin: 0;
+  margin: 0 36px 0 0;
   font-size: 24px;
   line-height: 1.1;
 }
@@ -399,6 +409,42 @@ a {
   padding: 5px 10px;
   font-size: 14px;
   line-height: 1.2;
+}
+
+.person-modal[hidden] {
+  display: none;
+}
+
+.person-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  padding: 18px;
+}
+
+.modal-backdrop {
+  position: absolute;
+  inset: 0;
+  border: 0;
+  background: rgba(36, 27, 22, 0.32);
+  cursor: pointer;
+}
+
+.modal-close {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  width: 32px;
+  height: 32px;
+  border: 1px solid var(--line);
+  border-radius: 999px;
+  background: #fffdf8;
+  color: var(--ink);
+  cursor: pointer;
+  font-size: 22px;
+  line-height: 1;
 }
 
 .memoir-tabs {

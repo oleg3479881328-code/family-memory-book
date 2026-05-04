@@ -67,9 +67,6 @@
             <button id="expand-all" type="button">Показать всё</button>
             <button id="collapse-all" type="button">К Анне Сергеевне</button>
           </div>
-          <aside id="person-panel" class="person-panel" aria-label="Карточка человека">
-            <p class="panel-empty">Выберите карточку в родословной.</p>
-          </aside>
           <div class="tree-shell">
             <div id="family-tree" class="family-tree" aria-live="polite"></div>
           </div>
@@ -97,6 +94,16 @@
     <footer class="site-footer">
       <p>Книга памяти семьи. Материалы: родословная и DOCX «Мемуары воспоминания (1)».</p>
     </footer>
+
+    <div id="person-modal" class="person-modal" hidden>
+      <button class="modal-backdrop" type="button" data-close-person aria-label="Закрыть карточку"></button>
+      <aside id="person-panel" class="person-panel" role="dialog" aria-modal="true" aria-label="Карточка человека">
+        <button class="modal-close" type="button" data-close-person aria-label="Закрыть">×</button>
+        <div id="person-panel-content">
+          <p class="panel-empty">Выберите карточку в родословной.</p>
+        </div>
+      </aside>
+    </div>
 
     <script src="data/memoirs.js"></script>
     <script src="data/family.js"></script>

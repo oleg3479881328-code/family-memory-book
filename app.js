@@ -3,7 +3,8 @@ const memoirs = window.MEMOIRS;
 const people = family.people;
 
 const treeEl = document.querySelector("#family-tree");
-const panelEl = document.querySelector("#person-panel");
+const modalEl = document.querySelector("#person-modal");
+const panelContentEl = document.querySelector("#person-panel-content");
 const searchEl = document.querySelector("#person-search");
 const tabsEl = document.querySelector("#memoir-tabs");
 const readerEl = document.querySelector("#memoir-reader");
@@ -86,6 +87,11 @@ function relatedList(ids = []) {
   return ids.map((id) => `<button type="button" class="link-button" data-person="${id}">${personName(id)}</button>`).join("");
 }
 
+function closePersonModal() {
+  modalEl.hidden = true;
+  document.body.classList.remove("modal-open");
+}
+
 function renderTree() {
   const match = searchEl.value.trim().toLowerCase();
   const lines = [];
@@ -153,7 +159,7 @@ function showPerson(id) {
     })
     .join("");
 
-  panelEl.innerHTML = `
+  panelContentEl.innerHTML = `
     <h3>${person.name}</h3>
     <p class="dates">${person.dates || "даты не указаны"}</p>
     ${person.notes?.length ? `<ul class="fact-list">${person.notes.map((note) => `<li>${note}</li>`).join("")}</ul>` : ""}
@@ -162,6 +168,8 @@ function showPerson(id) {
     ${person.children?.length ? `<h4>Дети</h4><div class="relation-list">${relatedList(person.children)}</div>` : ""}
     ${memoirLinks ? `<h4>Связанные тексты</h4><div class="relation-list">${memoirLinks}</div>` : ""}
   `;
+  modalEl.hidden = false;
+  document.body.classList.add("modal-open");
 }
 
 function renderMemoirTabs(activeId) {
@@ -201,6 +209,11 @@ function renderPhotos() {
 }
 
 document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-close-person]")) {
+    closePersonModal();
+    return;
+  }
+
   const personButton = event.target.closest("[data-person]");
   if (personButton) {
     showPerson(personButton.dataset.person);
@@ -210,7 +223,14 @@ document.addEventListener("click", (event) => {
   const memoirButton = event.target.closest("[data-memoir]");
   if (memoirButton) {
     showMemoir(memoirButton.dataset.memoir);
+    closePersonModal();
     document.querySelector("#memoirs").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+});
+
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !modalEl.hidden) {
+    closePersonModal();
   }
 });
 
@@ -224,6 +244,5 @@ document.querySelector("#collapse-all").addEventListener("click", () => {
 });
 
 renderTree();
-showPerson("anna-kuteinikova");
 showMemoir();
 renderPhotos();
