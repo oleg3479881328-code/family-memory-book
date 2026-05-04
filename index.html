@@ -105,6 +105,15 @@
       </aside>
     </div>
 
+    <div id="photo-modal" class="photo-modal" hidden>
+      <button class="modal-backdrop" type="button" data-close-photo aria-label="Закрыть фотографию"></button>
+      <figure class="photo-viewer" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
+        <button class="modal-close" type="button" data-close-photo aria-label="Закрыть">×</button>
+        <img id="photo-viewer-image" src="" alt="" />
+        <figcaption id="photo-viewer-caption"></figcaption>
+      </figure>
+    </div>
+
     <script src="data/memoirs.js"></script>
     <script src="data/family.js"></script>
     <script src="app.js"></script>

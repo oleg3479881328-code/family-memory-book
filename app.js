@@ -9,6 +9,9 @@ const searchEl = document.querySelector("#person-search");
 const tabsEl = document.querySelector("#memoir-tabs");
 const readerEl = document.querySelector("#memoir-reader");
 const photosEl = document.querySelector("#photo-grid");
+const photoModalEl = document.querySelector("#photo-modal");
+const photoViewerImageEl = document.querySelector("#photo-viewer-image");
+const photoViewerCaptionEl = document.querySelector("#photo-viewer-caption");
 
 const chartNodes = {
   "sergey-kuteinikov": { x: 490, y: 80, tone: "male" },
@@ -90,6 +93,28 @@ function relatedList(ids = []) {
 function closePersonModal() {
   modalEl.hidden = true;
   document.body.classList.remove("modal-open");
+}
+
+function closePhotoModal() {
+  photoModalEl.hidden = true;
+  photoViewerImageEl.removeAttribute("src");
+  photoViewerImageEl.alt = "";
+  photoViewerCaptionEl.textContent = "";
+  document.body.classList.remove("modal-open");
+}
+
+function showPhoto(index) {
+  const photo = memoirs.photos[index];
+  if (!photo) {
+    return;
+  }
+
+  const altText = `Фотография ${index + 1} из семейного архива`;
+  photoViewerImageEl.src = photo.src;
+  photoViewerImageEl.alt = altText;
+  photoViewerCaptionEl.textContent = photo.caption;
+  photoModalEl.hidden = false;
+  document.body.classList.add("modal-open");
 }
 
 function renderTree() {
@@ -200,7 +225,9 @@ function renderPhotos() {
     .map(
       (photo, index) => `
         <figure class="photo-card">
-          <img src="${photo.src}" alt="Фотография ${index + 1} из семейного архива" loading="lazy" />
+          <button class="photo-open" type="button" data-photo="${index}" aria-label="Открыть фотографию ${index + 1}">
+            <img src="${photo.src}" alt="Фотография ${index + 1} из семейного архива" loading="lazy" />
+          </button>
           <figcaption>${photo.caption}</figcaption>
         </figure>
       `,
@@ -209,8 +236,19 @@ function renderPhotos() {
 }
 
 document.addEventListener("click", (event) => {
+  if (event.target.closest("[data-close-photo]")) {
+    closePhotoModal();
+    return;
+  }
+
   if (event.target.closest("[data-close-person]")) {
     closePersonModal();
+    return;
+  }
+
+  const photoButton = event.target.closest("[data-photo]");
+  if (photoButton) {
+    showPhoto(Number(photoButton.dataset.photo));
     return;
   }
 
@@ -229,6 +267,11 @@ document.addEventListener("click", (event) => {
 });
 
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !photoModalEl.hidden) {
+    closePhotoModal();
+    return;
+  }
+
   if (event.key === "Escape" && !modalEl.hidden) {
     closePersonModal();
   }
