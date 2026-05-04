@@ -1,6 +1,8 @@
 const family = window.FAMILY;
 const memoirs = window.MEMOIRS;
+const photoAlbums = window.PHOTO_ALBUMS || [];
 const people = family.people;
+const albumsByPerson = new Map(photoAlbums.map((album) => [album.personId, album]));
 
 const treeEl = document.querySelector("#family-tree");
 const modalEl = document.querySelector("#person-modal");
@@ -103,18 +105,41 @@ function closePhotoModal() {
   document.body.classList.remove("modal-open");
 }
 
-function showPhoto(index) {
-  const photo = memoirs.photos[index];
+function openPhoto(photo) {
   if (!photo) {
     return;
   }
 
-  const altText = `Фотография ${index + 1} из семейного архива`;
   photoViewerImageEl.src = photo.src;
-  photoViewerImageEl.alt = altText;
+  photoViewerImageEl.alt = photo.caption;
   photoViewerCaptionEl.textContent = photo.caption;
   photoModalEl.hidden = false;
   document.body.classList.add("modal-open");
+}
+
+function photoButton(photo, label, className = "photo-open") {
+  return `
+    <button class="${className}" type="button" data-photo-src="${photo.src}" data-photo-caption="${photo.caption}" aria-label="${label}">
+      <img src="${photo.src}" alt="${photo.caption}" loading="lazy" />
+    </button>
+  `;
+}
+
+function renderPersonAlbum(album) {
+  const thumbnails = album.photos
+    .slice(0, 6)
+    .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb"))
+    .join("");
+
+  return `
+    <div class="person-album-slot">
+      <h4>Фотоальбом</h4>
+      <div class="person-album-thumbs">${thumbnails}</div>
+      <button class="album-link" type="button" data-scroll-album="${album.personId}">
+        Открыть альбом
+      </button>
+    </div>
+  `;
 }
 
 function renderTree() {
@@ -177,6 +202,10 @@ function renderTree() {
 function showPerson(id) {
   const person = people[id];
   if (!person) return;
+  const album = albumsByPerson.get(id);
+  const albumPanel = album
+    ? renderPersonAlbum(album)
+    : `<div class="person-photo-placeholder" aria-label="Место для фотоархива"><span>Здесь может быть фотоархив</span></div>`;
   const memoirLinks = (person.memoirs || [])
     .map((memoirId) => {
       const section = memoirs.sections.find((item) => item.id === memoirId);
@@ -195,9 +224,7 @@ function showPerson(id) {
         ${person.children?.length ? `<h4>Дети</h4><div class="relation-list">${relatedList(person.children)}</div>` : ""}
         ${memoirLinks ? `<h4>Связанные тексты</h4><div class="relation-list">${memoirLinks}</div>` : ""}
       </div>
-      <div class="person-photo-placeholder" aria-label="Место для фотоархива">
-        <span>Здесь может быть фотоархив</span>
-      </div>
+      ${albumPanel}
     </div>
   `;
   modalEl.hidden = false;
@@ -228,18 +255,44 @@ function showMemoir(id = memoirs.sections[0].id) {
 }
 
 function renderPhotos() {
-  photosEl.innerHTML = memoirs.photos
+  const albumCards = photoAlbums
+    .map((album) => {
+      const cover = album.photos[0];
+      const strip = album.photos
+        .slice(0, 4)
+        .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb"))
+        .join("");
+
+      return `
+        <article class="album-card" id="album-${album.personId}">
+          <button class="album-cover" type="button" data-person="${album.personId}" aria-label="Открыть карточку: ${album.title}">
+            <img src="${cover.src}" alt="${album.title}" loading="lazy" />
+            <span>Фотоальбом</span>
+            <strong>${album.title}</strong>
+            <small>${album.photos.length} фото</small>
+          </button>
+          <div class="album-strip">${strip}</div>
+        </article>
+      `;
+    })
+    .join("");
+
+  const archiveCards = memoirs.photos
     .map(
       (photo, index) => `
         <figure class="photo-card">
-          <button class="photo-open" type="button" data-photo="${index}" aria-label="Открыть фотографию ${index + 1}">
-            <img src="${photo.src}" alt="Фотография ${index + 1} из семейного архива" loading="lazy" />
-          </button>
+          ${photoButton(photo, `Открыть фотографию ${index + 1}`)}
           <figcaption>${photo.caption}</figcaption>
         </figure>
       `,
     )
     .join("");
+
+  photosEl.innerHTML = `
+    <div class="album-grid">${albumCards}</div>
+    <h3 class="archive-subtitle">Фотографии из исходного документа</h3>
+    <div class="archive-grid">${archiveCards}</div>
+  `;
 }
 
 document.addEventListener("click", (event) => {
@@ -253,9 +306,22 @@ document.addEventListener("click", (event) => {
     return;
   }
 
-  const photoButton = event.target.closest("[data-photo]");
-  if (photoButton) {
-    showPhoto(Number(photoButton.dataset.photo));
+  const directPhotoButton = event.target.closest("[data-photo-src]");
+  if (directPhotoButton) {
+    openPhoto({
+      src: directPhotoButton.dataset.photoSrc,
+      caption: directPhotoButton.dataset.photoCaption,
+    });
+    return;
+  }
+
+  const albumScrollButton = event.target.closest("[data-scroll-album]");
+  if (albumScrollButton) {
+    closePersonModal();
+    document.querySelector(`#album-${albumScrollButton.dataset.scrollAlbum}`)?.scrollIntoView({
+      behavior: "smooth",
+      block: "center",
+    });
     return;
   }
 
