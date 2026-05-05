@@ -329,8 +329,8 @@ a {
 }
 
 .chart-person.has-portrait {
-  width: 212px;
-  padding-left: 66px;
+  width: 198px;
+  padding-left: 60px;
   text-align: left;
 }
 
@@ -338,8 +338,8 @@ a {
   position: absolute;
   left: 10px;
   top: 50%;
-  width: 48px;
-  height: 58px;
+  width: 42px;
+  height: 52px;
   transform: translateY(-50%);
   border: 1px solid rgba(47, 39, 33, 0.35);
   border-radius: 6px;
@@ -348,7 +348,7 @@ a {
 }
 
 .chart-person.has-portrait strong {
-  font-size: 18px;
+  font-size: 17px;
 }
 
 .chart-person strong,
