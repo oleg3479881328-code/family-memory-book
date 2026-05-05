@@ -202,9 +202,11 @@ function renderTree() {
     const childJoinY = Math.min(...children.map((child) => child.y)) - 62;
     const leftX = Math.min(...children.map((child) => child.x));
     const rightX = Math.max(...children.map((child) => child.x));
+    const branchLeftX = Math.min(leftX, rootX);
+    const branchRightX = Math.max(rightX, rootX);
     lines.push(`<path d="M ${rootX} ${parentY + 44} V ${joinY} V ${childJoinY}" class="family-line" />`);
     if (children.length > 1) {
-      lines.push(`<path d="M ${leftX} ${childJoinY} H ${rightX}" class="family-line" />`);
+      lines.push(`<path d="M ${branchLeftX} ${childJoinY} H ${branchRightX}" class="family-line" />`);
     }
     children.forEach((child) => {
       lines.push(`<path d="M ${child.x} ${childJoinY} V ${child.y - 44}" class="family-line" />`);
