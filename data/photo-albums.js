@@ -109,4 +109,23 @@ window.PHOTO_ALBUMS = [
       },
     ],
   },
+  {
+    personId: "igor-povalyukhin",
+    title: "Игорь Петрович Повалюхин",
+    description: "Фотографии из семейного альбома.",
+    photos: [
+      {
+        src: "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20230212-WA0000.jpg",
+        caption: "Фотоальбом Игоря Петровича. Фото 1",
+      },
+      {
+        src: "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20250625-WA0003.jpg",
+        caption: "Фотоальбом Игоря Петровича. Фото 2",
+      },
+      {
+        src: "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20260426-WA0002.jpg",
+        caption: "Фотоальбом Игоря Петровича. Фото 3",
+      },
+    ],
+  },
 ];
