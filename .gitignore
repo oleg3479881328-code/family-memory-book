@@ -3,3 +3,5 @@ qa/
 .DS_Store
 Thumbs.db
 assets/photo-albums/**/*.zip
+__pycache__/
+*.pyc

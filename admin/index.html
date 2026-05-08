@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Админка семейной книги</title>
+    <meta
+      name="description"
+      content="Локальная админка для редактирования людей, текстов карточек и фотоальбомов семейной книги."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header class="admin-header">
+      <div>
+        <p class="eyebrow">Локальная админка</p>
+        <h1>Семейная книга памяти</h1>
+      </div>
+      <div class="header-actions">
+        <button id="reload-data" type="button" class="button secondary">Обновить данные</button>
+        <button id="save-all" type="button" class="button primary" disabled>Сохранить изменения</button>
+      </div>
+    </header>
+
+    <main class="admin-shell">
+      <aside class="sidebar">
+        <div class="sidebar-card">
+          <label class="field-label" for="person-search">Поиск человека</label>
+          <input id="person-search" type="search" placeholder="Введите имя" />
+        </div>
+
+        <div class="sidebar-card status-card">
+          <h2>Состояние</h2>
+          <p id="save-status">Админка подключается к локальному серверу. Выберите человека, добавьте фото и нажмите «Сохранить изменения».</p>
+          <p id="server-warning" class="warning" hidden>Локальный сервер не отвечает. Запустите файл <code>start-admin.bat</code>.</p>
+        </div>
+
+        <div class="sidebar-card people-card">
+          <div class="card-head">
+            <h2>Люди</h2>
+            <span id="people-count"></span>
+          </div>
+          <div id="people-list" class="people-list" aria-live="polite"></div>
+        </div>
+      </aside>
+
+      <section class="editor">
+        <div class="editor-card">
+          <div class="card-head">
+            <div>
+              <h2>Карточка человека</h2>
+              <p class="subtle">Имя, даты, заметки и фотоальбом.</p>
+            </div>
+            <span id="person-id-badge" class="badge"></span>
+          </div>
+          <div id="person-editor" class="empty-state">
+            <p>Выберите человека слева, чтобы начать редактирование.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="admin-footer">
+      <p>
+        Эта версия сохраняет изменения в <code>data/family.js</code> и <code>data/photo-albums.js</code>
+        и предназначена только для правки уже существующих карточек и их фотоальбомов.
+      </p>
+    </footer>
+
+    <script src="scripts.js"></script>
+  </body>
+</html>
