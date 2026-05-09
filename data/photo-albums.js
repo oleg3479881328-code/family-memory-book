@@ -213,10 +213,10 @@ window.PHOTO_ALBUMS = [
       },
       {
         "caption": "Фотоальбом Марии Олеговны. Фото 10",
-        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_20260317_152849.jpg"
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_2021160317_152849.jpg"
       }
     ],
-    "portrait": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_20260317_152849.jpg",
+    "portrait": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_2021160317_152849.jpg",
     "title": "Мария Олеговна Повалюхина"
   },
   {
