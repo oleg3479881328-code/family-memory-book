@@ -1,509 +1,745 @@
 window.PHOTO_ALBUMS = [
   {
-    personId: "tamara-grigoryeva",
-    title: "Тамара Николаевна Григорьева / Повалюхина",
-    description: "Фотографии из семейного альбома.",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "tamara-grigoryeva",
+    "photos": [
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/FB_IMG_1577166365375.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 1",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 1",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/FB_IMG_1577166365375.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/FB_IMG_1631733170698.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 2",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 2",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/FB_IMG_1631733170698.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20230606-WA0037.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 3",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 3",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20230606-WA0037.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20230629-WA0004.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 4",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 4",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20230629-WA0004.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231028-WA0000.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 5",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 5",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231028-WA0000.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231105-WA0002.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 6",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 6",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231105-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231217-WA0021.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 7",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 7",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231217-WA0021.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20241005-WA0006.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 8",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 8",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20241005-WA0006.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20260308-WA0003.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 9",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 9",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20260308-WA0003.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/PXL_20211005_175509022.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 10",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 10",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/PXL_20211005_175509022.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/PXL_20211007_224100837.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 11",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 11",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/PXL_20211007_224100837.jpg"
       },
       {
-        src: "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/PXL_20211010_184407477.jpg",
-        caption: "Фотоальбом Тамары Николаевны. Фото 12",
+        "caption": "Фотоальбом Тамары Николаевны. Фото 12",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/PXL_20211010_184407477.jpg"
       },
+      {
+        "caption": "Фотоальбом Тамары Николаевны. Фото 13",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20230216-WA0002.jpg"
+      }
     ],
+    "title": "Тамара Николаевна Григорьева / Повалюхина"
   },
   {
-    personId: "elena-podkovtseva",
-    title: "Елена Николаевна Подковцева",
-    description: "Фотографии из семейного альбома.",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "elena-podkovtseva",
+    "photos": [
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20200819-WA0005.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 1",
+        "caption": "Фотоальбом Елены Николаевны. Фото 1",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20200819-WA0005.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20220513-WA0000.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 2",
+        "caption": "Фотоальбом Елены Николаевны. Фото 2",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20220513-WA0000.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20220708-WA0004.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 3",
+        "caption": "Фотоальбом Елены Николаевны. Фото 3",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20220708-WA0004.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20220711-WA0003.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 4",
+        "caption": "Фотоальбом Елены Николаевны. Фото 4",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20220711-WA0003.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20230818-WA0000.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 5",
+        "caption": "Фотоальбом Елены Николаевны. Фото 5",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20230818-WA0000.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20231225-WA0016.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 6",
+        "caption": "Фотоальбом Елены Николаевны. Фото 6",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20231225-WA0016.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20241107-WA0001.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 7",
+        "caption": "Фотоальбом Елены Николаевны. Фото 7",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20241107-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20241109-WA0001.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 8",
+        "caption": "Фотоальбом Елены Николаевны. Фото 8",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20241109-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20241109-WA0002.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 9",
+        "caption": "Фотоальбом Елены Николаевны. Фото 9",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20241109-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20250724-WA0002.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 10",
+        "caption": "Фотоальбом Елены Николаевны. Фото 10",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20250724-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20251225-WA0003.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 11",
+        "caption": "Фотоальбом Елены Николаевны. Фото 11",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20251225-WA0003.jpg"
       },
       {
-        src: "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20251225-WA0009.jpg",
-        caption: "Фотоальбом Елены Николаевны. Фото 12",
-      },
+        "caption": "Фотоальбом Елены Николаевны. Фото 12",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20251225-WA0009.jpg"
+      }
     ],
+    "title": "Елена Николаевна Подковцева"
   },
   {
-    personId: "igor-povalyukhin",
-    title: "Игорь Петрович Повалюхин",
-    description: "Фотографии из семейного альбома.",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "igor-povalyukhin",
+    "photos": [
       {
-        src: "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20230212-WA0000.jpg",
-        caption: "Фотоальбом Игоря Петровича. Фото 1",
+        "caption": "Фотоальбом Игоря Петровича. Фото 1",
+        "src": "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20230212-WA0000.jpg"
       },
       {
-        src: "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20250625-WA0003.jpg",
-        caption: "Фотоальбом Игоря Петровича. Фото 2",
+        "caption": "Фотоальбом Игоря Петровича. Фото 2",
+        "src": "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20250625-WA0003.jpg"
       },
       {
-        src: "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20260426-WA0002.jpg",
-        caption: "Фотоальбом Игоря Петровича. Фото 3",
-      },
+        "caption": "Фотоальбом Игоря Петровича. Фото 3",
+        "src": "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20260426-WA0002.jpg"
+      }
     ],
+    "title": "Игорь Петрович Повалюхин"
   },
   {
-    personId: "natalya-povalyukhina",
-    title: "Наталья Олеговна Повалюхина",
-    description: "Фотографии из семейного альбома.",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "natalya-povalyukhina",
+    "photos": [
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/FB_IMG_1575847273106.jpg",
-        caption: "Фотоальбом Натальи Олеговны. Фото 1",
+        "caption": "Фотоальбом Натальи Олеговны. Фото 1",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/FB_IMG_1575847273106.jpg"
       },
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20231222-WA0004.jpg",
-        caption: "Фотоальбом Натальи Олеговны. Фото 2",
+        "caption": "Фотоальбом Натальи Олеговны. Фото 2",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20231222-WA0004.jpg"
       },
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20241101-WA0004.jpg",
-        caption: "Фотоальбом Натальи Олеговны. Фото 3",
+        "caption": "Фотоальбом Натальи Олеговны. Фото 3",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20241101-WA0004.jpg"
       },
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20241106-WA0019.jpg",
-        caption: "Фотоальбом Натальи Олеговны. Фото 4",
+        "caption": "Фотоальбом Натальи Олеговны. Фото 4",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20241106-WA0019.jpg"
       },
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20250601-WA0003.jpg",
-        caption: "Фотоальбом Натальи Олеговны. Фото 5",
+        "caption": "Фотоальбом Натальи Олеговны. Фото 5",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20250601-WA0003.jpg"
       },
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/PXL_20211011_204538118.jpg",
-        caption: "Фотоальбом Натальи Олеговны. Фото 6",
+        "caption": "Фотоальбом Натальи Олеговны. Фото 6",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/PXL_20211011_204538118.jpg"
       },
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/Screenshot_20220523-145914.png",
-        caption: "Фотоальбом Натальи Олеговны. Фото 7",
+        "caption": "Фотоальбом Натальи Олеговны. Фото 7",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/Screenshot_20220523-145914.png"
       },
       {
-        src: "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/viber_image_2018-11-29_21-04-04.jpg",
-        caption: "Фотоальбом Натальи Олеговны. Фото 8",
-      },
+        "caption": "Фотоальбом Натальи Олеговны. Фото 8",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/viber_image_2018-11-29_21-04-04.jpg"
+      }
     ],
+    "title": "Наталья Олеговна Повалюхина"
   },
   {
-    personId: "maria-povalyukhina",
-    title: "Мария Олеговна Повалюхина",
-    description: "Фотографии из семейного альбома.",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "maria-povalyukhina",
+    "photos": [
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240421_161659.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 1",
+        "caption": "Фотоальбом Марии Олеговны. Фото 1",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240421_161659.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240709_130919.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 2",
+        "caption": "Фотоальбом Марии Олеговны. Фото 2",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240709_130919.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240926_175930.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 3",
+        "caption": "Фотоальбом Марии Олеговны. Фото 3",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240926_175930.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240930_162026.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 4",
+        "caption": "Фотоальбом Марии Олеговны. Фото 4",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20240930_162026.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20250101_214505.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 5",
+        "caption": "Фотоальбом Марии Олеговны. Фото 5",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20250101_214505.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20250202_162000_001.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 6",
+        "caption": "Фотоальбом Марии Олеговны. Фото 6",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20250202_162000_001.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/IMG-20250211-WA0002.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 7",
+        "caption": "Фотоальбом Марии Олеговны. Фото 7",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/IMG-20250211-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/IMG-20250211-WA0007.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 8",
+        "caption": "Фотоальбом Марии Олеговны. Фото 8",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/IMG-20250211-WA0007.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/IMG-20251214-WA0004.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 9",
+        "caption": "Фотоальбом Марии Олеговны. Фото 9",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/IMG-20251214-WA0004.jpg"
       },
       {
-        src: "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_20260317_152849.jpg",
-        caption: "Фотоальбом Марии Олеговны. Фото 10",
-      },
+        "caption": "Фотоальбом Марии Олеговны. Фото 10",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_20260317_152849.jpg"
+      }
     ],
+    "title": "Мария Олеговна Повалюхина"
   },
   {
-    personId: "hawkin-hurley",
-    title: "Хокин Рэндал Хёрли",
-    description: "Фотографии из семейного альбома.",
-    portrait: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251022-WA0010.jpg",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "hawkin-hurley",
+    "photos": [
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251022-WA0010.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 1",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 1",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251022-WA0010.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/img_1_1712062748184.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 2",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 2",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/img_1_1712062748184.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/img_5_1712062786422.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 3",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 3",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/img_5_1712062786422.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20230617-WA0000.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 4",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 4",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20230617-WA0000.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20230709-WA0003.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 5",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 5",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20230709-WA0003.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20231228-WA0004.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 6",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 6",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20231228-WA0004.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20240903-WA0006.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 7",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 7",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20240903-WA0006.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20240914-WA0002.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 8",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 8",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20240914-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20250604-WA0001.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 9",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 9",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20250604-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251011-WA0002.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 10",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 10",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251011-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251017-WA0002.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 11",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 11",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251017-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20260401-WA0001.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 12",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 12",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20260401-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/kodak_400_c_41_31275_122045_273113_000031130025.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 13",
+        "caption": "Фотоальбом Хокина Рэндала. Фото 13",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/kodak_400_c_41_31275_122045_273113_000031130025.jpg"
       },
       {
-        src: "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/PXL_20220309_135614392.jpg",
-        caption: "Фотоальбом Хокина Рэндала. Фото 14",
-      },
+        "caption": "Фотоальбом Хокина Рэндала. Фото 14",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/PXL_20220309_135614392.jpg"
+      }
     ],
+    "portrait": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251022-WA0010.jpg",
+    "title": "Хокин Рэндал Хёрли"
   },
   {
-    personId: "konstantin-fateev",
-    title: "Константин Александрович Фатеев",
-    description: "Фотографии из семейного альбома.",
-    portrait: "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/download258.png",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "konstantin-fateev",
+    "photos": [
       {
-        src: "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/download258.png",
-        caption: "Фотоальбом Константина Александровича. Фото 1",
+        "caption": "Фотоальбом Константина Александровича. Фото 1",
+        "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/download258.png"
       },
       {
-        src: "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0005.jpg",
-        caption: "Фотоальбом Константина Александровича. Фото 2",
+        "caption": "Фотоальбом Константина Александровича. Фото 2",
+        "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0005.jpg"
       },
       {
-        src: "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0006.jpg",
-        caption: "Фотоальбом Константина Александровича. Фото 3",
+        "caption": "Фотоальбом Константина Александровича. Фото 3",
+        "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0006.jpg"
       },
       {
-        src: "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0007.jpg",
-        caption: "Фотоальбом Константина Александровича. Фото 4",
+        "caption": "Фотоальбом Константина Александровича. Фото 4",
+        "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0007.jpg"
       },
       {
-        src: "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0008.jpg",
-        caption: "Фотоальбом Константина Александровича. Фото 5",
+        "caption": "Фотоальбом Константина Александровича. Фото 5",
+        "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20240509-WA0008.jpg"
       },
       {
-        src: "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20241109-WA0001.jpg",
-        caption: "Фотоальбом Константина Александровича. Фото 6",
-      },
+        "caption": "Фотоальбом Константина Александровича. Фото 6",
+        "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20241109-WA0001.jpg"
+      }
     ],
+    "portrait": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/download258.png",
+    "title": "Константин Александрович Фатеев"
   },
   {
-    personId: "vera-kureneva",
-    title: "Вера Дмитриевна Куренева",
-    description: "Фотографии из семейного альбома.",
-    portrait: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230818-WA0000.jpg",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "vera-kureneva",
+    "photos": [
       {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0006.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 1",
+        "caption": "Фотоальбом Веры Дмитриевны. Фото 1",
+        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0006.jpg"
       },
       {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0007.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 2",
+        "caption": "Фотоальбом Веры Дмитриевны. Фото 2",
+        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0010.jpg"
       },
       {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0009.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 3",
+        "caption": "Фотоальбом Веры Дмитриевны. Фото 3",
+        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230213-WA0006.jpg"
       },
       {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0010.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 4",
+        "caption": "Фотоальбом Веры Дмитриевны. Фото 4",
+        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230818-WA0000.jpg"
       },
       {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230213-WA0006.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 5",
+        "caption": "Фотоальбом Веры Дмитриевны. Фото 5",
+        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230818-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230818-WA0000.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 6",
+        "caption": "Фотоальбом Веры Дмитриевны. Фото 6",
+        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20260422-WA0004.jpg"
       },
       {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230818-WA0001.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 7",
-      },
-      {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20251120-WA0000.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 8",
-      },
-      {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20260422-WA0004.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 9",
-      },
-      {
-        src: "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20260426-WA0002.jpg",
-        caption: "Фотоальбом Веры Дмитриевны. Фото 10",
-      },
+        "caption": "Фотоальбом Веры Дмитриевны. Фото 7",
+        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/WhatsApp Image4 2026-05-08 at 9.56.57 AM.jpeg"
+      }
     ],
+    "portrait": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230818-WA0000.jpg",
+    "title": "Вера Дмитриевна Куренева"
   },
   {
-    personId: "pavel-fateev",
-    title: "Павел Александрович Фатеев",
-    description: "Фотографии из семейного альбома.",
-    portrait: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/download123.png",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "pavel-fateev",
+    "photos": [
       {
-        src: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/download123.png",
-        caption: "Фотоальбом Павла Александровича. Фото 1",
+        "caption": "Фотоальбом Павла Александровича. Фото 1",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/download123.png"
       },
       {
-        src: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20240509-WA0005.jpg",
-        caption: "Фотоальбом Павла Александровича. Фото 2",
+        "caption": "Фотоальбом Павла Александровича. Фото 2",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20240509-WA0005.jpg"
       },
       {
-        src: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20240509-WA0006.jpg",
-        caption: "Фотоальбом Павла Александровича. Фото 3",
+        "caption": "Фотоальбом Павла Александровича. Фото 3",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20240509-WA0006.jpg"
       },
       {
-        src: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20240509-WA0007.jpg",
-        caption: "Фотоальбом Павла Александровича. Фото 4",
+        "caption": "Фотоальбом Павла Александровича. Фото 4",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20240509-WA0007.jpg"
       },
       {
-        src: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20241109-WA0001.jpg",
-        caption: "Фотоальбом Павла Александровича. Фото 5",
+        "caption": "Фотоальбом Павла Александровича. Фото 5",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20241109-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20241109-WA0002.jpg",
-        caption: "Фотоальбом Павла Александровича. Фото 6",
+        "caption": "Фотоальбом Павла Александровича. Фото 6",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20241109-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20241109-WA0003.jpg",
-        caption: "Фотоальбом Павла Александровича. Фото 7",
-      },
+        "caption": "Фотоальбом Павла Александровича. Фото 7",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20241109-WA0003.jpg"
+      }
     ],
+    "portrait": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/download123.png",
+    "title": "Павел Александрович Фатеев"
   },
   {
-    personId: "gerard-hurley",
-    title: "Джерард Хёрли",
-    description: "Фотографии из семейного альбома.",
-    portrait: "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/img_1_1647549233873.jpg",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "gerard-hurley",
+    "photos": [
       {
-        src: "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/img_1_1647549233873.jpg",
-        caption: "Фотоальбом Джерарда. Фото 1",
+        "caption": "Фотоальбом Джерарда. Фото 1",
+        "src": "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/img_1_1647549233873.jpg"
       },
       {
-        src: "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/img_1_1651437103520.jpg",
-        caption: "Фотоальбом Джерарда. Фото 2",
+        "caption": "Фотоальбом Джерарда. Фото 2",
+        "src": "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/img_1_1651437103520.jpg"
       },
       {
-        src: "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/IMG-20240625-WA0010.jpg",
-        caption: "Фотоальбом Джерарда. Фото 3",
+        "caption": "Фотоальбом Джерарда. Фото 3",
+        "src": "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/IMG-20240625-WA0010.jpg"
       },
       {
-        src: "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/IMG-d88bb95e3bb1319df4d477d85e24dabb-V.jpg",
-        caption: "Фотоальбом Джерарда. Фото 4",
+        "caption": "Фотоальбом Джерарда. Фото 4",
+        "src": "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/IMG-d88bb95e3bb1319df4d477d85e24dabb-V.jpg"
       },
       {
-        src: "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/PXL_20211005_225151595.jpg",
-        caption: "Фотоальбом Джерарда. Фото 5",
-      },
+        "caption": "Фотоальбом Джерарда. Фото 5",
+        "src": "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/PXL_20211005_225151595.jpg"
+      }
     ],
+    "portrait": "assets/photo-albums/gerard-hurley/Photos-3-001 (15)/img_1_1647549233873.jpg",
+    "title": "Джерард Хёрли"
   },
   {
-    personId: "anna-fateeva",
-    title: "Анна Константиновна Фатеева",
-    description: "Фотографии из семейного альбома.",
-    portrait: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20231222-WA0014.jpg",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "anna-fateeva",
+    "photos": [
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20231222-WA0014.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 1",
+        "caption": "Фотоальбом Анны Константиновны. Фото 1",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20231222-WA0014.jpg"
       },
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20220920-WA0000.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 2",
+        "caption": "Фотоальбом Анны Константиновны. Фото 2",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20220920-WA0000.jpg"
       },
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20231222-WA0023.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 3",
+        "caption": "Фотоальбом Анны Константиновны. Фото 3",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20231222-WA0023.jpg"
       },
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20240509-WA0006.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 4",
+        "caption": "Фотоальбом Анны Константиновны. Фото 4",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20240509-WA0006.jpg"
       },
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20240813-WA0001.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 5",
+        "caption": "Фотоальбом Анны Константиновны. Фото 5",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20240813-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20240813-WA0002.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 6",
+        "caption": "Фотоальбом Анны Константиновны. Фото 6",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20240813-WA0002.jpg"
       },
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20250705-WA0012.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 7",
+        "caption": "Фотоальбом Анны Константиновны. Фото 7",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20250705-WA0012.jpg"
       },
       {
-        src: "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/PXL_20211017_170151376.jpg",
-        caption: "Фотоальбом Анны Константиновны. Фото 8",
-      },
+        "caption": "Фотоальбом Анны Константиновны. Фото 8",
+        "src": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/PXL_20211017_170151376.jpg"
+      }
     ],
+    "portrait": "assets/photo-albums/anna-fateeva/Photos-3-001 (16)/IMG-20231222-WA0014.jpg",
+    "title": "Анна Константиновна Фатеева"
   },
   {
-    personId: "vera-solovyova",
-    title: "Вера Дмитриевна Соловьёва",
-    description: "Фотографии из семейного альбома.",
-    portrait: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_4_1652717476808.jpg",
-    photos: [
+    "description": "Фотографии из семейного альбома.",
+    "personId": "vera-solovyova",
+    "photos": [
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_4_1652717476808.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 1",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 1",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_4_1652717476808.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_4_16527174768081.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 2",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 2",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_5_1652717491736.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_5_1652717491736.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 3",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 3",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20241226-WA0005.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20241226-WA0005.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 4",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 4",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20241227-WA0001.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20241227-WA0001.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 5",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 5",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20250101-WA0005.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20250101-WA0005.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 6",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 6",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20250101-WA0008.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20250101-WA0008.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 7",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 7",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20250101-WA0010.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-20250101-WA0010.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 8",
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 8",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-d88bb95e3bb1319df4d477d85e24dabb-V.jpg"
       },
       {
-        src: "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/IMG-d88bb95e3bb1319df4d477d85e24dabb-V.jpg",
-        caption: "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 9",
-      },
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 9",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/vera and.jpg"
+      }
     ],
+    "portrait": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_4_1652717476808.jpg",
+    "title": "Вера Дмитриевна Соловьёва"
   },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "alexander-fateev",
+    "photos": [
+      {
+        "caption": "Фотоальбом Александра Константиновича. Фото 1",
+        "src": "assets/photo-albums/alexander-fateev/uploaded/PXL_20230303_043534514.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/alexander-fateev/uploaded/PXL_20230303_043534514.jpg",
+    "title": "Александр Константинович Фатеев"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "natalya-kureneva",
+    "photos": [
+      {
+        "caption": "Фотоальбом Натальи Дмитриевны. Фото 1",
+        "src": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0007.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Дмитриевны. Фото 2",
+        "src": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0009.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Дмитриевны. Фото 3",
+        "src": "assets/photo-albums/natalya-kureneva/IMG-20251120-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Дмитриевны. Фото 4",
+        "src": "assets/photo-albums/natalya-kureneva/IMG-20260426-WA0002.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0009.jpg",
+    "title": "Наталья Дмитриевна Куренёва"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "nikolay-podkovtsev",
+    "photos": [
+      {
+        "caption": "Фотоальбом Николая Павловича. Фото 1",
+        "src": "assets/photo-albums/nikolay-podkovtsev/IMG-20260422-WA0004.jpg"
+      },
+      {
+        "caption": "Фотоальбом Николая Павловича. Фото 2",
+        "src": "assets/photo-albums/nikolay-podkovtsev/IMG-202604221-WA0004.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/nikolay-podkovtsev/IMG-202604221-WA0004.jpg",
+    "title": "Николай Павлович Подковцев"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "nikolay-grigoryev",
+    "photos": [
+      {
+        "caption": "Фотоальбом Николая Дмитриевича. Фото 1",
+        "src": "assets/photo-albums/nikolay-grigoryev/WhatsApp Image 2026-05-08 at 9.56.57 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Николая Дмитриевича. Фото 2",
+        "src": "assets/photo-albums/nikolay-grigoryev/WhatsApp Image1 2026-05-08 at 9.56.57 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Николая Дмитриевича. Фото 3",
+        "src": "assets/photo-albums/nikolay-grigoryev/WhatsApp Image2 2026-05-08 at 9.56.57 AM.jpeg"
+      }
+    ],
+    "portrait": "assets/photo-albums/nikolay-grigoryev/WhatsApp Image 2026-05-08 at 9.56.57 AM.jpeg",
+    "title": "Николай Дмитриевич Григорьев"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "petr-povalyukhin",
+    "photos": [
+      {
+        "caption": "Фотоальбом Петра Петровича. Фото 1",
+        "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image3 2026-05-08 at 9.56.57 AM.jpeg"
+      }
+    ],
+    "portrait": "assets/photo-albums/petr-povalyukhin/WhatsApp Image3 2026-05-08 at 9.56.57 AM.jpeg",
+    "title": "Пётр Петрович Повалюхин"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "vera-povalyukhina",
+    "photos": [
+      {
+        "caption": "Фотоальбом Веры Васильевны. Фото 1",
+        "src": "assets/photo-albums/vera-povalyukhina/IMG-20260426-WA0002.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/vera-povalyukhina/IMG-20260426-WA0002.jpg",
+    "title": "Вера Васильевна Повалюхина"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "anatoly-povalyukhin",
+    "photos": [
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 1",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-202301216-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 2",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20230216-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 3",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20230216-WA0001.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 4",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20230216-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 5",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20230216-WA0003.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 6",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260228-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 7",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260228-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 8",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260228-WA0004.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 9",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260228-WA0005.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 10",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260228-WA0006.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 11",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260228-WA0007.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 12",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260228-WA0008.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 13",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260422-WA0007.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-202301216-WA0000.jpg",
+    "title": "Анатолий Игоревич Повалюхин"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "oleg-povalyukhin",
+    "photos": [
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 1",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/20131103_104731.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 2",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/93907473_2583377208603261_3417942855421788160_n (1).jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 3",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/img_3_1686433580090.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 4",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20230401-WA0003.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 5",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20230401-WA0020.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 6",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-202501126-WA0006.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 7",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0001.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 8",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 9",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0004.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олега Игоревича. Фото 10",
+        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0006.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-202501126-WA0006.jpg",
+    "title": "Олег Игоревич Повалюхин"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "olga-tankova",
+    "photos": [
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 1",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/20120707_185959.jpg"
+      },
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 2",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/20131116_192938.jpg"
+      },
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 3",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/20140104_162411.jpg"
+      },
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 4",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/20140208_133158.jpg"
+      },
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 5",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/img_6_1699838375967.jpg"
+      },
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 6",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/IMG-20251214-WA0007.jpg"
+      },
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 7",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/Screenshot_20230818-175343.png"
+      },
+      {
+        "caption": "Фотоальбом Ольги Александровны. Фото 8",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/Снимок экрана 2026-04-08 212916.png"
+      }
+    ],
+    "portrait": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/IMG-20251214-WA0007.jpg",
+    "title": "Ольга Александровна Танькова"
+  }
 ];

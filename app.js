@@ -26,35 +26,37 @@ const chartNodes = {
   "maria-kuteinikova": { x: 690, y: 80, tone: "female" },
   "anna-kuteinikova": { x: 490, y: 230, tone: "female" },
   "dmitry-kurenev": { x: 690, y: 230, tone: "male" },
-  "natalya-kureneva": { x: 230, y: 420, tone: "female" },
-  "vera-kureneva": { x: 470, y: 420, tone: "female" },
-  "elizaveta-kureneva": { x: 710, y: 420, tone: "female" },
-  "alexandra-kureneva": { x: 950, y: 420, tone: "female" },
-  "nikolay-grigoryev": { x: 230, y: 565, tone: "male" },
-  "nikolay-podkovtsev": { x: 470, y: 565, tone: "male" },
-  "alexander-fateev": { x: 950, y: 565, tone: "male" },
-  "tamara-grigoryeva": { x: 110, y: 730, tone: "descendant" },
-  "igor-grigoryev": { x: 340, y: 730, tone: "descendant" },
-  "elena-podkovtseva": { x: 540, y: 730, tone: "descendant" },
-  "konstantin-fateev": { x: 790, y: 730, tone: "descendant" },
-  "pavel-fateev": { x: 1055, y: 730, tone: "descendant" },
-  "igor-povalyukhin": { x: 135, y: 900, tone: "male" },
-  "tamara-zhuleva": { x: 665, y: 900, tone: "female" },
-  "marina-drozdova": { x: 945, y: 900, tone: "female" },
-  "vera-plitkina": { x: 1180, y: 900, tone: "female" },
+  "natalya-kureneva": { x: 120, y: 420, tone: "female" },
+  "vera-kureneva": { x: 600, y: 420, tone: "female" },
+  "elizaveta-kureneva": { x: 1030, y: 420, tone: "female" },
+  "alexandra-kureneva": { x: 1400, y: 420, tone: "female" },
+  "nikolay-grigoryev": { x: 360, y: 420, tone: "male" },
+  "nikolay-podkovtsev": { x: 820, y: 420, tone: "male" },
+  "alexander-fateev": { x: 1400, y: 565, tone: "male" },
+  "tamara-grigoryeva": { x: 80, y: 730, tone: "descendant" },
+  "igor-grigoryev": { x: 520, y: 730, tone: "descendant" },
+  "elena-podkovtseva": { x: 710, y: 730, tone: "descendant" },
+  "konstantin-fateev": { x: 1260, y: 730, tone: "descendant" },
+  "pavel-fateev": { x: 1480, y: 730, tone: "descendant" },
+  "petr-povalyukhin": { x: 390, y: 565, tone: "male" },
+  "vera-povalyukhina": { x: 170, y: 565, tone: "female" },
+  "igor-povalyukhin": { x: 300, y: 730, tone: "male" },
+  "tamara-zhuleva": { x: 1180, y: 900, tone: "female" },
+  "marina-drozdova": { x: 1400, y: 900, tone: "female" },
+  "vera-plitkina": { x: 1600, y: 900, tone: "female" },
   "oleg-povalyukhin": { x: 305, y: 1080, tone: "descendant" },
   "anatoly-povalyukhin": { x: 515, y: 1080, tone: "descendant" },
-  "anna-fateeva": { x: 730, y: 1080, tone: "descendant" },
-  "nikita-fateev": { x: 945, y: 1080, tone: "descendant" },
-  "sasha-fateev": { x: 1180, y: 1080, tone: "descendant" },
+  "anna-fateeva": { x: 1180, y: 1080, tone: "descendant" },
+  "nikita-fateev": { x: 1400, y: 1080, tone: "descendant" },
+  "sasha-fateev": { x: 1600, y: 1080, tone: "descendant" },
   "vera-solovyova": { x: 95, y: 1260, tone: "female" },
   "alexandra-pirina": { x: 305, y: 1260, tone: "female" },
   "olga-tankova": { x: 515, y: 1260, tone: "female" },
-  "daryana-medvedeva": { x: 925, y: 1260, tone: "female" },
+  "daryana-medvedeva": { x: 1400, y: 1260, tone: "female" },
   "natalya-povalyukhina": { x: 95, y: 1440, tone: "descendant" },
   "anna-povalyukhina": { x: 305, y: 1440, tone: "descendant" },
   "maria-povalyukhina": { x: 515, y: 1440, tone: "descendant" },
-  "daniil-fateev": { x: 925, y: 1440, tone: "descendant" },
+  "daniil-fateev": { x: 1400, y: 1440, tone: "descendant" },
   "gerard-hurley": { x: 95, y: 1600, tone: "male" },
   "hawkin-hurley": { x: 95, y: 1760, tone: "descendant" },
 };
@@ -65,6 +67,7 @@ const spouseLinks = [
   ["natalya-kureneva", "nikolay-grigoryev"],
   ["vera-kureneva", "nikolay-podkovtsev"],
   ["alexandra-kureneva", "alexander-fateev"],
+  ["petr-povalyukhin", "vera-povalyukhina"],
   ["tamara-grigoryeva", "igor-povalyukhin"],
   ["konstantin-fateev", "tamara-zhuleva"],
   ["pavel-fateev", "marina-drozdova"],
@@ -82,6 +85,7 @@ const familyGroups = [
   { parents: ["natalya-kureneva", "nikolay-grigoryev"], children: ["tamara-grigoryeva", "igor-grigoryev"] },
   { parents: ["vera-kureneva", "nikolay-podkovtsev"], children: ["elena-podkovtseva"] },
   { parents: ["alexandra-kureneva", "alexander-fateev"], children: ["konstantin-fateev", "pavel-fateev"] },
+  { parents: ["petr-povalyukhin", "vera-povalyukhina"], children: ["igor-povalyukhin"] },
   { parents: ["tamara-grigoryeva", "igor-povalyukhin"], children: ["oleg-povalyukhin", "anatoly-povalyukhin"] },
   { parents: ["konstantin-fateev", "tamara-zhuleva"], children: ["anna-fateeva"] },
   { parents: ["pavel-fateev", "marina-drozdova"], children: ["nikita-fateev"] },
@@ -183,14 +187,21 @@ function renderTree() {
   spouseLinks.forEach(([a, b]) => {
     const first = chartNodes[a];
     const second = chartNodes[b];
-    const horizontal = Math.abs(first.y - second.y) < Math.abs(first.x - second.x);
-    const startX = horizontal ? first.x + Math.sign(second.x - first.x) * 86 : first.x;
-    const startY = horizontal ? first.y : first.y + Math.sign(second.y - first.y) * 44;
-    const endX = horizontal ? second.x - Math.sign(second.x - first.x) * 86 : second.x;
-    const endY = horizontal ? second.y : second.y - Math.sign(second.y - first.y) * 44;
+    const direction = Math.sign(second.x - first.x) || 1;
+    const startX = first.x + direction * 86;
+    const startY = first.y;
+    const endX = second.x - direction * 86;
+    const endY = second.y;
+    const joinY = (startY + endY) / 2;
     const markX = (startX + endX) / 2;
-    const markY = (startY + endY) / 2;
-    lines.push(`<line x1="${startX}" y1="${startY}" x2="${endX}" y2="${endY}" class="marriage-line" />`);
+    const markY = joinY;
+
+    if (startY === endY) {
+      lines.push(`<path d="M ${startX} ${startY} H ${endX}" class="marriage-line" />`);
+    } else {
+      lines.push(`<path d="M ${startX} ${startY} V ${joinY} H ${endX} V ${endY}" class="marriage-line" />`);
+    }
+
     lines.push(`<text x="${markX}" y="${markY - 10}" class="marriage-mark">∞</text>`);
   });
   familyGroups.forEach((group) => {
@@ -199,7 +210,7 @@ function renderTree() {
     const children = group.children.map((id) => chartNodes[id]);
     const rootX = parentXs.reduce((sum, x) => sum + x, 0) / parentXs.length;
     const joinY = parentY + 76;
-    const childJoinY = Math.min(...children.map((child) => child.y)) - 62;
+    const childJoinY = Math.min(...children.map((child) => child.y)) - 82;
     const leftX = Math.min(...children.map((child) => child.x));
     const rightX = Math.max(...children.map((child) => child.x));
     const branchLeftX = Math.min(leftX, rootX);
@@ -231,7 +242,7 @@ function renderTree() {
 
   treeEl.innerHTML = `
     <div class="pedigree-chart" role="img" aria-label="Интерактивное родословное дерево">
-      <svg class="chart-lines" viewBox="0 0 1180 1840" aria-hidden="true">
+      <svg class="chart-lines" viewBox="0 0 1720 1840" aria-hidden="true">
         ${lines.join("")}
       </svg>
       ${nodes}
