@@ -216,6 +216,7 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_20260317_152849.jpg"
       }
     ],
+    "portrait": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_20260317_152849.jpg",
     "title": "Мария Олеговна Повалюхина"
   },
   {
