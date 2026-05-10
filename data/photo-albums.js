@@ -54,6 +54,26 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Тамары Николаевны. Фото 13",
         "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20230216-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Тамары Николаевны. Фото 14",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/WhatsApp Image 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Тамары Николаевны. Фото 15",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/WhatsApp Image2 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Тамары Николаевны. Фото 16",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/WhatsApp Image7 2026-05-09 at 5.13.09 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Тамары Николаевны. Фото 17",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/WhatsApp Image 2026-05-09 at 5.31.17 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Тамары Николаевны. Фото 18",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/WhatsApp Image1 2026-05-09 at 5.10.44 AM.jpeg"
       }
     ],
     "title": "Тамара Николаевна Григорьева / Повалюхина"
@@ -109,6 +129,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Елены Николаевны. Фото 12",
         "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/IMG-20251225-WA0009.jpg"
+      },
+      {
+        "caption": "Фотоальбом Елены Николаевны. Фото 13",
+        "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/WhatsApp Image7 2026-05-09 at 5.13.09 AM.jpeg"
       }
     ],
     "title": "Елена Николаевна Подковцева"
@@ -310,6 +334,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Константина Александровича. Фото 6",
         "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/IMG-20241109-WA0001.jpg"
+      },
+      {
+        "caption": "Фотоальбом Константина Александровича. Фото 7",
+        "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/WhatsApp Image1 2026-05-09 at 5.31.17 AM.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/download258.png",
@@ -382,6 +410,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Павла Александровича. Фото 7",
         "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/IMG-20241109-WA0003.jpg"
+      },
+      {
+        "caption": "Фотоальбом Павла Александровича. Фото 8",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/WhatsApp Image1 2026-05-09 at 5.10.44 AM.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/download123.png",
@@ -494,22 +526,14 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 9",
         "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/vera and.jpg"
+      },
+      {
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 10",
+        "src": "assets/photo-albums/vera-solovyova/img_4_1652717476808.jpg"
       }
     ],
     "portrait": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_4_1652717476808.jpg",
     "title": "Вера Дмитриевна Соловьёва"
-  },
-  {
-    "description": "Фотографии из семейного альбома.",
-    "personId": "alexander-fateev",
-    "photos": [
-      {
-        "caption": "Фотоальбом Александра Константиновича. Фото 1",
-        "src": "assets/photo-albums/alexander-fateev/uploaded/PXL_20230303_043534514.jpg"
-      }
-    ],
-    "portrait": "assets/photo-albums/alexander-fateev/uploaded/PXL_20230303_043534514.jpg",
-    "title": "Александр Константинович Фатеев"
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -742,5 +766,77 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/IMG-20251214-WA0007.jpg",
     "title": "Ольга Александровна Танькова"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "daniil-fateev",
+    "photos": [
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 1",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 2",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image1 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 3",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image2 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 4",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image21 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 5",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image3 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 6",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image4 2026-05-09 at 5.15.29 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 7",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image5 2026-05-09 at 5.16.10 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Даниила Фатеева. Фото 8",
+        "src": "assets/photo-albums/daniil-fateev/WhatsApp Image7 2026-05-09 at 5.13.09 AM.jpeg"
+      }
+    ],
+    "portrait": "assets/photo-albums/daniil-fateev/WhatsApp Image21 2026-05-09 at 5.10.44 AM.jpeg",
+    "title": "Даниил Фатеев"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "daryana-medvedeva",
+    "photos": [
+      {
+        "caption": "Фотоальбом Дарьяны Сергеевны. Фото 1",
+        "src": "assets/photo-albums/daryana-medvedeva/WhatsApp Image 2026-05-09 at 5.15.29 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Дарьяны Сергеевны. Фото 2",
+        "src": "assets/photo-albums/daryana-medvedeva/WhatsApp Image 2026-05-09 at 5.16.10 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Дарьяны Сергеевны. Фото 3",
+        "src": "assets/photo-albums/daryana-medvedeva/WhatsApp Image2 2026-05-09 at 5.16.10 AM.jpeg"
+      }
+    ],
+    "portrait": "assets/photo-albums/daryana-medvedeva/WhatsApp Image2 2026-05-09 at 5.16.10 AM.jpeg",
+    "title": "Дарьяна Сергеевна Медведева"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "vera-plitkina",
+    "photos": [
+      {
+        "caption": "Фотоальбом Веры Николаевны. Фото 1",
+        "src": "assets/photo-albums/vera-plitkina/WhatsApp Image 2026-05-09 at 5.19.38 AM.jpeg"
+      }
+    ],
+    "portrait": "assets/photo-albums/vera-plitkina/WhatsApp Image 2026-05-09 at 5.19.38 AM.jpeg",
+    "title": "Вера Николаевна Плиткина"
   }
 ];
