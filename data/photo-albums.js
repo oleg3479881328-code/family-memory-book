@@ -874,5 +874,25 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/nikita-fateev/ChatGPT Image 10 мая 2026 г., 18_44_08.png",
     "title": "Никита Павлович Фатеев"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "igor-grigoryev",
+    "photos": [
+      {
+        "caption": "Фотоальбом Игоря Николаевича. Фото 1",
+        "src": "assets/photo-albums/igor-grigoryev/igor-grigoryev1.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Игоря Николаевича. Фото 2",
+        "src": "assets/photo-albums/igor-grigoryev/igor-grigoryev2.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Игоря Николаевича. Фото 3",
+        "src": "assets/photo-albums/igor-grigoryev/igor-grigoryev3.jpeg"
+      }
+    ],
+    "portrait": "assets/photo-albums/igor-grigoryev/igor-grigoryev1.jpeg",
+    "title": "Игорь Николаевич Григорьев"
   }
 ];
