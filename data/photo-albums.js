@@ -348,14 +348,6 @@ window.PHOTO_ALBUMS = [
     "personId": "vera-kureneva",
     "photos": [
       {
-        "caption": "Фотоальбом Веры Дмитриевны. Фото 1",
-        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0006.jpg"
-      },
-      {
-        "caption": "Фотоальбом Веры Дмитриевны. Фото 2",
-        "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230208-WA0010.jpg"
-      },
-      {
         "caption": "Фотоальбом Веры Дмитриевны. Фото 3",
         "src": "assets/photo-albums/vera-kureneva/Photos-3-001 (13)/IMG-20230213-WA0006.jpg"
       },
@@ -414,9 +406,13 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Павла Александровича. Фото 8",
         "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/WhatsApp Image1 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Павла Александровича. Фото 9",
+        "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/ChatGPT Image 10 мая 2026 г., 20_54_00.png"
       }
     ],
-    "portrait": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/download123.png",
+    "portrait": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/ChatGPT Image 10 мая 2026 г., 20_54_00.png",
     "title": "Павел Александрович Фатеев"
   },
   {
@@ -554,6 +550,18 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Натальи Дмитриевны. Фото 4",
         "src": "assets/photo-albums/natalya-kureneva/IMG-20260426-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Дмитриевны. Фото 5",
+        "src": "assets/photo-albums/natalya-kureneva/ChatGPT Image 10 мая 2026 г., 19_13_04.png"
+      },
+      {
+        "caption": "Фотоальбом Натальи Дмитриевны. Фото 6",
+        "src": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0006.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Дмитриевны. Фото 7",
+        "src": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0010.jpg"
       }
     ],
     "portrait": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0009.jpg",
@@ -674,6 +682,14 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Анатолия Игоревича. Фото 13",
         "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-20260422-WA0007.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 14",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/ChatGPT Image 10 мая 2026 г., 19_11_25.png"
+      },
+      {
+        "caption": "Фотоальбом Анатолия Игоревича. Фото 15",
+        "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/WhatsApp Image1 2026-05-10 at 11.39.54 AM.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-202301216-WA0000.jpg",
@@ -838,5 +854,25 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/vera-plitkina/WhatsApp Image 2026-05-09 at 5.19.38 AM.jpeg",
     "title": "Вера Николаевна Плиткина"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "nikita-fateev",
+    "photos": [
+      {
+        "caption": "Фотоальбом Никиты Павловича. Фото 1",
+        "src": "assets/photo-albums/nikita-fateev/ChatGPT Image 10 мая 2026 г., 18_44_08.png"
+      },
+      {
+        "caption": "Фотоальбом Никиты Павловича. Фото 2",
+        "src": "assets/photo-albums/nikita-fateev/WhatsApp Image 2026-05-09 at 5.15.29 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Никиты Павловича. Фото 3",
+        "src": "assets/photo-albums/nikita-fateev/WhatsApp Image1 2026-05-09 at 5.15.29 AM.jpeg"
+      }
+    ],
+    "portrait": "assets/photo-albums/nikita-fateev/ChatGPT Image 10 мая 2026 г., 18_44_08.png",
+    "title": "Никита Павлович Фатеев"
   }
 ];
