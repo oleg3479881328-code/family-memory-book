@@ -13,7 +13,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "alexandra-kureneva"
-      ]
+      ],
+      "gender": "M"
     },
     "alexandra-kureneva": {
       "children": [
@@ -31,7 +32,8 @@ window.FAMILY = {
       ],
       "partners": [
         "alexander-fateev"
-      ]
+      ],
+      "gender": "F"
     },
     "alexandra-pirina": {
       "children": [
@@ -45,7 +47,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "oleg-povalyukhin"
-      ]
+      ],
+      "gender": "F"
     },
     "anatoly-povalyukhin": {
       "children": [],
@@ -63,7 +66,8 @@ window.FAMILY = {
         "igor-povalyukhin",
         "tamara-grigoryeva"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "M"
     },
     "anna-fateeva": {
       "children": [],
@@ -76,7 +80,8 @@ window.FAMILY = {
         "konstantin-fateev",
         "tamara-zhuleva"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "F"
     },
     "anna-kuteinikova": {
       "children": [
@@ -102,7 +107,8 @@ window.FAMILY = {
       ],
       "partners": [
         "dmitry-kurenev"
-      ]
+      ],
+      "gender": "F"
     },
     "anna-povalyukhina": {
       "children": [],
@@ -119,7 +125,8 @@ window.FAMILY = {
         "alexandra-pirina",
         "oleg-povalyukhin"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "F"
     },
     "daniil-fateev": {
       "children": [],
@@ -132,7 +139,8 @@ window.FAMILY = {
         "daryana-medvedeva",
         "nikita-fateev"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "M"
     },
     "daryana-medvedeva": {
       "children": [
@@ -146,7 +154,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "nikita-fateev"
-      ]
+      ],
+      "gender": "F"
     },
     "dmitry-kurenev": {
       "children": [
@@ -167,7 +176,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "anna-kuteinikova"
-      ]
+      ],
+      "gender": "M"
     },
     "elena-podkovtseva": {
       "children": [],
@@ -183,7 +193,8 @@ window.FAMILY = {
         "vera-kureneva",
         "nikolay-podkovtsev"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "F"
     },
     "elizaveta-kureneva": {
       "children": [],
@@ -196,7 +207,8 @@ window.FAMILY = {
         "anna-kuteinikova",
         "dmitry-kurenev"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "F"
     },
     "gerard-hurley": {
       "children": [
@@ -209,7 +221,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "natalya-povalyukhina"
-      ]
+      ],
+      "gender": "M"
     },
     "hawkin-hurley": {
       "children": [],
@@ -222,7 +235,8 @@ window.FAMILY = {
         "gerard-hurley",
         "natalya-povalyukhina"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "M"
     },
     "igor-grigoryev": {
       "children": [],
@@ -235,7 +249,8 @@ window.FAMILY = {
         "natalya-kureneva",
         "nikolay-grigoryev"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "M"
     },
     "igor-povalyukhin": {
       "children": [
@@ -256,7 +271,8 @@ window.FAMILY = {
       ],
       "partners": [
         "tamara-grigoryeva"
-      ]
+      ],
+      "gender": "M"
     },
     "konstantin-fateev": {
       "children": [
@@ -273,7 +289,8 @@ window.FAMILY = {
       ],
       "partners": [
         "tamara-zhuleva"
-      ]
+      ],
+      "gender": "M"
     },
     "maria-kuteinikova": {
       "children": [
@@ -287,7 +304,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "sergey-kuteinikov"
-      ]
+      ],
+      "gender": "F"
     },
     "maria-povalyukhina": {
       "children": [],
@@ -300,7 +318,8 @@ window.FAMILY = {
         "oleg-povalyukhin",
         "olga-tankova"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "F"
     },
     "marina-drozdova": {
       "children": [
@@ -314,7 +333,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "pavel-fateev"
-      ]
+      ],
+      "gender": "F"
     },
     "natalya-kureneva": {
       "children": [
@@ -337,7 +357,8 @@ window.FAMILY = {
       ],
       "partners": [
         "nikolay-grigoryev"
-      ]
+      ],
+      "gender": "F"
     },
     "natalya-povalyukhina": {
       "children": [
@@ -357,7 +378,8 @@ window.FAMILY = {
       ],
       "partners": [
         "gerard-hurley"
-      ]
+      ],
+      "gender": "F"
     },
     "nikita-fateev": {
       "children": [
@@ -374,7 +396,8 @@ window.FAMILY = {
       ],
       "partners": [
         "daryana-medvedeva"
-      ]
+      ],
+      "gender": "M"
     },
     "nikolay-grigoryev": {
       "children": [
@@ -392,7 +415,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "natalya-kureneva"
-      ]
+      ],
+      "gender": "M"
     },
     "nikolay-podkovtsev": {
       "children": [
@@ -406,7 +430,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "vera-kureneva"
-      ]
+      ],
+      "gender": "M"
     },
     "oleg-povalyukhin": {
       "children": [
@@ -432,7 +457,8 @@ window.FAMILY = {
         "alexandra-pirina",
         "vera-solovyova",
         "olga-tankova"
-      ]
+      ],
+      "gender": "M"
     },
     "olga-tankova": {
       "children": [
@@ -446,7 +472,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "oleg-povalyukhin"
-      ]
+      ],
+      "gender": "F"
     },
     "pavel-fateev": {
       "children": [
@@ -466,7 +493,8 @@ window.FAMILY = {
       "partners": [
         "vera-plitkina",
         "marina-drozdova"
-      ]
+      ],
+      "gender": "M"
     },
     "petr-povalyukhin": {
       "children": [
@@ -480,7 +508,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "vera-povalyukhina"
-      ]
+      ],
+      "gender": "M"
     },
     "sasha-fateev": {
       "children": [],
@@ -493,7 +522,8 @@ window.FAMILY = {
         "vera-plitkina",
         "pavel-fateev"
       ],
-      "partners": []
+      "partners": [],
+      "gender": "M"
     },
     "sergey-kuteinikov": {
       "children": [
@@ -507,7 +537,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "maria-kuteinikova"
-      ]
+      ],
+      "gender": "M"
     },
     "sofya-ambroziak": {
       "children": [],
@@ -546,7 +577,8 @@ window.FAMILY = {
       ],
       "partners": [
         "igor-povalyukhin"
-      ]
+      ],
+      "gender": "F"
     },
     "tamara-zhuleva": {
       "children": [
@@ -560,7 +592,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "konstantin-fateev"
-      ]
+      ],
+      "gender": "F"
     },
     "vera-povalyukhina": {
       "children": [
@@ -575,7 +608,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "petr-povalyukhin"
-      ]
+      ],
+      "gender": "F"
     },
     "vera-kureneva": {
       "children": [
@@ -596,7 +630,8 @@ window.FAMILY = {
       ],
       "partners": [
         "nikolay-podkovtsev"
-      ]
+      ],
+      "gender": "F"
     },
     "vera-plitkina": {
       "children": [
@@ -610,7 +645,8 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "pavel-fateev"
-      ]
+      ],
+      "gender": "F"
     },
     "vera-solovyova": {
       "children": [
@@ -625,7 +661,21 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "oleg-povalyukhin"
-      ]
+      ],
+      "gender": "F"
+    },
+    "sofya-ambroziak": {
+      "children": [],
+      "dates": "17.08.2000",
+      "name": "Софья Владимировна Амброзиак",
+      "notes": [
+        "Дочь Веры Дмитриевны Соловьёвой."
+      ],
+      "parents": [
+        "vera-solovyova"
+      ],
+      "partners": [],
+      "gender": "F"
     }
   },
   "roots": [

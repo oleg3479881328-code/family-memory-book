@@ -276,6 +276,114 @@ a {
     linear-gradient(135deg, #fffaf1 0%, #f7efe3 100%);
 }
 
+.family-tree-auto {
+  position: relative;
+  min-height: 960px;
+  height: 80vh;
+  padding: 0;
+}
+
+.family-tree-auto.f3 {
+  --female-color: #f8dedc;
+  --male-color: #dfeaf6;
+  --genderless-color: #edf1d9;
+  --background-color: transparent;
+  --text-color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+.family-tree-auto .f3-nav-cont {
+  display: none;
+}
+
+.family-tree-auto #f3Canvas,
+.family-tree-auto svg.main_svg,
+.family-tree-auto #htmlSvg {
+  width: 100%;
+  height: 100%;
+}
+
+.family-tree-auto .fit_screen_icon {
+  display: none !important;
+}
+
+.family-tree-auto .link {
+  stroke: #2f2721;
+  stroke-width: 1.8px;
+  vector-effect: non-scaling-stroke;
+}
+
+.family-tree-auto .card {
+  color: var(--ink);
+}
+
+.family-tree-auto .card-main-outline {
+  stroke: rgba(36, 27, 22, 0.35);
+}
+
+.family-tree-auto .card.is-dimmed {
+  opacity: 0.18;
+}
+
+.family-chart-card {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  width: 252px;
+  min-height: 112px;
+  padding: 10px 12px;
+  border: 1.4px solid #2f2721;
+  border-radius: 8px;
+  box-shadow: 0 5px 14px rgba(62, 43, 28, 0.08);
+  text-align: left;
+}
+
+.card-female .family-chart-card {
+  background: linear-gradient(135deg, #fff7f5 0%, #f8dedc 100%);
+  border-color: #8b413f;
+}
+
+.card-male .family-chart-card {
+  background: linear-gradient(135deg, #f8fbff 0%, #dfeaf6 100%);
+  border-color: #31445d;
+}
+
+.card-genderless .family-chart-card {
+  background: linear-gradient(135deg, #fffff4 0%, #edf1d9 100%);
+  border-color: #65733a;
+}
+
+.family-chart-card__portrait {
+  flex: 0 0 auto;
+  width: 48px;
+  height: 60px;
+  border: 1px solid rgba(47, 39, 33, 0.35);
+  border-radius: 6px;
+  object-fit: cover;
+  background: #efe4d5;
+}
+
+.family-chart-card__body {
+  min-width: 0;
+}
+
+.family-chart-card__name,
+.family-chart-card__dates {
+  display: block;
+}
+
+.family-chart-card__name {
+  font-size: 18px;
+  line-height: 1.12;
+  font-weight: 700;
+}
+
+.family-chart-card__dates {
+  margin-top: 5px;
+  font-size: 15px;
+  line-height: 1.2;
+}
+
 .fact-list {
   list-style: none;
   margin: 0;

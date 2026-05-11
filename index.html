@@ -8,7 +8,30 @@
       name="description"
       content="Семейная летопись с интерактивной родословной, мемуарами и фотоархивом."
     />
-    <link rel="stylesheet" href="styles.css?v=20260503-spouse-label" />
+    <script>
+      (function () {
+        const hostedVersion = "20260511-local-cache-loader-1";
+        const localVersion = Date.now().toString();
+        const assetVersion = location.protocol === "file:" ? localVersion : hostedVersion;
+
+        function withAssetVersion(path) {
+          return `${path}?v=${assetVersion}`;
+        }
+
+        function appendStyle(path) {
+          const link = document.createElement("link");
+          link.rel = "stylesheet";
+          link.href = withAssetVersion(path);
+          document.head.appendChild(link);
+        }
+
+        window.__assetVersion = assetVersion;
+        window.__withAssetVersion = withAssetVersion;
+
+        appendStyle("vendor/family-chart/family-chart.css");
+        appendStyle("styles.css");
+      })();
+    </script>
   </head>
   <body>
     <header class="site-header">
@@ -118,10 +141,32 @@
       </figure>
     </div>
 
-    <script src="data/memoirs.js?v=20260510-family-texts"></script>
-    <script src="data/family.js?v=20260511-sofya-ambroziak"></script>
-    <script src="data/photo-albums.js?v=20260505-vera-solovyova-album"></script>
-    <script src="data/sofya-ambroziak-album.js?v=20260511-sofya-photos"></script>
-    <script src="app.js?v=20260510-family-texts"></script>
+    <script>
+      (function () {
+        const withAssetVersion = window.__withAssetVersion || ((path) => path);
+        const scriptPaths = [
+          "data/memoirs.js",
+          "data/family.js",
+          "data/photo-albums.js",
+          "vendor/d3/d3.min.js",
+          "vendor/family-chart/family-chart.min.js",
+          "app.js",
+        ];
+
+        function appendScript(path) {
+          return new Promise((resolve, reject) => {
+            const script = document.createElement("script");
+            script.src = withAssetVersion(path);
+            script.onload = resolve;
+            script.onerror = () => reject(new Error(`Failed to load ${path}`));
+            document.body.appendChild(script);
+          });
+        }
+
+        scriptPaths
+          .reduce((chain, path) => chain.then(() => appendScript(path)), Promise.resolve())
+          .catch((error) => console.error("Asset bootstrap failed:", error));
+      })();
+    </script>
   </body>
 </html>
