@@ -509,6 +509,18 @@ window.FAMILY = {
         "maria-kuteinikova"
       ]
     },
+    "sofya-ambroziak": {
+      "children": [],
+      "dates": "17.08.2000",
+      "name": "Софья Владимировна Амброзиак",
+      "notes": [
+        "Дочь Веры Дмитриевны Соловьёвой."
+      ],
+      "parents": [
+        "vera-solovyova"
+      ],
+      "partners": []
+    },
     "tamara-grigoryeva": {
       "children": [
         "anatoly-povalyukhin",
@@ -602,7 +614,8 @@ window.FAMILY = {
     },
     "vera-solovyova": {
       "children": [
-        "natalya-povalyukhina"
+        "natalya-povalyukhina",
+        "sofya-ambroziak"
       ],
       "dates": "20.08.1968",
       "name": "Вера Дмитриевна Соловьёва",
