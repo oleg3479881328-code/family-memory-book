@@ -422,6 +422,7 @@ function layoutMarriageFan(personId) {
 
       return {
         spouseId,
+        spouseBox,
         childIds,
         childBoxes,
         targetCenterX,
@@ -435,20 +436,34 @@ function layoutMarriageFan(personId) {
   }
 
   const branchY = personBox.bottom + 24;
-  const defaultSpouseTopY = personBox.bottom + 82;
+  const defaultSpouseTopY = personBox.bottom + 58;
   const minSpouseTopY = personBox.bottom + 34;
+  const minSpouseCenterGap = TREE_CARD_WIDTH + 42;
+  const allChildBoxes = spouseTargets.flatMap((spouse) => spouse.childBoxes);
+  const minChildTop = allChildBoxes.length ? Math.min(...allChildBoxes.map((box) => box.top)) : Infinity;
+  const maxAllowedSpouseTopY = Number.isFinite(minChildTop)
+    ? minChildTop - TREE_CARD_HEIGHT - 28
+    : defaultSpouseTopY;
+  const spouseTopY = Number.isFinite(maxAllowedSpouseTopY)
+    ? Math.max(minSpouseTopY, Math.min(defaultSpouseTopY, maxAllowedSpouseTopY))
+    : defaultSpouseTopY;
+  const targetXs = spouseTargets.map((spouse) => spouse.targetCenterX);
+  const maxTargetDeviation = targetXs.length
+    ? Math.max(...targetXs.map((x) => Math.abs(x - personBox.cx)))
+    : minSpouseCenterGap / 2;
+  const halfSpan = Math.max(
+    minSpouseCenterGap * (spouseTargets.length - 1) / 2,
+    maxTargetDeviation
+  );
+  const rowStartX = personBox.cx - halfSpan;
+  const rowGap = spouseTargets.length > 1 ? (halfSpan * 2) / (spouseTargets.length - 1) : 0;
 
-  spouseTargets.forEach((spouse) => {
-    const minChildTop = spouse.childBoxes.length ? Math.min(...spouse.childBoxes.map((box) => box.top)) : Infinity;
-    const maxAllowedSpouseTopY = minChildTop - TREE_CARD_HEIGHT - 32;
-    const spouseTopY = Number.isFinite(maxAllowedSpouseTopY)
-      ? Math.max(minSpouseTopY, Math.min(defaultSpouseTopY, maxAllowedSpouseTopY))
-      : defaultSpouseTopY;
-
+  spouseTargets.forEach((spouse, index) => {
     spouse.spouseTopY = spouseTopY;
+    spouse.spouseCenterX = rowStartX + rowGap * index;
     setCardPoint(spouse.spouseId, {
-      x: spouse.targetCenterX - TREE_CARD_WIDTH / 2,
-      y: spouseTopY,
+      x: spouse.spouseCenterX - TREE_CARD_WIDTH / 2,
+      y: spouse.spouseTopY,
     });
     hideOriginalMarriageLinks(personId, spouse.spouseId, spouse.childIds);
   });
@@ -457,7 +472,7 @@ function layoutMarriageFan(personId) {
     addMarriageFanPath(linksView, [
       { x: personBox.cx, y: personBox.bottom },
       { x: personBox.cx, y: branchY },
-      { x: spouse.targetCenterX, y: branchY },
+      { x: spouse.spouseCenterX, y: branchY },
       { x: spouse.targetCenterX, y: spouse.spouseTopY },
     ]);
 
@@ -467,9 +482,10 @@ function layoutMarriageFan(personId) {
 
     const childJoinY = Math.min(...spouse.childBoxes.map((box) => box.top)) - 18;
     addMarriageFanPath(linksView, [
-      { x: spouse.targetCenterX, y: spouse.spouseTopY + TREE_CARD_HEIGHT },
+      { x: spouse.spouseCenterX, y: spouse.spouseTopY + TREE_CARD_HEIGHT },
+      { x: spouse.spouseCenterX, y: childJoinY },
       { x: spouse.targetCenterX, y: childJoinY },
-    ]);
+    ], "marriage-fan-link");
 
     if (spouse.childBoxes.length > 1) {
       addMarriageFanPath(linksView, [
@@ -489,10 +505,6 @@ function layoutMarriageFan(personId) {
 
 function applyCustomMarriageFanLayout() {
   clearMarriageFanLayout();
-
-  if (currentTreeMainId && multiPartnerIds.includes(currentTreeMainId)) {
-    layoutMarriageFan(currentTreeMainId);
-  }
 }
 
 function scheduleMarriageFanLayout(transitionTime = 0) {

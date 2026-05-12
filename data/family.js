@@ -179,6 +179,36 @@ window.FAMILY = {
       ],
       "gender": "M"
     },
+    "dmitry-solovyov": {
+      "children": [
+        "dmitry-dmitrievich-solovyov",
+        "vera-solovyova"
+      ],
+      "dates": "даты неизвестны",
+      "name": "Дмитрий Иванович Соловьёв",
+      "notes": [
+        "Отец Веры Дмитриевны Соловьёвой.",
+        "Отец Дмитрия Дмитриевича Соловьёва."
+      ],
+      "parents": [],
+      "partners": [],
+      "gender": "M"
+    },
+    "dmitry-dmitrievich-solovyov": {
+      "children": [],
+      "dates": "даты неизвестны",
+      "name": "Дмитрий Дмитриевич Соловьёв",
+      "notes": [
+        "Сын Дмитрия Ивановича Соловьёва и Валентины Андреевны Соловьёвой.",
+        "Родной брат Веры Дмитриевны Соловьёвой."
+      ],
+      "parents": [
+        "dmitry-solovyov",
+        "valentina-solovyova"
+      ],
+      "partners": [],
+      "gender": "M"
+    },
     "elena-podkovtseva": {
       "children": [],
       "dates": "05.11.1949",
@@ -540,18 +570,6 @@ window.FAMILY = {
       ],
       "gender": "M"
     },
-    "sofya-ambroziak": {
-      "children": [],
-      "dates": "17.08.2000",
-      "name": "Софья Владимировна Амброзиак",
-      "notes": [
-        "Дочь Веры Дмитриевны Соловьёвой."
-      ],
-      "parents": [
-        "vera-solovyova"
-      ],
-      "partners": []
-    },
     "tamara-grigoryeva": {
       "children": [
         "anatoly-povalyukhin",
@@ -656,12 +674,32 @@ window.FAMILY = {
       "dates": "20.08.1968",
       "name": "Вера Дмитриевна Соловьёва",
       "notes": [
-        "Жена Олега Игоревича Повалюхина."
+        "Жена Олега Игоревича Повалюхина.",
+        "Была женой Владимира Амброзиака."
+      ],
+      "parents": [
+        "dmitry-solovyov",
+        "valentina-solovyova"
+      ],
+      "partners": [
+        "oleg-povalyukhin",
+        "vladimir-ambroziak"
+      ],
+      "gender": "F"
+    },
+    "valentina-solovyova": {
+      "children": [
+        "dmitry-dmitrievich-solovyov",
+        "vera-solovyova"
+      ],
+      "dates": "даты неизвестны",
+      "name": "Валентина Андреевна Соловьёва",
+      "notes": [
+        "Мать Веры Дмитриевны Соловьёвой.",
+        "Мать Дмитрия Дмитриевича Соловьёва."
       ],
       "parents": [],
-      "partners": [
-        "oleg-povalyukhin"
-      ],
+      "partners": [],
       "gender": "F"
     },
     "sofya-ambroziak": {
@@ -669,13 +707,30 @@ window.FAMILY = {
       "dates": "17.08.2000",
       "name": "Софья Владимировна Амброзиак",
       "notes": [
-        "Дочь Веры Дмитриевны Соловьёвой."
+        "Дочь Веры Дмитриевны Соловьёвой и Владимира Амброзиака."
       ],
       "parents": [
-        "vera-solovyova"
+        "vera-solovyova",
+        "vladimir-ambroziak"
       ],
       "partners": [],
       "gender": "F"
+    },
+    "vladimir-ambroziak": {
+      "children": [
+        "sofya-ambroziak"
+      ],
+      "dates": "даты неизвестны",
+      "name": "Владимир Амброзиак",
+      "notes": [
+        "Муж Веры Дмитриевны Соловьёвой.",
+        "Отец Софьи Владимировны Амброзиак."
+      ],
+      "parents": [],
+      "partners": [
+        "vera-solovyova"
+      ],
+      "gender": "M"
     }
   },
   "roots": [
