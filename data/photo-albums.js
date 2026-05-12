@@ -203,6 +203,18 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Натальи Олеговны. Фото 11",
         "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/WhatsApp Image 20126-05-11 at 12.33.48 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Олеговны. Фото 12",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20260512-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Олеговны. Фото 13",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20260512-WA0001.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Олеговны. Фото 14",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/IMG-20260512-WA0003.jpg"
       }
     ],
     "title": "Наталья Олеговна Повалюхина"
@@ -250,6 +262,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Марии Олеговны. Фото 10",
         "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_2021160317_152849.jpg"
+      },
+      {
+        "caption": "Фотоальбом Марии Олеговны. Фото 11",
+        "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20241214_163917.jpg"
       }
     ],
     "portrait": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_2021160317_152849.jpg",
@@ -322,6 +338,26 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Хокина Рэндала. Фото 16",
         "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/1WhatsApp Image 2026-05-11 at 12.33.52 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Хокина Рэндала. Фото 17",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20260512-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Хокина Рэндала. Фото 18",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20260512-WA0001.jpg"
+      },
+      {
+        "caption": "Фотоальбом Хокина Рэндала. Фото 19",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20260512-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Хокина Рэндала. Фото 20",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20260512-WA0003.jpg"
+      },
+      {
+        "caption": "Фотоальбом Хокина Рэндала. Фото 21",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20260512-WA0004.jpg"
       }
     ],
     "portrait": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251022-WA0010.jpg",
