@@ -191,6 +191,18 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Натальи Олеговны. Фото 8",
         "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/viber_image_2018-11-29_21-04-04.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Олеговны. Фото 9",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/1WhatsApp Image 2026-05-11 at 12.33.50 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Олеговны. Фото 10",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/1WhatsApp Image 22026-05-11 at 12.33.50 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Олеговны. Фото 11",
+        "src": "assets/photo-albums/natalya-povalyukhina/Photos-3-001 (9)/WhatsApp Image 20126-05-11 at 12.33.48 PM.jpeg"
       }
     ],
     "title": "Наталья Олеговна Повалюхина"
@@ -302,6 +314,14 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Хокина Рэндала. Фото 14",
         "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/PXL_20220309_135614392.jpg"
+      },
+      {
+        "caption": "Фотоальбом Хокина Рэндала. Фото 15",
+        "src": "assets/photo-albums/hawkin-hurley/1WhatsApp Image 2026-05-11 at 12.33.52 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Хокина Рэндала. Фото 16",
+        "src": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/1WhatsApp Image 2026-05-11 at 12.33.52 PM.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/hawkin-hurley/Photos-3-001 (11)/IMG-20251022-WA0010.jpg",
@@ -526,6 +546,18 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 10",
         "src": "assets/photo-albums/vera-solovyova/img_4_1652717476808.jpg"
+      },
+      {
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 11",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/WhatsApp Image 22026-05-11 at 12.33.49 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 12",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/WhatsApp Image2 2026-05-11 at 12.33.49 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Веры Дмитриевны Соловьёвой. Фото 13",
+        "src": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/WhatsApp Image7 2026-05-11 at 12.33.47 PM.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/vera-solovyova/Photos-3-001 (17)/img_4_1652717476808.jpg",
@@ -610,6 +642,30 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Петра Петровича. Фото 1",
         "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image3 2026-05-08 at 9.56.57 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Петра Петровича. Фото 2",
+        "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image 32026-05-11 at 11.00.33 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Петра Петровича. Фото 3",
+        "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image 52026-05-11 at 11.00.33 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Петра Петровича. Фото 4",
+        "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image1 2026-05-11 at 11.00.32 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Петра Петровича. Фото 5",
+        "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image2 2026-05-11 at 11.00.33 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Петра Петровича. Фото 6",
+        "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image4 2026-05-11 at 11.00.33 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Петра Петровича. Фото 7",
+        "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image6 2026-05-11 at 11.14.02 AM.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/petr-povalyukhin/WhatsApp Image3 2026-05-08 at 9.56.57 AM.jpeg",
@@ -622,6 +678,14 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Веры Васильевны. Фото 1",
         "src": "assets/photo-albums/vera-povalyukhina/IMG-20260426-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Веры Васильевны. Фото 2",
+        "src": "assets/photo-albums/vera-povalyukhina/petr-povalyukhin4.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Веры Васильевны. Фото 3",
+        "src": "assets/photo-albums/vera-povalyukhina/petr-povalyukhin5.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/vera-povalyukhina/IMG-20260426-WA0002.jpg",
