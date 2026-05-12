@@ -1,5 +1,4 @@
 import json
-from dataclasses import dataclass
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Dict, List, Tuple
@@ -16,14 +15,6 @@ IGNORED_FILES = {"desktop.ini"}
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp"}
 
 
-@dataclass(frozen=True)
-class FileEntry:
-    path: str
-    name: str
-    size: int
-    modified_utc: str
-
-
 def iso_utc(timestamp: float) -> str:
     return (
         datetime.fromtimestamp(timestamp, tz=timezone.utc)
@@ -31,6 +22,36 @@ def iso_utc(timestamp: float) -> str:
         .isoformat()
         .replace("+00:00", "Z")
     )
+
+
+def load_family_index() -> Dict:
+    family_file = ROOT / "data" / "family.js"
+    text = family_file.read_text(encoding="utf-8")
+    prefix = "window.FAMILY = "
+    if not text.startswith(prefix):
+        raise ValueError(f"Unexpected family.js format: {family_file}")
+    return json.loads(text[len(prefix):].rstrip().rstrip(";"))
+
+
+def ensure_album_directories() -> List[str]:
+    family_index = load_family_index()
+    person_ids = sorted(family_index.get("people", {}).keys())
+    created: List[str] = []
+
+    PHOTO_ROOT.mkdir(parents=True, exist_ok=True)
+
+    for person_id in person_ids:
+        person_dir = PHOTO_ROOT / person_id
+        if not person_dir.exists():
+            person_dir.mkdir(parents=True, exist_ok=True)
+            created.append(person_id)
+
+        if not any(person_dir.iterdir()):
+            gitkeep = person_dir / ".gitkeep"
+            if not gitkeep.exists():
+                gitkeep.write_text("", encoding="utf-8")
+
+    return created
 
 
 def scan_photo_root() -> Dict:
@@ -190,19 +211,21 @@ def write_outputs(index_data: Dict, changes: Dict) -> None:
     CHANGES_MARKDOWN.write_text(render_changes_markdown(changes), encoding="utf-8")
 
 
-def build_index_and_changes() -> Tuple[Dict, Dict]:
+def build_index_and_changes() -> Tuple[Dict, Dict, List[str]]:
     previous = load_json(INDEX_FILE)
+    created_dirs = ensure_album_directories()
     current = scan_photo_root()
     changes = diff_indexes(previous, current)
-    return current, changes
+    return current, changes, created_dirs
 
 
 def main() -> None:
-    index_data, changes = build_index_and_changes()
+    index_data, changes, created_dirs = build_index_and_changes()
     write_outputs(index_data, changes)
     print(
         "Indexed photo albums: "
         f"{index_data['albumCount']} albums, "
+        f"{len(created_dirs)} directories created, "
         f"{changes['summary']['addedFiles']} added, "
         f"{changes['summary']['removedFiles']} removed, "
         f"{changes['summary']['modifiedFiles']} modified."

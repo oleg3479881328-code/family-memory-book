@@ -2,6 +2,7 @@ graphify-out/
 qa/
 .DS_Store
 Thumbs.db
+desktop.ini
 assets/photo-albums/**/*.zip
 __pycache__/
 *.pyc
