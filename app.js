@@ -30,6 +30,30 @@ let currentTreeMainId = defaultTreeMainId;
 let marriageFanTimerId = 0;
 const multiPartnerIds = Object.keys(people).filter((id) => (people[id].partners || []).length > 1);
 
+function focusTreeSection() {
+  document.querySelector("#tree")?.scrollIntoView({ behavior: "auto", block: "start" });
+}
+
+function centerTreeMainCard(chart, transitionTime = 0) {
+  const mainDatum = chart?.getTreeMainDatum?.();
+  const svg = chart?.svg;
+  if (!mainDatum || !svg || !window.f3?.handlers?.cardToMiddle) {
+    return;
+  }
+
+  const svgDim = {
+    width: svg.clientWidth,
+    height: svg.clientHeight,
+  };
+
+  window.f3.handlers.cardToMiddle({
+    datum: mainDatum,
+    svg,
+    svg_dim: svgDim,
+    transition_time: transitionTime,
+  });
+}
+
 function escapeHtml(value = "") {
   return String(value)
     .replaceAll("&", "&amp;")
@@ -411,9 +435,17 @@ function layoutMarriageFan(personId) {
   }
 
   const branchY = personBox.bottom + 24;
-  const spouseTopY = personBox.bottom + 82;
+  const defaultSpouseTopY = personBox.bottom + 82;
+  const minSpouseTopY = personBox.bottom + 34;
 
   spouseTargets.forEach((spouse) => {
+    const minChildTop = spouse.childBoxes.length ? Math.min(...spouse.childBoxes.map((box) => box.top)) : Infinity;
+    const maxAllowedSpouseTopY = minChildTop - TREE_CARD_HEIGHT - 32;
+    const spouseTopY = Number.isFinite(maxAllowedSpouseTopY)
+      ? Math.max(minSpouseTopY, Math.min(defaultSpouseTopY, maxAllowedSpouseTopY))
+      : defaultSpouseTopY;
+
+    spouse.spouseTopY = spouseTopY;
     setCardPoint(spouse.spouseId, {
       x: spouse.targetCenterX - TREE_CARD_WIDTH / 2,
       y: spouseTopY,
@@ -426,7 +458,7 @@ function layoutMarriageFan(personId) {
       { x: personBox.cx, y: personBox.bottom },
       { x: personBox.cx, y: branchY },
       { x: spouse.targetCenterX, y: branchY },
-      { x: spouse.targetCenterX, y: spouseTopY },
+      { x: spouse.targetCenterX, y: spouse.spouseTopY },
     ]);
 
     if (!spouse.childBoxes.length) {
@@ -435,7 +467,7 @@ function layoutMarriageFan(personId) {
 
     const childJoinY = Math.min(...spouse.childBoxes.map((box) => box.top)) - 18;
     addMarriageFanPath(linksView, [
-      { x: spouse.targetCenterX, y: spouseTopY + TREE_CARD_HEIGHT },
+      { x: spouse.targetCenterX, y: spouse.spouseTopY + TREE_CARD_HEIGHT },
       { x: spouse.targetCenterX, y: childJoinY },
     ]);
 
@@ -511,6 +543,7 @@ function syncSearchToTree() {
     currentTreeMainId = matchId;
     familyChart.updateMainId(matchId);
     familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 350 });
+    centerTreeMainCard(familyChart, 350);
     return;
   }
 
@@ -524,8 +557,8 @@ function createTreeChart() {
   const chart = window.f3
     .createChart(treeEl, buildTreeData())
     .setOrientationVertical()
-    .setCardXSpacing(255)
-    .setCardYSpacing(215)
+    .setCardXSpacing(290)
+    .setCardYSpacing(245)
     .setShowSiblingsOfMain(true)
     .setSingleParentEmptyCard(false)
     .setTransitionTime(700)
@@ -553,12 +586,15 @@ function createTreeChart() {
       showPerson(personId);
       currentTreeMainId = personId;
       chart.updateMainId(personId);
-      chart.updateTree({ initial: false, tree_position: "inherit", transition_time: 350 });
+      chart.updateTree({ initial: false, tree_position: "fit", transition_time: 0 });
+      centerTreeMainCard(chart, 0);
+      focusTreeSection();
     });
 
   currentTreeMainId = defaultTreeMainId;
   chart.updateMainId(defaultTreeMainId);
   chart.updateTree({ initial: true, tree_position: "fit", transition_time: 0 });
+  centerTreeMainCard(chart, 0);
   return chart;
 }
 
@@ -577,6 +613,7 @@ function renderTree() {
   currentTreeMainId = people[currentTreeMainId] ? currentTreeMainId : defaultTreeMainId;
   familyChart.updateMainId(currentTreeMainId);
   familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 0 });
+  centerTreeMainCard(familyChart, 0);
 }
 
 document.addEventListener("click", (event) => {
@@ -663,15 +700,22 @@ document.addEventListener("keydown", (event) => {
 });
 
 searchEl.addEventListener("input", syncSearchToTree);
-document.querySelector("#expand-all").addEventListener("click", () => {
+
+function showFullTree() {
   searchEl.value = "";
   lastSearchFocusId = "";
   if (familyChart) {
     currentTreeMainId = defaultTreeMainId;
     familyChart.updateMainId(defaultTreeMainId);
     familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 350 });
+    centerTreeMainCard(familyChart, 350);
   }
+}
+
+document.querySelectorAll('[data-tree-action="expand-all"]').forEach((button) => {
+  button.addEventListener("click", showFullTree);
 });
+
 document.querySelector("#collapse-all").addEventListener("click", () => {
   searchEl.value = "";
   lastSearchFocusId = "";
@@ -679,6 +723,7 @@ document.querySelector("#collapse-all").addEventListener("click", () => {
     currentTreeMainId = defaultTreeMainId;
     familyChart.updateMainId(defaultTreeMainId);
     familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 350 });
+    centerTreeMainCard(familyChart, 350);
   }
   showPerson(defaultTreeMainId);
 });

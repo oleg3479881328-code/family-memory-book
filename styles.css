@@ -212,9 +212,23 @@ a {
 .section-heading {
   display: flex;
   align-items: end;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 24px;
   margin-bottom: 28px;
+}
+
+.section-heading-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 10px;
+}
+
+.tree-top-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin: -6px 0 16px;
 }
 
 .section-heading h2 {

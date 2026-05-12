@@ -942,5 +942,121 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/IMG-20260511-WA0025.jpg",
     "title": "Софья Владимировна Амброзиак"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "anna-povalyukhina",
+    "photos": [
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 1",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/FB_IMG_1578807141608.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 2",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/img_1_1706211173045.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 3",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/img_2_1706211187851.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 4",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20230606-WA0049.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 5",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20230608-WA0009.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 6",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20250126-WA0005.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 7",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0034.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 8",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0035.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 9",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0036.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 10",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0037.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 11",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0038.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 12",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0039.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 13",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0040.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 14",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0041.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 15",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0045.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 16",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0046.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 17",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0047.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 18",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0048.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 19",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0049.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 20",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0050.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 21",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0051.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 22",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0052.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 23",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0053.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 24",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0054.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 25",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-cc24d770ee46c82b2bf5821703899413-V.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 26",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/Screenshot_20230606-155000.png"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 27",
+        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/viber image2.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0034.jpg",
+    "title": "Анна Олеговна Повалюхина"
   }
 ];
