@@ -890,9 +890,57 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Игоря Николаевича. Фото 3",
         "src": "assets/photo-albums/igor-grigoryev/igor-grigoryev3.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Игоря Николаевича. Фото 4",
+        "src": "assets/photo-albums/igor-grigoryev/ChatGPT Image 11 мая 2026 г., 15_28_12.png"
       }
     ],
-    "portrait": "assets/photo-albums/igor-grigoryev/igor-grigoryev1.jpeg",
+    "portrait": "assets/photo-albums/igor-grigoryev/ChatGPT Image 11 мая 2026 г., 15_28_12.png",
     "title": "Игорь Николаевич Григорьев"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "sofya-ambroziak",
+    "photos": [
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 1",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/IMG-20221025-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 2",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/IMG-20241031-WA0015.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 3",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/IMG-20241106-WA0023.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 4",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/IMG-20260511-WA0022.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 5",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/IMG-20260511-WA0025.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 6",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/PXL_20220717_215624166.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 7",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/PXL_20220717_215624945.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 8",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/PXL_20220723_143929514.jpg"
+      },
+      {
+        "caption": "Фотоальбом Софьи Владимировны. Фото 9",
+        "src": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/vera and.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/sofya-ambroziak/Photos-3-001 (21)/IMG-20260511-WA0025.jpg",
+    "title": "Софья Владимировна Амброзиак"
   }
 ];

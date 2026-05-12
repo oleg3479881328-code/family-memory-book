@@ -17,6 +17,8 @@ const photoViewerCaptionEl = document.querySelector("#photo-viewer-caption");
 const photoViewerCounterEl = document.querySelector("#photo-viewer-counter");
 const photoPrevButtonEl = document.querySelector("[data-photo-prev]");
 const photoNextButtonEl = document.querySelector("[data-photo-next]");
+const TREE_CARD_WIDTH = 224;
+const TREE_CARD_HEIGHT = 98;
 
 const defaultTreeMainId = "anna-kuteinikova";
 
@@ -24,6 +26,9 @@ let currentPhotoSet = [];
 let currentPhotoIndex = 0;
 let familyChart = null;
 let lastSearchFocusId = "";
+let currentTreeMainId = defaultTreeMainId;
+let marriageFanTimerId = 0;
+const multiPartnerIds = Object.keys(people).filter((id) => (people[id].partners || []).length > 1);
 
 function escapeHtml(value = "") {
   return String(value)
@@ -256,6 +261,220 @@ function buildTreeCardHtml(datum) {
   `;
 }
 
+function parseTranslate(transformValue = "") {
+  const match = /translate\(([-\d.]+)px,\s*([-\d.]+)px\)/.exec(transformValue);
+  if (!match) {
+    return null;
+  }
+
+  return {
+    x: Number(match[1]),
+    y: Number(match[2]),
+  };
+}
+
+function getCardContainer(personId) {
+  return treeEl.querySelector(`.card[data-person-id="${personId}"]`)?.closest(".card_cont") || null;
+}
+
+function getCardPoint(personId) {
+  const container = getCardContainer(personId);
+  if (!container) {
+    return null;
+  }
+
+  return parseTranslate(container.style.transform);
+}
+
+function getCardBox(personId) {
+  const point = getCardPoint(personId);
+  if (!point) {
+    return null;
+  }
+
+  return {
+    x: point.x,
+    y: point.y,
+    width: TREE_CARD_WIDTH,
+    height: TREE_CARD_HEIGHT,
+    left: point.x,
+    top: point.y,
+    right: point.x + TREE_CARD_WIDTH,
+    bottom: point.y + TREE_CARD_HEIGHT,
+    cx: point.x + TREE_CARD_WIDTH / 2,
+    cy: point.y + TREE_CARD_HEIGHT / 2,
+  };
+}
+
+function setCardPoint(personId, point) {
+  const container = getCardContainer(personId);
+  if (!container || !point) {
+    return;
+  }
+
+  container.style.transform = `translate(${point.x}px, ${point.y}px)`;
+}
+
+function clearMarriageFanLayout() {
+  treeEl.querySelectorAll(".marriage-fan-link").forEach((line) => line.remove());
+  treeEl.querySelectorAll(".link.is-hidden-marriage-link").forEach((line) => line.classList.remove("is-hidden-marriage-link"));
+}
+
+function spouseChildrenFor(personId, spouseId) {
+  return (people[personId].children || []).filter((childId) => (people[childId].parents || []).includes(spouseId));
+}
+
+function addMarriageFanPath(svg, points, className = "marriage-fan-link") {
+  const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+  const [start, ...rest] = points;
+  const commands = [`M ${start.x} ${start.y}`];
+
+  rest.forEach((point) => {
+    commands.push(`L ${point.x} ${point.y}`);
+  });
+
+  path.setAttribute("d", commands.join(" "));
+  path.setAttribute("class", className);
+  svg.appendChild(path);
+}
+
+function hideOriginalMarriageLinks(personId, spouseId, childIds) {
+  const links = treeEl.querySelectorAll(".links_view .link");
+
+  links.forEach((link) => {
+    const data = link.__data__;
+    if (!data) {
+      return;
+    }
+
+    if (data.spouse) {
+      const sourceId = data.source?.data?.id;
+      const targetId = data.target?.data?.id;
+      if (
+        (sourceId === personId && targetId === spouseId) ||
+        (sourceId === spouseId && targetId === personId)
+      ) {
+        link.classList.add("is-hidden-marriage-link");
+      }
+      return;
+    }
+
+    const targetId = data.target?.data?.id;
+    const sourceIds = Array.isArray(data.source)
+      ? data.source.map((item) => item?.data?.id).filter(Boolean)
+      : [data.source?.data?.id].filter(Boolean);
+
+    if (childIds.includes(targetId) && sourceIds.includes(personId) && sourceIds.includes(spouseId)) {
+      link.classList.add("is-hidden-marriage-link");
+    }
+  });
+}
+
+function layoutMarriageFan(personId) {
+  const person = people[personId];
+  const spouses = (person.partners || []).slice();
+  if (spouses.length < 2) {
+    return;
+  }
+
+  const linksView = treeEl.querySelector(".links_view");
+  const personBox = getCardBox(personId);
+  if (!linksView || !personBox) {
+    return;
+  }
+
+  const spouseTargets = spouses
+    .map((spouseId) => {
+      const spouseBox = getCardBox(spouseId);
+      if (!spouseBox) {
+        return null;
+      }
+
+      const childIds = spouseChildrenFor(personId, spouseId);
+      const childBoxes = childIds.map((childId) => getCardBox(childId)).filter(Boolean);
+      const targetCenterX = childBoxes.length
+        ? childBoxes.reduce((sum, box) => sum + box.cx, 0) / childBoxes.length
+        : spouseBox.cx;
+
+      return {
+        spouseId,
+        childIds,
+        childBoxes,
+        targetCenterX,
+      };
+    })
+    .filter(Boolean)
+    .sort((a, b) => a.targetCenterX - b.targetCenterX);
+
+  if (spouseTargets.length < 2) {
+    return;
+  }
+
+  const branchY = personBox.bottom + 24;
+  const spouseTopY = personBox.bottom + 82;
+
+  spouseTargets.forEach((spouse) => {
+    setCardPoint(spouse.spouseId, {
+      x: spouse.targetCenterX - TREE_CARD_WIDTH / 2,
+      y: spouseTopY,
+    });
+    hideOriginalMarriageLinks(personId, spouse.spouseId, spouse.childIds);
+  });
+
+  spouseTargets.forEach((spouse) => {
+    addMarriageFanPath(linksView, [
+      { x: personBox.cx, y: personBox.bottom },
+      { x: personBox.cx, y: branchY },
+      { x: spouse.targetCenterX, y: branchY },
+      { x: spouse.targetCenterX, y: spouseTopY },
+    ]);
+
+    if (!spouse.childBoxes.length) {
+      return;
+    }
+
+    const childJoinY = Math.min(...spouse.childBoxes.map((box) => box.top)) - 18;
+    addMarriageFanPath(linksView, [
+      { x: spouse.targetCenterX, y: spouseTopY + TREE_CARD_HEIGHT },
+      { x: spouse.targetCenterX, y: childJoinY },
+    ]);
+
+    if (spouse.childBoxes.length > 1) {
+      addMarriageFanPath(linksView, [
+        { x: spouse.childBoxes[0].cx, y: childJoinY },
+        { x: spouse.childBoxes[spouse.childBoxes.length - 1].cx, y: childJoinY },
+      ]);
+    }
+
+    spouse.childBoxes.forEach((box) => {
+      addMarriageFanPath(linksView, [
+        { x: box.cx, y: childJoinY },
+        { x: box.cx, y: box.top },
+      ]);
+    });
+  });
+}
+
+function applyCustomMarriageFanLayout() {
+  clearMarriageFanLayout();
+
+  if (currentTreeMainId && multiPartnerIds.includes(currentTreeMainId)) {
+    layoutMarriageFan(currentTreeMainId);
+  }
+}
+
+function scheduleMarriageFanLayout(transitionTime = 0) {
+  if (marriageFanTimerId) {
+    window.clearTimeout(marriageFanTimerId);
+  }
+
+  const delay = Math.max(0, Number(transitionTime) || 0) + 40;
+  marriageFanTimerId = window.setTimeout(() => {
+    marriageFanTimerId = 0;
+    applyCustomMarriageFanLayout();
+  }, delay);
+}
+
 function paintTreeSearchState() {
   const query = searchEl.value.trim().toLowerCase();
   const cards = treeEl.querySelectorAll(".card[data-person-id]");
@@ -289,6 +508,7 @@ function syncSearchToTree() {
 
   if (matchId && matchId !== lastSearchFocusId && familyChart) {
     lastSearchFocusId = matchId;
+    currentTreeMainId = matchId;
     familyChart.updateMainId(matchId);
     familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 350 });
     return;
@@ -304,19 +524,20 @@ function createTreeChart() {
   const chart = window.f3
     .createChart(treeEl, buildTreeData())
     .setOrientationVertical()
-    .setCardXSpacing(205)
-    .setCardYSpacing(190)
+    .setCardXSpacing(255)
+    .setCardYSpacing(215)
     .setShowSiblingsOfMain(true)
     .setSingleParentEmptyCard(false)
     .setTransitionTime(700)
-    .setAfterUpdate(() => {
+    .setAfterUpdate((updateOptions = {}) => {
+      scheduleMarriageFanLayout(updateOptions.transition_time);
       paintTreeSearchState();
     });
 
   const card = chart.setCardHtml();
   card
     .setStyle("rect")
-    .setCardDim({ w: 252, h: 112 })
+    .setCardDim({ w: 224, h: 98 })
     .setCardInnerHtmlCreator((datum) => buildTreeCardHtml(datum))
     .setOnCardUpdate(function onCardUpdate(datum) {
       const cardEl = this.querySelector(".card");
@@ -330,10 +551,12 @@ function createTreeChart() {
     .setOnCardClick((event, datum) => {
       const personId = datum.data.id;
       showPerson(personId);
+      currentTreeMainId = personId;
       chart.updateMainId(personId);
       chart.updateTree({ initial: false, tree_position: "inherit", transition_time: 350 });
     });
 
+  currentTreeMainId = defaultTreeMainId;
   chart.updateMainId(defaultTreeMainId);
   chart.updateTree({ initial: true, tree_position: "fit", transition_time: 0 });
   return chart;
@@ -350,9 +573,9 @@ function renderTree() {
     return;
   }
 
-  const currentMainId = familyChart.getMainDatum()?.id || defaultTreeMainId;
   familyChart.updateData(buildTreeData());
-  familyChart.updateMainId(people[currentMainId] ? currentMainId : defaultTreeMainId);
+  currentTreeMainId = people[currentTreeMainId] ? currentTreeMainId : defaultTreeMainId;
+  familyChart.updateMainId(currentTreeMainId);
   familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 0 });
 }
 
@@ -444,6 +667,7 @@ document.querySelector("#expand-all").addEventListener("click", () => {
   searchEl.value = "";
   lastSearchFocusId = "";
   if (familyChart) {
+    currentTreeMainId = defaultTreeMainId;
     familyChart.updateMainId(defaultTreeMainId);
     familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 350 });
   }
@@ -452,6 +676,7 @@ document.querySelector("#collapse-all").addEventListener("click", () => {
   searchEl.value = "";
   lastSearchFocusId = "";
   if (familyChart) {
+    currentTreeMainId = defaultTreeMainId;
     familyChart.updateMainId(defaultTreeMainId);
     familyChart.updateTree({ initial: false, tree_position: "fit", transition_time: 350 });
   }

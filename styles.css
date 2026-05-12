@@ -279,7 +279,7 @@ a {
 .family-tree-auto {
   position: relative;
   min-height: 960px;
-  height: 80vh;
+  height: 84vh;
   padding: 0;
 }
 
@@ -313,6 +313,20 @@ a {
   vector-effect: non-scaling-stroke;
 }
 
+.family-tree-auto .link.is-hidden-marriage-link {
+  opacity: 0;
+}
+
+.family-tree-auto .marriage-fan-link {
+  fill: none;
+  stroke: #2f2721;
+  stroke-width: 1.8px;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
 .family-tree-auto .card {
   color: var(--ink);
 }
@@ -328,10 +342,10 @@ a {
 .family-chart-card {
   display: flex;
   align-items: center;
-  gap: 12px;
-  width: 252px;
-  min-height: 112px;
-  padding: 10px 12px;
+  gap: 14px;
+  width: 224px;
+  min-height: 98px;
+  padding: 8px 10px 8px 12px;
   border: 1.4px solid #2f2721;
   border-radius: 8px;
   box-shadow: 0 5px 14px rgba(62, 43, 28, 0.08);
@@ -355,8 +369,8 @@ a {
 
 .family-chart-card__portrait {
   flex: 0 0 auto;
-  width: 48px;
-  height: 60px;
+  width: 78px;
+  height: 96px;
   border: 1px solid rgba(47, 39, 33, 0.35);
   border-radius: 6px;
   object-fit: cover;
@@ -364,7 +378,13 @@ a {
 }
 
 .family-chart-card__body {
+  flex: 1 1 auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
   min-width: 0;
+  padding-left: 2px;
+  padding-right: 4px;
 }
 
 .family-chart-card__name,
@@ -373,14 +393,14 @@ a {
 }
 
 .family-chart-card__name {
-  font-size: 18px;
-  line-height: 1.12;
+  font-size: 12px;
+  line-height: 1.06;
   font-weight: 700;
 }
 
 .family-chart-card__dates {
-  margin-top: 5px;
-  font-size: 15px;
+  margin-top: 4px;
+  font-size: 11px;
   line-height: 1.2;
 }
 
