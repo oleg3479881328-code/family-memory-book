@@ -1,7 +1,9 @@
 import json
 import pathlib
+import re
 import subprocess
 from collections import defaultdict
+from datetime import datetime
 
 from flask import Flask, jsonify, request, send_from_directory
 from werkzeug.utils import secure_filename
@@ -12,6 +14,7 @@ DATA_DIR = ROOT / "data"
 ASSETS_DIR = ROOT / "assets" / "photo-albums"
 FAMILY_FILE = DATA_DIR / "family.js"
 ALBUMS_FILE = DATA_DIR / "photo-albums.js"
+INDEX_FILE = ROOT / "index.html"
 MAX_CONTENT_LENGTH = 64 * 1024 * 1024
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"}
 
@@ -28,6 +31,19 @@ def run_git(*args: str):
         text=True,
         encoding="utf-8",
     )
+
+
+def bump_hosted_asset_version():
+    index_html = INDEX_FILE.read_text(encoding="utf-8")
+    next_version = datetime.now().strftime("%Y%m%d%H%M%S")
+    updated_html, replacements = re.subn(
+        r'const hostedVersion = "[^"]+";',
+        f'const hostedVersion = "{next_version}";',
+        index_html,
+        count=1,
+    )
+    if replacements:
+        INDEX_FILE.write_text(updated_html, encoding="utf-8")
 
 
 def load_window_data(script_path: pathlib.Path, global_name: str):
@@ -171,6 +187,7 @@ def admin_publish():
         return ("", 204)
 
     status_before = run_git("status", "--porcelain").stdout
+    bump_hosted_asset_version()
     run_git("add", "-A", ".")
 
     status_after_add = run_git("status", "--porcelain").stdout

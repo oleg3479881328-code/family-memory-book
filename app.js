@@ -23,6 +23,7 @@ const TREE_CARD_WIDTH = 224;
 const TREE_CARD_HEIGHT = 98;
 
 const defaultTreeMainId = "anna-kuteinikova";
+const assetUrl = window.__withAssetVersion || ((path) => path);
 
 let currentPhotoSet = [];
 let currentPhotoIndex = 0;
@@ -95,7 +96,7 @@ function updatePhotoViewer() {
     return;
   }
 
-  photoViewerImageEl.src = photo.src;
+  photoViewerImageEl.src = assetUrl(photo.src);
   photoViewerImageEl.alt = photo.caption;
   photoViewerCaptionEl.textContent = photo.caption;
   photoViewerCounterEl.textContent = `${currentPhotoIndex + 1} / ${currentPhotoSet.length}`;
@@ -127,7 +128,7 @@ function showAdjacentPhoto(direction) {
 function photoButton(photo, label, className = "photo-open", setId = "", index = 0) {
   return `
     <button class="${className}" type="button" data-photo-set="${setId}" data-photo-index="${index}" data-photo-src="${photo.src}" data-photo-caption="${photo.caption}" aria-label="${label}">
-      <img src="${photo.src}" alt="${photo.caption}" loading="lazy" />
+      <img src="${assetUrl(photo.src)}" alt="${photo.caption}" loading="lazy" />
     </button>
   `;
 }
@@ -219,7 +220,7 @@ function renderPhotos() {
       return `
         <article class="album-card" id="album-${album.personId}">
           <button class="album-cover" type="button" data-open-album="${album.personId}" aria-label="Открыть фотоальбом: ${album.title}">
-            <img src="${cover.src}" alt="${album.title}" loading="lazy" />
+            <img src="${assetUrl(cover.src)}" alt="${album.title}" loading="lazy" />
             <span>Фотоальбом</span>
             <strong>${album.title}</strong>
             <small>${album.photos.length} фото</small>
@@ -278,7 +279,7 @@ function buildTreeCardHtml(datum) {
   const { name, dates, avatar } = datum.data.data;
   return `
     <div class="card-inner family-chart-card ${avatar ? "has-portrait" : ""}">
-      ${avatar ? `<img class="family-chart-card__portrait" src="${escapeHtml(avatar)}" alt="Портрет: ${escapeHtml(name)}" loading="lazy" />` : ""}
+      ${avatar ? `<img class="family-chart-card__portrait" src="${escapeHtml(assetUrl(avatar))}" alt="Портрет: ${escapeHtml(name)}" loading="lazy" />` : ""}
       <div class="family-chart-card__body">
         <strong class="family-chart-card__name">${escapeHtml(name)}</strong>
         <span class="family-chart-card__dates">${escapeHtml(dates || "даты неизвестны")}</span>
