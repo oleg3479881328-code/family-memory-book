@@ -1198,8 +1198,13 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Дмитрия Ивановича. Фото 9",
         "src": "assets/photo-albums/dmitry-solovyov/IMG-d88bb95e3bb1319df4d477d85e24dabb-V.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 10",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-202006081-WA0000.jpg"
       }
     ],
+    "portrait": "assets/photo-albums/dmitry-solovyov/IMG-202006081-WA0000.jpg",
     "title": "Дмитрий Иванович Соловьёв"
   },
   {
