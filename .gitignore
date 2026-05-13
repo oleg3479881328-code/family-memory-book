@@ -1,5 +1,6 @@
 graphify-out/
 qa/
+.vscode/
 .DS_Store
 Thumbs.db
 desktop.ini

@@ -6,6 +6,7 @@ window.FAMILY = {
         "pavel-fateev"
       ],
       "dates": "1930 – 2008",
+      "gender": "M",
       "name": "Александр Константинович Фатеев",
       "notes": [
         "Муж Александры Дмитриевны Куреневой."
@@ -13,8 +14,7 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "alexandra-kureneva"
-      ],
-      "gender": "M"
+      ]
     },
     "alexandra-kureneva": {
       "children": [
@@ -22,6 +22,7 @@ window.FAMILY = {
         "pavel-fateev"
       ],
       "dates": "29.12.1927 – 02.03.2011",
+      "gender": "F",
       "name": "Александра Дмитриевна Куренева",
       "notes": [
         "Жена Александра Константиновича Фатеева."
@@ -32,14 +33,14 @@ window.FAMILY = {
       ],
       "partners": [
         "alexander-fateev"
-      ],
-      "gender": "F"
+      ]
     },
     "alexandra-pirina": {
       "children": [
         "anna-povalyukhina"
       ],
       "dates": "17.10.1970",
+      "gender": "F",
       "name": "Александра Сергеевна Пирина",
       "notes": [
         "Жена Олега Игоревича Повалюхина."
@@ -47,12 +48,12 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "oleg-povalyukhin"
-      ],
-      "gender": "F"
+      ]
     },
     "anatoly-povalyukhin": {
       "children": [],
       "dates": "15.02.1974 – 31.08.1995",
+      "gender": "M",
       "memoirs": [
         "семейные-хроники",
         "письма-к-сыну",
@@ -66,12 +67,12 @@ window.FAMILY = {
         "igor-povalyukhin",
         "tamara-grigoryeva"
       ],
-      "partners": [],
-      "gender": "M"
+      "partners": []
     },
     "anna-fateeva": {
       "children": [],
       "dates": "10.07.1990",
+      "gender": "F",
       "name": "Анна Константиновна Фатеева",
       "notes": [
         "Дочь Константина Александровича Фатеева и Тамары Антоновны Жулёвой."
@@ -80,8 +81,7 @@ window.FAMILY = {
         "konstantin-fateev",
         "tamara-zhuleva"
       ],
-      "partners": [],
-      "gender": "F"
+      "partners": []
     },
     "anna-kuteinikova": {
       "children": [
@@ -91,6 +91,7 @@ window.FAMILY = {
         "natalya-kureneva"
       ],
       "dates": "18.07.1899 – 02.02.1990",
+      "gender": "F",
       "memoirs": [
         "воспоминания-веры-дмитриевны-подковцевой",
         "русская-печь",
@@ -107,12 +108,12 @@ window.FAMILY = {
       ],
       "partners": [
         "dmitry-kurenev"
-      ],
-      "gender": "F"
+      ]
     },
     "anna-povalyukhina": {
       "children": [],
       "dates": "06.06.2001",
+      "gender": "F",
       "memoirs": [
         "семейные-хроники",
         "олег-5-лет"
@@ -125,12 +126,12 @@ window.FAMILY = {
         "alexandra-pirina",
         "oleg-povalyukhin"
       ],
-      "partners": [],
-      "gender": "F"
+      "partners": []
     },
     "daniil-fateev": {
       "children": [],
       "dates": "02.03.2017",
+      "gender": "M",
       "name": "Даниил Фатеев",
       "notes": [
         "Сын Никиты Павловича Фатеева и Дарьяны Сергеевны Медведевой."
@@ -139,14 +140,14 @@ window.FAMILY = {
         "daryana-medvedeva",
         "nikita-fateev"
       ],
-      "partners": [],
-      "gender": "M"
+      "partners": []
     },
     "daryana-medvedeva": {
       "children": [
         "daniil-fateev"
       ],
       "dates": "22.04.1987",
+      "gender": "F",
       "name": "Дарьяна Сергеевна Медведева",
       "notes": [
         "Жена Никиты Павловича Фатеева."
@@ -154,8 +155,22 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "nikita-fateev"
+      ]
+    },
+    "dmitry-dmitrievich-solovyov": {
+      "children": [],
+      "dates": "даты неизвестны",
+      "gender": "M",
+      "name": "Дмитрий Дмитриевич Соловьёв",
+      "notes": [
+        "Сын Дмитрия Ивановича Соловьёва и Валентины Андреевны Соловьёвой.",
+        "Родной брат Веры Дмитриевны Соловьёвой."
       ],
-      "gender": "F"
+      "parents": [
+        "dmitry-solovyov",
+        "valentina-solovyova"
+      ],
+      "partners": []
     },
     "dmitry-kurenev": {
       "children": [
@@ -165,6 +180,7 @@ window.FAMILY = {
         "natalya-kureneva"
       ],
       "dates": "08.11.1895 – 13.02.1953",
+      "gender": "M",
       "memoirs": [
         "воспоминания-веры-дмитриевны-подковцевой",
         "семейные-хроники"
@@ -176,8 +192,7 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "anna-kuteinikova"
-      ],
-      "gender": "M"
+      ]
     },
     "dmitry-solovyov": {
       "children": [
@@ -185,33 +200,19 @@ window.FAMILY = {
         "vera-solovyova"
       ],
       "dates": "даты неизвестны",
+      "gender": "M",
       "name": "Дмитрий Иванович Соловьёв",
       "notes": [
         "Отец Веры Дмитриевны Соловьёвой.",
         "Отец Дмитрия Дмитриевича Соловьёва."
       ],
       "parents": [],
-      "partners": [],
-      "gender": "M"
-    },
-    "dmitry-dmitrievich-solovyov": {
-      "children": [],
-      "dates": "даты неизвестны",
-      "name": "Дмитрий Дмитриевич Соловьёв",
-      "notes": [
-        "Сын Дмитрия Ивановича Соловьёва и Валентины Андреевны Соловьёвой.",
-        "Родной брат Веры Дмитриевны Соловьёвой."
-      ],
-      "parents": [
-        "dmitry-solovyov",
-        "valentina-solovyova"
-      ],
-      "partners": [],
-      "gender": "M"
+      "partners": []
     },
     "elena-podkovtseva": {
       "children": [],
       "dates": "05.11.1949",
+      "gender": "F",
       "memoirs": [
         "семейные-хроники"
       ],
@@ -223,12 +224,12 @@ window.FAMILY = {
         "vera-kureneva",
         "nikolay-podkovtsev"
       ],
-      "partners": [],
-      "gender": "F"
+      "partners": []
     },
     "elizaveta-kureneva": {
       "children": [],
       "dates": "умерла в 6 лет",
+      "gender": "F",
       "name": "Елизавета Дмитриевна Куренёва",
       "notes": [
         "Дочь Анны Сергеевны Кутейниковой и Дмитрия Андреевича Куренёва."
@@ -237,13 +238,13 @@ window.FAMILY = {
         "anna-kuteinikova",
         "dmitry-kurenev"
       ],
-      "partners": [],
-      "gender": "F"
+      "partners": []
     },
     "gerard-hurley": {
       "children": [
         "hawkin-hurley"
       ],
+      "gender": "M",
       "name": "Джерард Хёрли",
       "notes": [
         "Муж Натальи Олеговны Повалюхиной."
@@ -251,12 +252,12 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "natalya-povalyukhina"
-      ],
-      "gender": "M"
+      ]
     },
     "hawkin-hurley": {
       "children": [],
       "dates": "11.11.2018",
+      "gender": "M",
       "name": "Хокин Рэндал Хёрли",
       "notes": [
         "Сын Натальи Олеговны Повалюхиной и Джерарда Хёрли."
@@ -265,12 +266,12 @@ window.FAMILY = {
         "gerard-hurley",
         "natalya-povalyukhina"
       ],
-      "partners": [],
-      "gender": "M"
+      "partners": []
     },
     "igor-grigoryev": {
       "children": [],
       "dates": "20.11.1958 – 19.06.1993",
+      "gender": "M",
       "name": "Игорь Николаевич Григорьев",
       "notes": [
         "Сын Николая Дмитриевича Григорьева и Натальи Дмитриевны Куренёвой."
@@ -279,8 +280,7 @@ window.FAMILY = {
         "natalya-kureneva",
         "nikolay-grigoryev"
       ],
-      "partners": [],
-      "gender": "M"
+      "partners": []
     },
     "igor-povalyukhin": {
       "children": [
@@ -288,6 +288,7 @@ window.FAMILY = {
         "oleg-povalyukhin"
       ],
       "dates": "23.03.1947 – 21.05.2014",
+      "gender": "M",
       "memoirs": [
         "отец"
       ],
@@ -301,14 +302,14 @@ window.FAMILY = {
       ],
       "partners": [
         "tamara-grigoryeva"
-      ],
-      "gender": "M"
+      ]
     },
     "konstantin-fateev": {
       "children": [
         "anna-fateeva"
       ],
       "dates": "09.09.1955",
+      "gender": "M",
       "name": "Константин Александрович Фатеев",
       "notes": [
         "Муж Тамары Антоновны Жулёвой."
@@ -319,14 +320,14 @@ window.FAMILY = {
       ],
       "partners": [
         "tamara-zhuleva"
-      ],
-      "gender": "M"
+      ]
     },
     "maria-kuteinikova": {
       "children": [
         "anna-kuteinikova"
       ],
       "dates": "даты неизвестны",
+      "gender": "F",
       "name": "Мария Кутейникова",
       "notes": [
         "Мать Анны Сергеевны Кутейниковой."
@@ -334,12 +335,12 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "sergey-kuteinikov"
-      ],
-      "gender": "F"
+      ]
     },
     "maria-povalyukhina": {
       "children": [],
       "dates": "11.02.2013",
+      "gender": "F",
       "name": "Мария Олеговна Повалюхина",
       "notes": [
         "Дочь Олега Игоревича Повалюхина и Ольги Александровны Таньковой."
@@ -348,14 +349,14 @@ window.FAMILY = {
         "oleg-povalyukhin",
         "olga-tankova"
       ],
-      "partners": [],
-      "gender": "F"
+      "partners": []
     },
     "marina-drozdova": {
       "children": [
         "nikita-fateev"
       ],
       "dates": "23.09.1964",
+      "gender": "F",
       "name": "Марина Валерьевна Дроздова",
       "notes": [
         "Жена Павла Александровича Фатеева."
@@ -363,8 +364,7 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "pavel-fateev"
-      ],
-      "gender": "F"
+      ]
     },
     "natalya-kureneva": {
       "children": [
@@ -372,6 +372,7 @@ window.FAMILY = {
         "tamara-grigoryeva"
       ],
       "dates": "27.09.1921 – 08.02.1976",
+      "gender": "F",
       "memoirs": [
         "наташа",
         "семейные-хроники",
@@ -387,14 +388,14 @@ window.FAMILY = {
       ],
       "partners": [
         "nikolay-grigoryev"
-      ],
-      "gender": "F"
+      ]
     },
     "natalya-povalyukhina": {
       "children": [
         "hawkin-hurley"
       ],
       "dates": "07.10.1989",
+      "gender": "F",
       "memoirs": [
         "туся-4-с-половиной-года"
       ],
@@ -408,14 +409,14 @@ window.FAMILY = {
       ],
       "partners": [
         "gerard-hurley"
-      ],
-      "gender": "F"
+      ]
     },
     "nikita-fateev": {
       "children": [
         "daniil-fateev"
       ],
       "dates": "31.07.1987",
+      "gender": "M",
       "name": "Никита Павлович Фатеев",
       "notes": [
         "Муж Дарьяны Сергеевны Медведевой."
@@ -426,8 +427,7 @@ window.FAMILY = {
       ],
       "partners": [
         "daryana-medvedeva"
-      ],
-      "gender": "M"
+      ]
     },
     "nikolay-grigoryev": {
       "children": [
@@ -435,6 +435,7 @@ window.FAMILY = {
         "tamara-grigoryeva"
       ],
       "dates": "19.12.1914 – 19.04.1994",
+      "gender": "M",
       "memoirs": [
         "родители"
       ],
@@ -445,14 +446,14 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "natalya-kureneva"
-      ],
-      "gender": "M"
+      ]
     },
     "nikolay-podkovtsev": {
       "children": [
         "elena-podkovtseva"
       ],
       "dates": "24.12.1924 – 25.08.1991",
+      "gender": "M",
       "name": "Николай Павлович Подковцев",
       "notes": [
         "Муж Веры Дмитриевны Куреневой."
@@ -460,8 +461,7 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "vera-kureneva"
-      ],
-      "gender": "M"
+      ]
     },
     "oleg-povalyukhin": {
       "children": [
@@ -470,6 +470,7 @@ window.FAMILY = {
         "natalya-povalyukhina"
       ],
       "dates": "26.01.1970",
+      "gender": "M",
       "memoirs": [
         "семейные-хроники",
         "олег-5-лет"
@@ -487,14 +488,14 @@ window.FAMILY = {
         "alexandra-pirina",
         "vera-solovyova",
         "olga-tankova"
-      ],
-      "gender": "M"
+      ]
     },
     "olga-tankova": {
       "children": [
         "maria-povalyukhina"
       ],
       "dates": "01.06.1983",
+      "gender": "F",
       "name": "Ольга Александровна Танькова",
       "notes": [
         "Жена Олега Игоревича Повалюхина."
@@ -502,8 +503,7 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "oleg-povalyukhin"
-      ],
-      "gender": "F"
+      ]
     },
     "pavel-fateev": {
       "children": [
@@ -511,6 +511,7 @@ window.FAMILY = {
         "sasha-fateev"
       ],
       "dates": "11.08.1960",
+      "gender": "M",
       "name": "Павел Александрович Фатеев",
       "notes": [
         "Муж Марины Валерьевны Дроздовой.",
@@ -523,14 +524,14 @@ window.FAMILY = {
       "partners": [
         "vera-plitkina",
         "marina-drozdova"
-      ],
-      "gender": "M"
+      ]
     },
     "petr-povalyukhin": {
       "children": [
         "igor-povalyukhin"
       ],
       "dates": "1916 – 23.11.1994",
+      "gender": "M",
       "name": "Пётр Петрович Повалюхин",
       "notes": [
         "Отец Игоря Петровича Повалюхина."
@@ -538,12 +539,12 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "vera-povalyukhina"
-      ],
-      "gender": "M"
+      ]
     },
     "sasha-fateev": {
       "children": [],
       "dates": "13.05.2016",
+      "gender": "M",
       "name": "Саша Фатеев",
       "notes": [
         "Ребёнок Павла Александровича Фатеева и Веры Николаевны Плиткиной."
@@ -552,14 +553,14 @@ window.FAMILY = {
         "vera-plitkina",
         "pavel-fateev"
       ],
-      "partners": [],
-      "gender": "M"
+      "partners": []
     },
     "sergey-kuteinikov": {
       "children": [
         "anna-kuteinikova"
       ],
       "dates": "даты неизвестны",
+      "gender": "M",
       "name": "Сергей Иванович Кутейников",
       "notes": [
         "Отец Анны Сергеевны Кутейниковой."
@@ -567,8 +568,21 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "maria-kuteinikova"
+      ]
+    },
+    "sofya-ambroziak": {
+      "children": [],
+      "dates": "17.08.2000",
+      "gender": "F",
+      "name": "Софья Владимировна Амброзиак",
+      "notes": [
+        "Дочь Веры Дмитриевны Соловьёвой и Владимира Амброзиака."
       ],
-      "gender": "M"
+      "parents": [
+        "vera-solovyova",
+        "vladimir-ambroziak"
+      ],
+      "partners": []
     },
     "tamara-grigoryeva": {
       "children": [
@@ -576,6 +590,7 @@ window.FAMILY = {
         "oleg-povalyukhin"
       ],
       "dates": "24.12.1946",
+      "gender": "F",
       "memoirs": [
         "семейные-хроники",
         "отец",
@@ -595,14 +610,14 @@ window.FAMILY = {
       ],
       "partners": [
         "igor-povalyukhin"
-      ],
-      "gender": "F"
+      ]
     },
     "tamara-zhuleva": {
       "children": [
         "anna-fateeva"
       ],
       "dates": "28.11.1958",
+      "gender": "F",
       "name": "Тамара Антоновна Жулёва",
       "notes": [
         "Жена Константина Александровича Фатеева."
@@ -610,30 +625,29 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "konstantin-fateev"
-      ],
-      "gender": "F"
+      ]
     },
-    "vera-povalyukhina": {
+    "valentina-solovyova": {
       "children": [
-        "igor-povalyukhin"
+        "dmitry-dmitrievich-solovyov",
+        "vera-solovyova"
       ],
-      "dates": "06.08.1912 – 22.06.1999",
-      "name": "Вера Васильевна Повалюхина (Гедаспова)",
+      "dates": "даты неизвестны",
+      "gender": "F",
+      "name": "Валентина Андреевна Соловьёва",
       "notes": [
-        "Жена Петра Петровича Повалюхина.",
-        "Мать Игоря Петровича Повалюхина."
+        "Мать Веры Дмитриевны Соловьёвой.",
+        "Мать Дмитрия Дмитриевича Соловьёва."
       ],
       "parents": [],
-      "partners": [
-        "petr-povalyukhin"
-      ],
-      "gender": "F"
+      "partners": []
     },
     "vera-kureneva": {
       "children": [
         "elena-podkovtseva"
       ],
       "dates": "18.08.1923 – 20.10.2017",
+      "gender": "F",
       "memoirs": [
         "воспоминания-веры-дмитриевны-подковцевой",
         "русская-печь"
@@ -648,14 +662,14 @@ window.FAMILY = {
       ],
       "partners": [
         "nikolay-podkovtsev"
-      ],
-      "gender": "F"
+      ]
     },
     "vera-plitkina": {
       "children": [
         "sasha-fateev"
       ],
       "dates": "23.04.1986",
+      "gender": "F",
       "name": "Вера Николаевна Плиткина",
       "notes": [
         "Жена Павла Александровича Фатеева."
@@ -663,8 +677,23 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "pavel-fateev"
+      ]
+    },
+    "vera-povalyukhina": {
+      "children": [
+        "igor-povalyukhin"
       ],
-      "gender": "F"
+      "dates": "06.08.1912 – 22.06.1999",
+      "gender": "F",
+      "name": "Вера Васильевна Повалюхина (Гедаспова)",
+      "notes": [
+        "Жена Петра Петровича Повалюхина.",
+        "Мать Игоря Петровича Повалюхина."
+      ],
+      "parents": [],
+      "partners": [
+        "petr-povalyukhin"
+      ]
     },
     "vera-solovyova": {
       "children": [
@@ -672,6 +701,7 @@ window.FAMILY = {
         "sofya-ambroziak"
       ],
       "dates": "20.08.1968",
+      "gender": "F",
       "name": "Вера Дмитриевна Соловьёва",
       "notes": [
         "Была женой Олега Игоревича Повалюхина.",
@@ -684,43 +714,14 @@ window.FAMILY = {
       "partners": [
         "oleg-povalyukhin",
         "vladimir-ambroziak"
-      ],
-      "gender": "F"
-    },
-    "valentina-solovyova": {
-      "children": [
-        "dmitry-dmitrievich-solovyov",
-        "vera-solovyova"
-      ],
-      "dates": "даты неизвестны",
-      "name": "Валентина Андреевна Соловьёва",
-      "notes": [
-        "Мать Веры Дмитриевны Соловьёвой.",
-        "Мать Дмитрия Дмитриевича Соловьёва."
-      ],
-      "parents": [],
-      "partners": [],
-      "gender": "F"
-    },
-    "sofya-ambroziak": {
-      "children": [],
-      "dates": "17.08.2000",
-      "name": "Софья Владимировна Амброзиак",
-      "notes": [
-        "Дочь Веры Дмитриевны Соловьёвой и Владимира Амброзиака."
-      ],
-      "parents": [
-        "vera-solovyova",
-        "vladimir-ambroziak"
-      ],
-      "partners": [],
-      "gender": "F"
+      ]
     },
     "vladimir-ambroziak": {
       "children": [
         "sofya-ambroziak"
       ],
       "dates": "даты неизвестны",
+      "gender": "M",
       "name": "Владимир Амброзиак",
       "notes": [
         "Муж Веры Дмитриевны Соловьёвой.",
@@ -729,8 +730,7 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "vera-solovyova"
-      ],
-      "gender": "M"
+      ]
     }
   },
   "roots": [

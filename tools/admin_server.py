@@ -19,6 +19,17 @@ app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
 
 
+def run_git(*args: str):
+    return subprocess.run(
+        ["git", *args],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+
+
 def load_window_data(script_path: pathlib.Path, global_name: str):
     node_script = f"""
 global.window = {{}};
@@ -34,6 +45,15 @@ process.stdout.write(JSON.stringify(window[{json.dumps(global_name)}]));
         encoding="utf-8",
     )
     return json.loads(result.stdout)
+
+
+@app.after_request
+def apply_api_cors(response):
+    if request.path.startswith("/api/admin/"):
+        response.headers["Access-Control-Allow-Origin"] = "*"
+        response.headers["Access-Control-Allow-Headers"] = "Content-Type"
+        response.headers["Access-Control-Allow-Methods"] = "GET,POST,OPTIONS"
+    return response
 
 
 def load_family():
@@ -143,6 +163,33 @@ def admin_save():
     write_window_assignment(ALBUMS_FILE, "window.PHOTO_ALBUMS =", albums)
 
     return jsonify({"family": family, "albums": albums})
+
+
+@app.route("/api/admin/publish", methods=["POST", "OPTIONS"])
+def admin_publish():
+    if request.method == "OPTIONS":
+        return ("", 204)
+
+    status_before = run_git("status", "--porcelain").stdout
+    run_git("add", "-A", ".")
+
+    status_after_add = run_git("status", "--porcelain").stdout
+    if not status_after_add.strip():
+        return jsonify({"ok": True, "noChanges": True})
+
+    commit = run_git("commit", "-m", "Publish site updates")
+    commit_hash = run_git("rev-parse", "--short", "HEAD").stdout.strip()
+    run_git("push", "origin", "main")
+
+    return jsonify(
+        {
+            "ok": True,
+            "noChanges": False,
+            "commit": commit_hash,
+            "summary": commit.stdout.strip() or commit.stderr.strip(),
+            "hadChanges": bool(status_before.strip()),
+        }
+    )
 
 
 @app.get("/")

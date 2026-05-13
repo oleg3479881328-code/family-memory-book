@@ -165,6 +165,21 @@
             adminLink.textContent = "Админ-панель";
             nav.appendChild(adminLink);
           }
+
+          const treeActions = document.querySelector(".tree-top-actions");
+          if (treeActions && !treeActions.querySelector("[data-publish-site]")) {
+            const publishButton = document.createElement("button");
+            publishButton.type = "button";
+            publishButton.className = "button secondary";
+            publishButton.dataset.publishSite = "true";
+            publishButton.textContent = "Опубликовать на сайте";
+            treeActions.appendChild(publishButton);
+
+            const publishStatus = document.createElement("span");
+            publishStatus.className = "publish-status";
+            publishStatus.dataset.publishStatus = "true";
+            treeActions.appendChild(publishStatus);
+          }
         }
 
         const withAssetVersion = window.__withAssetVersion || ((path) => path);

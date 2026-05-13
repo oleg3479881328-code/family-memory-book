@@ -17,6 +17,8 @@ const photoViewerCaptionEl = document.querySelector("#photo-viewer-caption");
 const photoViewerCounterEl = document.querySelector("#photo-viewer-counter");
 const photoPrevButtonEl = document.querySelector("[data-photo-prev]");
 const photoNextButtonEl = document.querySelector("[data-photo-next]");
+const publishSiteButtonEl = document.querySelector("[data-publish-site]");
+const publishStatusEl = document.querySelector("[data-publish-status]");
 const TREE_CARD_WIDTH = 224;
 const TREE_CARD_HEIGHT = 98;
 
@@ -724,9 +726,40 @@ function showFullTree() {
   }
 }
 
+async function publishSiteFromLocalPreview() {
+  if (!publishSiteButtonEl || !publishStatusEl) {
+    return;
+  }
+
+  publishSiteButtonEl.disabled = true;
+  publishStatusEl.textContent = "Публикую...";
+
+  try {
+    const response = await fetch("http://127.0.0.1:8765/api/admin/publish", {
+      method: "POST",
+    });
+    const payload = await response.json();
+
+    if (!response.ok) {
+      throw new Error(payload.error || "Publish failed");
+    }
+
+    publishStatusEl.textContent = payload.noChanges
+      ? "Изменений нет."
+      : `Опубликовано: ${payload.commit}`;
+  } catch (error) {
+    publishStatusEl.textContent = "Запусти start-admin.bat и попробуй снова.";
+    console.error("Publish failed:", error);
+  } finally {
+    publishSiteButtonEl.disabled = false;
+  }
+}
+
 document.querySelectorAll('[data-tree-action="expand-all"]').forEach((button) => {
   button.addEventListener("click", showFullTree);
 });
+
+publishSiteButtonEl?.addEventListener("click", publishSiteFromLocalPreview);
 
 document.querySelector("#collapse-all").addEventListener("click", () => {
   searchEl.value = "";

@@ -227,8 +227,16 @@ a {
 
 .tree-top-actions {
   display: flex;
+  align-items: center;
+  gap: 10px;
   justify-content: flex-end;
   margin: -6px 0 16px;
+}
+
+.publish-status {
+  color: var(--muted);
+  font-size: 14px;
+  min-height: 1em;
 }
 
 .section-heading h2 {
