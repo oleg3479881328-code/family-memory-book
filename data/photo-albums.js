@@ -1158,5 +1158,87 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0034.jpg",
     "title": "Анна Олеговна Повалюхина"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "dmitry-solovyov",
+    "photos": [
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 1",
+        "src": "assets/photo-albums/dmitry-solovyov/FB_IMG_1574858163123.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 2",
+        "src": "assets/photo-albums/dmitry-solovyov/img_5_1652717491736.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 3",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-118beb3cf9aa727eeee6594489910f09-V.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 4",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-20200608-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 5",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-20201030-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 6",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-20250101-WA0005.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 7",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-20250101-WA0009.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 8",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-20250101-WA0010.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрия Ивановича. Фото 9",
+        "src": "assets/photo-albums/dmitry-solovyov/IMG-d88bb95e3bb1319df4d477d85e24dabb-V.jpg"
+      }
+    ],
+    "title": "Дмитрий Иванович Соловьёв"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "valentina-solovyova",
+    "photos": [
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 1",
+        "src": "assets/photo-albums/valentina-solovyova/FB_IMG_1574858170287.jpg"
+      },
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 2",
+        "src": "assets/photo-albums/valentina-solovyova/img_5_1652717491736.jpg"
+      },
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 3",
+        "src": "assets/photo-albums/valentina-solovyova/IMG-118beb3cf9aa727eeee6594489910f09-V.jpg"
+      },
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 4",
+        "src": "assets/photo-albums/valentina-solovyova/IMG-20200608-WA0001.jpg"
+      },
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 5",
+        "src": "assets/photo-albums/valentina-solovyova/IMG-20250101-WA0006.jpg"
+      },
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 6",
+        "src": "assets/photo-albums/valentina-solovyova/IMG-20250101-WA0007.jpg"
+      },
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 7",
+        "src": "assets/photo-albums/valentina-solovyova/IMG-20250101-WA0010.jpg"
+      },
+      {
+        "caption": "Фотоальбом Валентины Андреевны. Фото 8",
+        "src": "assets/photo-albums/valentina-solovyova/IMG-d88bb95e3bb1319df4d477d85e24dabb-V.jpg"
+      }
+    ],
+    "title": "Валентина Андреевна Соловьёва"
   }
 ];
