@@ -12,7 +12,11 @@
       (function () {
         const hostedVersion = "20260512-tree-focus-1";
         const localVersion = Date.now().toString();
-        const assetVersion = location.protocol === "file:" ? localVersion : hostedVersion;
+        const isLocalPreview =
+          location.protocol === "file:" ||
+          location.hostname === "localhost" ||
+          location.hostname === "127.0.0.1";
+        const assetVersion = isLocalPreview ? localVersion : hostedVersion;
 
         function withAssetVersion(path) {
           return `${path}?v=${assetVersion}`;
@@ -27,6 +31,7 @@
 
         window.__assetVersion = assetVersion;
         window.__withAssetVersion = withAssetVersion;
+        window.__isLocalPreview = isLocalPreview;
 
         appendStyle("vendor/family-chart/family-chart.css");
         appendStyle("styles.css");
@@ -40,7 +45,7 @@
         <a href="#tree">Родословная</a>
         <a href="#memoirs">Мемуары</a>
         <a href="#photos">Фотоархив</a>
-        <a href="admin/index.html">Админ-панель</a>
+        <a href="admin/index.html" data-admin-link>Админ-панель</a>
       </nav>
     </header>
 
@@ -152,6 +157,10 @@
     </div>
     <script>
       (function () {
+        if (!window.__isLocalPreview) {
+          document.querySelector("[data-admin-link]")?.remove();
+        }
+
         const withAssetVersion = window.__withAssetVersion || ((path) => path);
         const scriptPaths = [
           "data/memoirs.js",
