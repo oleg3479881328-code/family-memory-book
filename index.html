@@ -10,7 +10,7 @@
     />
     <script>
       (function () {
-        const hostedVersion = "20260512-tree-focus-1";
+        const hostedVersion = "20260513-hide-admin-link";
         const localVersion = Date.now().toString();
         const isLocalPreview =
           location.protocol === "file:" ||
@@ -45,7 +45,6 @@
         <a href="#tree">Родословная</a>
         <a href="#memoirs">Мемуары</a>
         <a href="#photos">Фотоархив</a>
-        <a href="admin/index.html" data-admin-link>Админ-панель</a>
       </nav>
     </header>
 
@@ -157,8 +156,15 @@
     </div>
     <script>
       (function () {
-        if (!window.__isLocalPreview) {
-          document.querySelector("[data-admin-link]")?.remove();
+        if (window.__isLocalPreview) {
+          const nav = document.querySelector(".top-nav");
+          if (nav && !nav.querySelector("[data-admin-link]")) {
+            const adminLink = document.createElement("a");
+            adminLink.href = "admin/index.html";
+            adminLink.dataset.adminLink = "true";
+            adminLink.textContent = "Админ-панель";
+            nav.appendChild(adminLink);
+          }
         }
 
         const withAssetVersion = window.__withAssetVersion || ((path) => path);
