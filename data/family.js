@@ -16,6 +16,22 @@ window.FAMILY = {
         "alexandra-kureneva"
       ]
     },
+    "alexander-tankov": {
+      "children": [
+        "olga-tankova",
+        "natalya-tankova"
+      ],
+      "dates": "",
+      "gender": "M",
+      "name": "Александр Николаевич Таньков",
+      "notes": [
+        "Отец Ольги Александровны Таньковой и Натальи Александровны Таньковой."
+      ],
+      "parents": [],
+      "partners": [
+        "nina-tankova"
+      ]
+    },
     "alexandra-kureneva": {
       "children": [
         "konstantin-fateev",
@@ -411,6 +427,21 @@ window.FAMILY = {
         "gerard-hurley"
       ]
     },
+    "natalya-tankova": {
+      "children": [],
+      "dates": "",
+      "gender": "F",
+      "name": "Наталья Александровна Танькова",
+      "notes": [
+        "Дочь Александра Николаевича Танькова и Нины Ивановны Таньковой.",
+        "Сестра Ольги Александровны Таньковой."
+      ],
+      "parents": [
+        "alexander-tankov",
+        "nina-tankova"
+      ],
+      "partners": []
+    },
     "nikita-fateev": {
       "children": [
         "daniil-fateev"
@@ -463,6 +494,22 @@ window.FAMILY = {
         "vera-kureneva"
       ]
     },
+    "nina-tankova": {
+      "children": [
+        "olga-tankova",
+        "natalya-tankova"
+      ],
+      "dates": "",
+      "gender": "F",
+      "name": "Нина Ивановна Танькова",
+      "notes": [
+        "Мать Ольги Александровны Таньковой и Натальи Александровны Таньковой."
+      ],
+      "parents": [],
+      "partners": [
+        "alexander-tankov"
+      ]
+    },
     "oleg-povalyukhin": {
       "children": [
         "anna-povalyukhina",
@@ -508,53 +555,6 @@ window.FAMILY = {
       "partners": [
         "oleg-povalyukhin"
       ]
-    },
-    "alexander-tankov": {
-      "children": [
-        "olga-tankova",
-        "natalya-tankova"
-      ],
-      "dates": "",
-      "gender": "M",
-      "name": "Александр Николаевич Таньков",
-      "notes": [
-        "Отец Ольги Александровны Таньковой и Натальи Александровны Таньковой."
-      ],
-      "parents": [],
-      "partners": [
-        "nina-tankova"
-      ]
-    },
-    "nina-tankova": {
-      "children": [
-        "olga-tankova",
-        "natalya-tankova"
-      ],
-      "dates": "",
-      "gender": "F",
-      "name": "Нина Ивановна Танькова",
-      "notes": [
-        "Мать Ольги Александровны Таньковой и Натальи Александровны Таньковой."
-      ],
-      "parents": [],
-      "partners": [
-        "alexander-tankov"
-      ]
-    },
-    "natalya-tankova": {
-      "children": [],
-      "dates": "",
-      "gender": "F",
-      "name": "Наталья Александровна Танькова",
-      "notes": [
-        "Дочь Александра Николаевича Танькова и Нины Ивановны Таньковой.",
-        "Сестра Ольги Александровны Таньковой."
-      ],
-      "parents": [
-        "alexander-tankov",
-        "nina-tankova"
-      ],
-      "partners": []
     },
     "pavel-fateev": {
       "children": [

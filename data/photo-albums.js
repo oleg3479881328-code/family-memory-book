@@ -1245,5 +1245,17 @@ window.PHOTO_ALBUMS = [
       }
     ],
     "title": "Валентина Андреевна Соловьёва"
+  },
+  {
+    "personId": "alexander-tankov",
+    "title": "Александр Николаевич Таньков",
+    "description": "Фотографии из семейного альбома.",
+    "photos": [
+      {
+        "src": "assets/photo-albums/alexander-tankov/uploaded/download_12.jpg",
+        "caption": "Фотоальбом Александр Николаевич Таньков. Фото 1"
+      }
+    ],
+    "portrait": "assets/photo-albums/alexander-tankov/uploaded/download_12.jpg"
   }
 ];
