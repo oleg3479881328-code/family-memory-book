@@ -841,7 +841,7 @@ window.PHOTO_ALBUMS = [
       }
     ],
     "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/93907473_2583377208603261_3417942855421788160_n (1).jpg",
-    "title": "Олег Игоревич Повалюхин"
+    "title": "Олег Игоревич Повалюхин2"
   },
   {
     "description": "Фотографии из семейного альбома.",
