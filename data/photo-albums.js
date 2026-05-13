@@ -1251,5 +1251,11 @@ window.PHOTO_ALBUMS = [
     "personId": "alexander-tankov",
     "photos": [],
     "title": "Александр Николаевич Таньков"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "alexander-fateev",
+    "photos": [],
+    "title": "Александр Константинович Фатеев"
   }
 ];
