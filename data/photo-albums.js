@@ -840,7 +840,7 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0006.jpg"
       }
     ],
-    "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/93907473_2583377208603261_3417942855421788160_n (1).jpg",
+    "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-202501126-WA0006.jpg",
     "title": "Олег Игоревич Повалюхин2"
   },
   {
