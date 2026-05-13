@@ -187,6 +187,9 @@ def admin_publish():
         return ("", 204)
 
     status_before = run_git("status", "--porcelain").stdout
+    if not status_before.strip():
+        return jsonify({"ok": True, "noChanges": True})
+
     bump_hosted_asset_version()
     run_git("add", "-A", ".")
 
