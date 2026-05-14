@@ -128,7 +128,7 @@ def append_uploads(albums, uploaded_files):
         target_dir = ASSETS_DIR / person_id / "uploaded"
         target_dir.mkdir(parents=True, exist_ok=True)
 
-        for storage in files:
+        for upload_id, storage in files:
             if not storage.filename:
                 continue
             if not allowed_file(storage.filename):
@@ -145,7 +145,9 @@ def append_uploads(albums, uploaded_files):
                     "caption": f"Фотоальбом {album.get('title') or person_id}. Фото {next_index}",
                 }
             )
-            if not album.get("portrait"):
+            if album.get("portrait") == f"__upload__:{upload_id}":
+                album["portrait"] = relative_path
+            elif not album.get("portrait"):
                 album["portrait"] = relative_path
 
 
@@ -169,8 +171,8 @@ def admin_save():
     for field_name, storage in request.files.items(multi=True):
         if not field_name.startswith("upload:"):
             continue
-        person_id = field_name.split(":", 1)[1]
-        uploads[person_id].append(storage)
+        _, person_id, upload_id = field_name.split(":", 2)
+        uploads[person_id].append((upload_id, storage))
 
     delete_removed_files(deleted_photos)
     append_uploads(albums, uploads)

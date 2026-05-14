@@ -7,6 +7,7 @@ const state = {
   selectedPersonId: "",
   search: "",
   uploadQueue: {},
+  nextUploadId: 1,
   deletedPhotos: [],
   dirty: false,
   serverReady: false,
@@ -69,6 +70,18 @@ function createAlbumDraft(personId) {
   );
 }
 
+function queuedPortraitToken(uploadId) {
+  return `__upload__:${uploadId}`;
+}
+
+function releaseUploadEntries(entries = []) {
+  entries.forEach((entry) => {
+    if (entry.previewUrl) {
+      URL.revokeObjectURL(entry.previewUrl);
+    }
+  });
+}
+
 function renderPeopleList() {
   const entries = sortedPeopleEntries().filter(([, person]) => {
     return person.name.toLowerCase().includes(state.search.trim().toLowerCase());
@@ -124,14 +137,34 @@ function renderPersonEditor() {
 }
 
 function renderUploadQueue(personId) {
-  const files = state.uploadQueue[personId] || [];
-  if (!files.length) {
+  const uploads = state.uploadQueue[personId] || [];
+  if (!uploads.length) {
     return `<div class="empty-state"><p>Новых фото в очереди пока нет.</p></div>`;
   }
 
+  const album = createAlbumDraft(personId);
+  const portraitPath = album.portrait || album.photos[0]?.src || "";
+
   return `
     <div class="upload-list">
-      ${files.map((file) => `<div class="upload-chip">${escapeHtml(file.name)}</div>`).join("")}
+      ${uploads
+        .map((entry) => {
+          const checked = portraitPath === queuedPortraitToken(entry.id) ? "checked" : "";
+          return `
+            <article class="photo-card">
+              <img src="${entry.previewUrl}" alt="${escapeHtml(entry.name)}" loading="lazy" />
+              <div class="upload-chip">${escapeHtml(entry.name)}</div>
+              <div class="photo-controls">
+                <label>
+                  <input type="radio" name="portrait-photo" value="${queuedPortraitToken(entry.id)}" ${checked} />
+                  <span>Лицевое фото</span>
+                </label>
+                <button type="button" class="danger-link" data-remove-upload="${entry.id}">Убрать из очереди</button>
+              </div>
+            </article>
+          `;
+        })
+        .join("")}
     </div>
   `;
 }
@@ -314,8 +347,36 @@ function queueUploads(files) {
   if (!files.length) {
     return;
   }
-  state.uploadQueue[state.selectedPersonId] = [...(state.uploadQueue[state.selectedPersonId] || []), ...Array.from(files)];
+  const queuedUploads = Array.from(files).map((file) => ({
+    id: `upload-${state.nextUploadId++}`,
+    file,
+    name: file.name,
+    previewUrl: URL.createObjectURL(file),
+  }));
+  state.uploadQueue[state.selectedPersonId] = [...(state.uploadQueue[state.selectedPersonId] || []), ...queuedUploads];
   markDirty("Фото добавлены. Последний шаг: нажмите «Сохранить изменения».");
+  renderPersonEditor();
+}
+
+function removeQueuedUpload(uploadId) {
+  const entries = state.uploadQueue[state.selectedPersonId] || [];
+  const removed = entries.filter((entry) => entry.id === uploadId);
+  if (!removed.length) {
+    return;
+  }
+
+  releaseUploadEntries(removed);
+  state.uploadQueue[state.selectedPersonId] = entries.filter((entry) => entry.id !== uploadId);
+
+  const album = getAlbum(state.selectedPersonId);
+  if (album?.portrait === queuedPortraitToken(uploadId)) {
+    album.portrait = album.photos[0]?.src || "";
+    if (!album.portrait) {
+      delete album.portrait;
+    }
+  }
+
+  markDirty("Фото убрано из очереди.");
   renderPersonEditor();
 }
 
@@ -337,6 +398,7 @@ async function loadState() {
     const payload = await response.json();
     state.family = payload.family;
     state.albums = payload.albums;
+    Object.values(state.uploadQueue).forEach((entries) => releaseUploadEntries(entries));
     state.selectedPersonId = state.selectedPersonId && state.family.people[state.selectedPersonId]
       ? state.selectedPersonId
       : Object.keys(state.family.people)[0] || "";
@@ -368,8 +430,8 @@ async function saveAllChanges() {
   formData.append("payload", JSON.stringify(buildSavePayload()));
 
   Object.entries(state.uploadQueue).forEach(([personId, files]) => {
-    files.forEach((file) => {
-      formData.append(`upload:${personId}`, file, file.name);
+    files.forEach((entry) => {
+      formData.append(`upload:${personId}:${entry.id}`, entry.file, entry.name);
     });
   });
 
@@ -386,6 +448,7 @@ async function saveAllChanges() {
     const payload = await response.json();
     state.family = payload.family;
     state.albums = payload.albums;
+    Object.values(state.uploadQueue).forEach((entries) => releaseUploadEntries(entries));
     state.uploadQueue = {};
     state.deletedPhotos = [];
     state.dirty = false;
@@ -420,6 +483,12 @@ document.addEventListener("click", (event) => {
   const removeButton = event.target.closest("[data-remove-photo]");
   if (removeButton) {
     removePhoto(removeButton.dataset.removePhoto);
+    return;
+  }
+
+  const removeUploadButton = event.target.closest("[data-remove-upload]");
+  if (removeUploadButton) {
+    removeQueuedUpload(removeUploadButton.dataset.removeUpload);
   }
 });
 
