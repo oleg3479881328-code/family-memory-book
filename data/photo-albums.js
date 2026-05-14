@@ -838,6 +838,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Олега Игоревича. Фото 10",
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0006.jpg"
+      },
+      {
+        "src": "assets/photo-albums/oleg-povalyukhin/uploaded/331ac832-60d0-4f7d-ad5e-1f8505d71a7d.png",
+        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 11"
       }
     ],
     "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20230401-WA0003.jpg",
