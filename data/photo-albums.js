@@ -840,11 +840,11 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0006.jpg"
       },
       {
-        "src": "assets/photo-albums/oleg-povalyukhin/uploaded/331ac832-60d0-4f7d-ad5e-1f8505d71a7d.png",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 11"
+        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 11",
+        "src": "assets/photo-albums/oleg-povalyukhin/uploaded/331ac832-60d0-4f7d-ad5e-1f8505d71a7d.png"
       }
     ],
-    "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20230401-WA0003.jpg",
+    "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-202501126-WA0006.jpg",
     "title": "Олег Игоревич Повалюхин"
   },
   {
