@@ -745,8 +745,14 @@ async function publishSiteFromLocalPreview() {
       throw new Error(payload.error || "Publish failed");
     }
 
-    publishStatusEl.textContent = payload.noChanges
-      ? "Изменений нет."
+    if (payload.noChanges) {
+      publishStatusEl.textContent = "Изменений нет.";
+      return;
+    }
+
+    const buildStatus = payload.pagesBuild?.status;
+    publishStatusEl.textContent = buildStatus
+      ? `Опубликовано: ${payload.commit} · Pages: ${buildStatus}`
       : `Опубликовано: ${payload.commit}`;
   } catch (error) {
     publishStatusEl.textContent = "Запусти start-admin.bat и попробуй снова.";

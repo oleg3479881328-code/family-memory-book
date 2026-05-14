@@ -4,6 +4,7 @@ import re
 import subprocess
 from collections import defaultdict
 from datetime import datetime
+from time import sleep
 
 from flask import Flask, jsonify, request, send_from_directory
 from werkzeug.utils import secure_filename
@@ -17,6 +18,7 @@ ALBUMS_FILE = DATA_DIR / "photo-albums.js"
 INDEX_FILE = ROOT / "index.html"
 MAX_CONTENT_LENGTH = 64 * 1024 * 1024
 ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"}
+GITHUB_REPO = "oleg3479881328-code/family-memory-book"
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
@@ -25,6 +27,17 @@ app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
 def run_git(*args: str):
     return subprocess.run(
         ["git", *args],
+        cwd=ROOT,
+        check=True,
+        capture_output=True,
+        text=True,
+        encoding="utf-8",
+    )
+
+
+def run_gh_api(*args: str):
+    return subprocess.run(
+        ["gh", "api", *args],
         cwd=ROOT,
         check=True,
         capture_output=True,
@@ -44,6 +57,29 @@ def bump_hosted_asset_version():
     )
     if replacements:
         INDEX_FILE.write_text(updated_html, encoding="utf-8")
+
+
+def request_pages_build():
+    result = run_gh_api("-X", "POST", f"repos/{GITHUB_REPO}/pages/builds")
+    return json.loads(result.stdout)
+
+
+def get_latest_pages_build():
+    result = run_gh_api(f"repos/{GITHUB_REPO}/pages/builds/latest")
+    return json.loads(result.stdout)
+
+
+def wait_for_pages_build(timeout_seconds: int = 90, poll_interval_seconds: int = 3):
+    deadline = datetime.now().timestamp() + timeout_seconds
+    latest = None
+
+    while datetime.now().timestamp() < deadline:
+        latest = get_latest_pages_build()
+        if latest.get("status") in {"built", "errored"}:
+            return latest
+        sleep(poll_interval_seconds)
+
+    return latest
 
 
 def load_window_data(script_path: pathlib.Path, global_name: str):
@@ -202,6 +238,8 @@ def admin_publish():
     commit = run_git("commit", "-m", "Publish site updates")
     commit_hash = run_git("rev-parse", "--short", "HEAD").stdout.strip()
     run_git("push", "origin", "main")
+    request_pages_build()
+    pages_build = wait_for_pages_build()
 
     return jsonify(
         {
@@ -210,6 +248,11 @@ def admin_publish():
             "commit": commit_hash,
             "summary": commit.stdout.strip() or commit.stderr.strip(),
             "hadChanges": bool(status_before.strip()),
+            "pagesBuild": {
+                "status": pages_build.get("status") if pages_build else "unknown",
+                "error": (pages_build.get("error") or {}).get("message") if pages_build else None,
+                "commit": pages_build.get("commit") if pages_build else None,
+            },
         }
     )
 
