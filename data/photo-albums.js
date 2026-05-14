@@ -838,17 +838,9 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Олега Игоревича. Фото 10",
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0006.jpg"
-      },
-      {
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 11",
-        "src": "assets/photo-albums/oleg-povalyukhin/uploaded/download_8.jpg"
-      },
-      {
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 12",
-        "src": "assets/photo-albums/oleg-povalyukhin/uploaded/pngtree-secret-service-agent-body-guard-showing-identification-fbi-id-card-png-image_14680544.png"
       }
     ],
-    "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/20131103_104731.jpg",
+    "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-202501126-WA0006.jpg",
     "title": "Олег Игоревич Повалюхин"
   },
   {
@@ -1265,5 +1257,25 @@ window.PHOTO_ALBUMS = [
     "personId": "alexander-fateev",
     "photos": [],
     "title": "Александр Константинович Фатеев"
+  },
+  {
+    "personId": "alexandra-kureneva",
+    "title": "Александра Дмитриевна Куренева",
+    "description": "Фотографии из семейного альбома.",
+    "photos": [
+      {
+        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg",
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 1"
+      },
+      {
+        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0013.jpg",
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 2"
+      },
+      {
+        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0014.jpg",
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 3"
+      }
+    ],
+    "portrait": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg"
   }
 ];
