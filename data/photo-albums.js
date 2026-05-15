@@ -394,6 +394,18 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Константина Александровича. Фото 7",
         "src": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/WhatsApp Image1 2026-05-09 at 5.31.17 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Константин Александрович Фатеев. Фото 8",
+        "src": "assets/photo-albums/konstantin-fateev/uploaded/IMG-20260515-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Константин Александрович Фатеев. Фото 9",
+        "src": "assets/photo-albums/konstantin-fateev/uploaded/IMG-20260515-WA0000.jpg"
+      },
+      {
+        "caption": "Фотоальбом Константин Александрович Фатеев. Фото 10",
+        "src": "assets/photo-albums/konstantin-fateev/uploaded/IMG-20260515-WA0001.jpg"
       }
     ],
     "portrait": "assets/photo-albums/konstantin-fateev/Photos-3-001 (12)/download258.png",
@@ -630,6 +642,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Натальи Дмитриевны. Фото 7",
         "src": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0010.jpg"
+      },
+      {
+        "caption": "Наталья Дмитриевна Куренёва 14 лет",
+        "src": "assets/photo-albums/natalya-kureneva/uploaded/IMG-20260515-WA0013.jpg"
       }
     ],
     "portrait": "assets/photo-albums/natalya-kureneva/IMG-20230208-WA0009.jpg",
@@ -1259,23 +1275,39 @@ window.PHOTO_ALBUMS = [
     "title": "Александр Константинович Фатеев"
   },
   {
-    "personId": "alexandra-kureneva",
-    "title": "Александра Дмитриевна Куренева",
     "description": "Фотографии из семейного альбома.",
+    "personId": "alexandra-kureneva",
     "photos": [
       {
-        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg",
-        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 1"
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 1",
+        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg"
       },
       {
-        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0013.jpg",
-        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 2"
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 2",
+        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0013.jpg"
       },
       {
-        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0014.jpg",
-        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 3"
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 3",
+        "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0014.jpg"
       }
     ],
-    "portrait": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg"
+    "portrait": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg",
+    "title": "Александра Дмитриевна Куренева"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "dmitry-kurenev",
+    "photos": [
+      {
+        "caption": "Фотоальбом Дмитрий Андреевич Куренёв. Фото 1",
+        "src": "assets/photo-albums/dmitry-kurenev/uploaded/IMG-20260515-WA0005.jpg"
+      },
+      {
+        "caption": "Фотоальбом Дмитрий Андреевич Куренёв. Фото 2",
+        "src": "assets/photo-albums/dmitry-kurenev/uploaded/IMG-20260515-WA0009.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/dmitry-kurenev/uploaded/IMG-20260515-WA0009.jpg",
+    "title": "Дмитрий Андреевич Куренёв"
   }
 ];
