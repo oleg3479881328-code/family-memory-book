@@ -1309,5 +1309,17 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/dmitry-kurenev/uploaded/IMG-20260515-WA0009.jpg",
     "title": "Дмитрий Андреевич Куренёв"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "personId": "anna-kuteinikova",
+    "photos": [
+      {
+        "caption": "Фотоальбом Анна Сергеевна Кутейникова. Фото 1",
+        "src": "assets/photo-albums/anna-kuteinikova/uploaded/IMG-20260515-WA0007.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/anna-kuteinikova/uploaded/IMG-20260515-WA0007.jpg",
+    "title": "Анна Сергеевна Кутейникова"
   }
 ];
