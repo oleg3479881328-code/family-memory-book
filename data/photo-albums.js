@@ -74,9 +74,20 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Тамары Николаевны. Фото 18",
         "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/WhatsApp Image1 2026-05-09 at 5.10.44 AM.jpeg"
+      },
+      {
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev2.jpeg",
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 19"
+      },
+      {
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev3.jpeg",
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 20"
       }
     ],
-    "title": "Тамара Николаевна Григорьева / Повалюхина"
+    "title": "Тамара Николаевна Григорьева / Повалюхина",
+    "videos": [],
+    "externalLinks": [],
+    "portrait": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev2.jpeg"
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -734,10 +745,32 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Петра Петровича. Фото 7",
         "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image6 2026-05-11 at 11.14.02 AM.jpeg"
+      },
+      {
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin1.jpeg",
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 8"
+      },
+      {
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin2.jpeg",
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 9"
+      },
+      {
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin3.jpeg",
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 10"
+      },
+      {
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin4.jpeg",
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 11"
+      },
+      {
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin5.jpeg",
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 12"
       }
     ],
     "portrait": "assets/photo-albums/petr-povalyukhin/WhatsApp Image3 2026-05-08 at 9.56.57 AM.jpeg",
-    "title": "Пётр Петрович Повалюхин"
+    "title": "Пётр Петрович Повалюхин",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1032,10 +1065,16 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Игоря Николаевича. Фото 4",
         "src": "assets/photo-albums/igor-grigoryev/ChatGPT Image 11 мая 2026 г., 15_28_12.png"
+      },
+      {
+        "src": "assets/photo-albums/igor-grigoryev/igor-grigoryev11.jpeg",
+        "caption": "Фотоальбом Игорь Николаевич Григорьев. Фото 5"
       }
     ],
     "portrait": "assets/photo-albums/igor-grigoryev/ChatGPT Image 11 мая 2026 г., 15_28_12.png",
-    "title": "Игорь Николаевич Григорьев"
+    "title": "Игорь Николаевич Григорьев",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",

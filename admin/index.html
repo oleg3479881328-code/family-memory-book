@@ -35,6 +35,24 @@
           <p id="server-warning" class="warning" hidden>Локальный сервер не отвечает. Запустите файл <code>start-admin.bat</code>.</p>
         </div>
 
+        <div class="sidebar-card sync-card">
+          <div class="card-head">
+            <div>
+              <h2>Обновления папок</h2>
+              <p class="subtle">Проверка новых фото и видео, затем синхронизация в сайт.</p>
+            </div>
+          </div>
+          <div class="header-actions sync-actions">
+            <button id="check-album-updates" type="button" class="button secondary" disabled>Проверить обновления</button>
+            <button id="sync-album-updates" type="button" class="button secondary" disabled>Синхронизировать</button>
+            <button id="publish-site" type="button" class="button primary" disabled>Опубликовать на сайте</button>
+          </div>
+          <p id="sync-status" class="subtle">Пока можно проверять вручную. После синхронизации публикуй отсюда же.</p>
+          <div id="sync-report" class="sync-report empty-state">
+            <p>Нажмите «Проверить обновления», чтобы увидеть новые файлы в папках фотоальбомов.</p>
+          </div>
+        </div>
+
         <div class="sidebar-card people-card">
           <div class="card-head">
             <h2>Люди</h2>

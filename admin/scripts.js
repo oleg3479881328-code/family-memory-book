@@ -1,5 +1,8 @@
 const API_STATE_URL = "/api/admin/state";
 const API_SAVE_URL = "/api/admin/save";
+const API_ALBUM_CHECK_URL = "/api/admin/albums/check";
+const API_ALBUM_SYNC_URL = "/api/admin/albums/sync";
+const API_PUBLISH_URL = "/api/admin/publish";
 
 const state = {
   family: { roots: [], people: {} },
@@ -22,6 +25,11 @@ const ui = {
   peopleCount: document.querySelector("#people-count"),
   saveStatus: document.querySelector("#save-status"),
   serverWarning: document.querySelector("#server-warning"),
+  checkAlbumUpdates: document.querySelector("#check-album-updates"),
+  syncAlbumUpdates: document.querySelector("#sync-album-updates"),
+  publishSite: document.querySelector("#publish-site"),
+  syncStatus: document.querySelector("#sync-status"),
+  syncReport: document.querySelector("#sync-report"),
   personEditor: document.querySelector("#person-editor"),
   personIdBadge: document.querySelector("#person-id-badge"),
 };
@@ -37,6 +45,11 @@ function escapeHtml(value) {
 function setStatus(message, isError = false) {
   ui.saveStatus.textContent = message;
   ui.serverWarning.hidden = !isError;
+}
+
+function setSyncStatus(message, isError = false) {
+  ui.syncStatus.textContent = message;
+  ui.syncStatus.classList.toggle("warning", isError);
 }
 
 function markDirty(message = "Есть несохранённые изменения.") {
@@ -393,6 +406,44 @@ function renderAlbumSection() {
   `;
 }
 
+function renderSyncReport(report) {
+  if (!report) {
+    ui.syncReport.innerHTML = `<p>Нажмите «Проверить обновления», чтобы увидеть новые файлы в папках фотоальбомов.</p>`;
+    return;
+  }
+
+  const summary = report.summary || {};
+  if (!(report.albums || []).length) {
+    ui.syncReport.innerHTML = `
+      <p>Новых изменений не найдено.</p>
+      <p class="field-help">
+        Папок создано: ${summary.directoriesCreated || 0},
+        новых фото: ${summary.missingPhotos || 0},
+        новых видео: ${summary.missingVideos || 0}.
+      </p>
+    `;
+    return;
+  }
+
+  ui.syncReport.innerHTML = `
+    <div class="sync-report-list">
+      ${(report.albums || [])
+        .map(
+          (album) => `
+            <article class="sync-report-item">
+              <h3>${escapeHtml(album.personName)}</h3>
+              ${album.missingPhotos?.length ? `<p>Новые фото: ${album.missingPhotos.length}</p><ul>${album.missingPhotos.map((item) => `<li>${escapeHtml(item.split("/").pop() || item)}</li>`).join("")}</ul>` : ""}
+              ${album.missingVideos?.length ? `<p>Новые видео: ${album.missingVideos.length}</p><ul>${album.missingVideos.map((item) => `<li>${escapeHtml(item.split("/").pop() || item)}</li>`).join("")}</ul>` : ""}
+              ${album.brokenPhotos?.length ? `<p>Удалить битые фото: ${album.brokenPhotos.length}</p>` : ""}
+              ${album.brokenVideos?.length ? `<p>Удалить битые видео: ${album.brokenVideos.length}</p>` : ""}
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 function renderAll() {
   ui.saveAll.disabled = !state.serverReady;
   renderPeopleList();
@@ -660,14 +711,22 @@ async function loadState() {
     state.deletedPhotos = [];
     state.serverReady = true;
     state.dirty = false;
+    ui.checkAlbumUpdates.disabled = false;
+    ui.syncAlbumUpdates.disabled = false;
+    ui.publishSite.disabled = false;
     ui.serverWarning.hidden = true;
     setStatus("Данные загружены. Выберите человека, внесите правки и нажмите «Сохранить изменения».");
+    setSyncStatus("Можно проверить папки фотоальбомов и синхронизировать изменения в сайт.");
     renderAll();
   } catch (error) {
     state.serverReady = false;
     ui.saveAll.disabled = true;
+    ui.checkAlbumUpdates.disabled = true;
+    ui.syncAlbumUpdates.disabled = true;
+    ui.publishSite.disabled = true;
     ui.serverWarning.hidden = false;
     setStatus("Локальный сервер не отвечает. Запустите start-admin.bat и затем обновите страницу.", true);
+    setSyncStatus("Локальный сервер не отвечает. Проверка и публикация недоступны.", true);
   }
 }
 
@@ -722,6 +781,95 @@ async function saveAllChanges() {
   }
 }
 
+async function checkAlbumUpdates() {
+  if (!state.serverReady) {
+    setSyncStatus("Локальный сервер недоступен. Запустите start-admin.bat.", true);
+    return;
+  }
+
+  setSyncStatus("Проверяю изменения в папках фотоальбомов...");
+
+  try {
+    const response = await fetch(API_ALBUM_CHECK_URL, { cache: "no-store" });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const report = await response.json();
+    renderSyncReport(report);
+    if ((report.albums || []).length) {
+      setSyncStatus(`Найдены изменения в ${report.summary.albumsChanged} альбомах.`);
+    } else {
+      setSyncStatus("Новых изменений в папках не найдено.");
+    }
+  } catch (error) {
+    setSyncStatus("Проверка не удалась. Сервер не ответил или вернул ошибку.", true);
+  }
+}
+
+async function syncAlbumUpdates() {
+  if (!state.serverReady) {
+    setSyncStatus("Локальный сервер недоступен. Запустите start-admin.bat.", true);
+    return;
+  }
+
+  setSyncStatus("Синхронизирую изменения из папок в сайт...");
+
+  try {
+    const response = await fetch(API_ALBUM_SYNC_URL, {
+      method: "POST",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const payload = await response.json();
+    state.family = payload.family;
+    state.albums = payload.albums;
+    state.dirty = false;
+    renderAll();
+    renderSyncReport(payload.report);
+
+    const changedCount = (payload.synced || []).length;
+    if (changedCount) {
+      setSyncStatus(`Синхронизировано ${changedCount} альбомов. Теперь можно публиковать.`);
+    } else {
+      setSyncStatus("Синхронизировать было нечего.");
+    }
+  } catch (error) {
+    setSyncStatus("Синхронизация не удалась. Проверьте локальный сервер.", true);
+  }
+}
+
+async function publishSite() {
+  if (!state.serverReady) {
+    setSyncStatus("Локальный сервер недоступен. Запустите start-admin.bat.", true);
+    return;
+  }
+
+  setSyncStatus("Публикую сайт...");
+
+  try {
+    const response = await fetch(API_PUBLISH_URL, {
+      method: "POST",
+    });
+    if (!response.ok) {
+      throw new Error(`HTTP ${response.status}`);
+    }
+
+    const payload = await response.json();
+    if (payload.noChanges) {
+      setSyncStatus("Изменений для публикации нет.");
+      return;
+    }
+
+    const pagesStatus = payload.pagesBuild?.status ? ` · Pages: ${payload.pagesBuild.status}` : "";
+    setSyncStatus(`Опубликовано: ${payload.commit || "без hash"}${pagesStatus}`);
+  } catch (error) {
+    setSyncStatus("Публикация не удалась. Проверьте git/gh и локальный сервер.", true);
+  }
+}
+
 function selectPerson(personId) {
   state.selectedPersonId = personId;
   renderAll();
@@ -729,6 +877,9 @@ function selectPerson(personId) {
 
 ui.reloadData.addEventListener("click", loadState);
 ui.saveAll.addEventListener("click", saveAllChanges);
+ui.checkAlbumUpdates.addEventListener("click", checkAlbumUpdates);
+ui.syncAlbumUpdates.addEventListener("click", syncAlbumUpdates);
+ui.publishSite.addEventListener("click", publishSite);
 
 ui.search.addEventListener("input", (event) => {
   state.search = event.target.value;

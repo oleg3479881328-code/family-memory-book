@@ -8,6 +8,10 @@ from time import sleep
 
 from flask import Flask, jsonify, request, send_from_directory
 from werkzeug.utils import secure_filename
+try:
+    from photo_album_index import build_index_and_changes, write_outputs
+except ModuleNotFoundError:
+    from tools.photo_album_index import build_index_and_changes, write_outputs
 
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
@@ -31,6 +35,7 @@ ALLOWED_EXTENSIONS = {
     ".ogv",
 }
 GITHUB_REPO = "oleg3479881328-code/family-memory-book"
+VIDEO_EXTENSIONS = {".mp4", ".mov", ".webm", ".m4v", ".ogv"}
 
 app = Flask(__name__)
 app.config["MAX_CONTENT_LENGTH"] = MAX_CONTENT_LENGTH
@@ -230,9 +235,187 @@ def append_video_uploads(albums, uploaded_files):
             )
 
 
+def is_video_path(path: str) -> bool:
+    return pathlib.Path(path).suffix.lower() in VIDEO_EXTENSIONS
+
+
+def build_album_sync_report():
+    index_data, changes, created_dirs = build_index_and_changes()
+    write_outputs(index_data, changes)
+
+    family = load_family()
+    albums = load_albums()
+    albums_by_person = album_index_by_person(albums)
+    people = family.get("people", {})
+    report_albums = []
+
+    files_by_person = {
+        album["personId"]: [item["path"] for item in album.get("files", [])]
+        for album in index_data.get("albums", [])
+    }
+    all_person_ids = sorted(set(files_by_person) | set(albums_by_person))
+
+    for person_id in all_person_ids:
+        actual_paths = files_by_person.get(person_id, [])
+        actual_set = set(actual_paths)
+        album = albums_by_person.get(person_id, {})
+        existing_photos = [item.get("src") for item in album.get("photos", [])]
+        existing_videos = [item.get("src") for item in album.get("videos", [])]
+        existing_photo_set = set(existing_photos)
+        existing_video_set = set(existing_videos)
+
+        missing_photos = [path for path in actual_paths if not is_video_path(path) and path not in existing_photo_set]
+        missing_videos = [path for path in actual_paths if is_video_path(path) and path not in existing_video_set]
+        broken_photos = [path for path in existing_photos if path and path not in actual_set]
+        broken_videos = [path for path in existing_videos if path and path not in actual_set]
+
+        if missing_photos or missing_videos or broken_photos or broken_videos:
+            report_albums.append(
+                {
+                    "personId": person_id,
+                    "personName": people.get(person_id, {}).get("name", person_id),
+                    "missingPhotos": missing_photos,
+                    "missingVideos": missing_videos,
+                    "brokenPhotos": broken_photos,
+                    "brokenVideos": broken_videos,
+                }
+            )
+
+    return {
+        "generatedAtUtc": changes.get("generatedAtUtc"),
+        "summary": {
+            "albumsChanged": len(report_albums),
+            "missingPhotos": sum(len(item["missingPhotos"]) for item in report_albums),
+            "missingVideos": sum(len(item["missingVideos"]) for item in report_albums),
+            "brokenPhotos": sum(len(item["brokenPhotos"]) for item in report_albums),
+            "brokenVideos": sum(len(item["brokenVideos"]) for item in report_albums),
+            "directoriesCreated": len(created_dirs),
+        },
+        "createdDirectories": created_dirs,
+        "albums": report_albums,
+    }
+
+
+def sync_album_updates():
+    report = build_album_sync_report()
+    family = load_family()
+    albums = load_albums()
+    albums_by_person = album_index_by_person(albums)
+    people = family.get("people", {})
+    synced = []
+
+    for entry in report["albums"]:
+        person_id = entry["personId"]
+        person_name = entry["personName"]
+        album = albums_by_person.get(person_id)
+        if album is None:
+            album = {
+                "personId": person_id,
+                "title": people.get(person_id, {}).get("name", person_id),
+                "description": "Фотографии из семейного альбома.",
+                "photos": [],
+                "videos": [],
+                "externalLinks": [],
+            }
+            albums.append(album)
+            albums_by_person[person_id] = album
+
+        album.setdefault("photos", [])
+        album.setdefault("videos", [])
+        album.setdefault("externalLinks", [])
+        existing_photos = {item.get("src") for item in album.get("photos", [])}
+        existing_videos = {item.get("src") for item in album.get("videos", [])}
+
+        removed_photo_paths = set(entry["brokenPhotos"])
+        removed_video_paths = set(entry["brokenVideos"])
+        removed_photos = 0
+        removed_videos = 0
+
+        if removed_photo_paths:
+            before_count = len(album["photos"])
+            album["photos"] = [item for item in album["photos"] if item.get("src") not in removed_photo_paths]
+            removed_photos = before_count - len(album["photos"])
+
+        if removed_video_paths:
+            before_count = len(album["videos"])
+            album["videos"] = [item for item in album["videos"] if item.get("src") not in removed_video_paths]
+            removed_videos = before_count - len(album["videos"])
+
+        if album.get("portrait") and not (ROOT / album["portrait"]).is_file():
+            album["portrait"] = album["photos"][0]["src"] if album["photos"] else ""
+            if not album["portrait"]:
+                album.pop("portrait", None)
+
+        added_photos = 0
+        for path in entry["missingPhotos"]:
+            if path in existing_photos:
+                continue
+            next_index = len(album["photos"]) + 1
+            album["photos"].append(
+                {
+                    "src": path,
+                    "caption": f"Фотоальбом {album.get('title') or person_name}. Фото {next_index}",
+                }
+            )
+            existing_photos.add(path)
+            added_photos += 1
+            if not album.get("portrait"):
+                album["portrait"] = path
+
+        added_videos = 0
+        for path in entry["missingVideos"]:
+            if path in existing_videos:
+                continue
+            next_index = len(album["videos"]) + 1
+            album["videos"].append(
+                {
+                    "src": path,
+                    "caption": f"Видеоальбом {album.get('title') or person_name}. Видео {next_index}",
+                }
+            )
+            existing_videos.add(path)
+            added_videos += 1
+
+        if added_photos or added_videos or removed_photos or removed_videos:
+            synced.append(
+                {
+                    "personId": person_id,
+                    "personName": person_name,
+                    "addedPhotos": added_photos,
+                    "addedVideos": added_videos,
+                    "removedPhotos": removed_photos,
+                    "removedVideos": removed_videos,
+                }
+            )
+
+    write_window_assignment(ALBUMS_FILE, "window.PHOTO_ALBUMS =", albums)
+
+    refreshed_index, refreshed_changes, _ = build_index_and_changes()
+    write_outputs(refreshed_index, refreshed_changes)
+
+    return {
+        "report": report,
+        "synced": synced,
+        "family": family,
+        "albums": albums,
+        "remaining": refreshed_changes["summary"],
+    }
+
+
 @app.get("/api/admin/state")
 def admin_state():
     return jsonify({"family": load_family(), "albums": load_albums()})
+
+
+@app.get("/api/admin/albums/check")
+def admin_albums_check():
+    return jsonify(build_album_sync_report())
+
+
+@app.post("/api/admin/albums/sync")
+def admin_albums_sync():
+    payload = sync_album_updates()
+    return jsonify(payload)
 
 
 @app.post("/api/admin/save")
