@@ -152,6 +152,14 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Игоря Петровича. Фото 3",
         "src": "assets/photo-albums/igor-povalyukhin/Photos-3-001 (7)/IMG-20260426-WA0002.jpg"
+      },
+      {
+        "caption": "Фотоальбом Игоря Петровича. Фото 4",
+        "src": "assets/photo-albums/igor-povalyukhin/Без имени.jpg"
+      },
+      {
+        "caption": "Фотоальбом Игоря Петровича. Фото 5",
+        "src": "assets/photo-albums/igor-povalyukhin/СТАРЫЕ ФОТКИ 057.jpg"
       }
     ],
     "title": "Игорь Петрович Повалюхин"
@@ -905,7 +913,13 @@ window.PHOTO_ALBUMS = [
       }
     ],
     "portrait": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/IMG-20251214-WA0007.jpg",
-    "title": "Ольга Александровна Танькова"
+    "title": "Ольга Александровна Танькова",
+    "videos": [
+      {
+        "caption": "Видеоальбом Ольги Александровны. Видео 1",
+        "src": "assets/photo-albums/olga-tankova/Photos-3-001 (20)/20131207_104639.mp4"
+      }
+    ]
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1305,6 +1319,18 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 3",
         "src": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0014.jpg"
+      },
+      {
+        "caption": "Фотоальбом Александры Дмитриевны Куреневой. Фото 4",
+        "src": "assets/photo-albums/alexandra-kureneva/IMG-20260513-WA0011.jpg"
+      },
+      {
+        "caption": "Фотоальбом Александры Дмитриевны Куреневой. Фото 5",
+        "src": "assets/photo-albums/alexandra-kureneva/IMG-20260513-WA0013.jpg"
+      },
+      {
+        "caption": "Фотоальбом Александры Дмитриевны Куреневой. Фото 6",
+        "src": "assets/photo-albums/alexandra-kureneva/IMG-20260513-WA0014.jpg"
       }
     ],
     "portrait": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg",
@@ -1333,6 +1359,26 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Анна Сергеевна Кутейникова. Фото 1",
         "src": "assets/photo-albums/anna-kuteinikova/uploaded/IMG-20260515-WA0007.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Сергеевны Кутейниковой. Фото 2",
+        "src": "assets/photo-albums/anna-kuteinikova/uploaded/А. С. 1.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Сергеевны Кутейниковой. Фото 3",
+        "src": "assets/photo-albums/anna-kuteinikova/uploaded/А. С..jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Сергеевны Кутейниковой. Фото 4",
+        "src": "assets/photo-albums/anna-kuteinikova/uploaded/Нюша.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Сергеевны Кутейниковой. Фото 5",
+        "src": "assets/photo-albums/anna-kuteinikova/uploaded/СТАРЫЕ ФОТКИ 036.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Сергеевны Кутейниковой. Фото 6",
+        "src": "assets/photo-albums/anna-kuteinikova/uploaded/нюша 2.jpg"
       }
     ],
     "portrait": "assets/photo-albums/anna-kuteinikova/uploaded/IMG-20260515-WA0007.jpg",

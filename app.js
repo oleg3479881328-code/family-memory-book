@@ -217,12 +217,18 @@ function extractYouTubeVideoId(rawUrl = "") {
 function renderExternalLinkCard(link) {
   const videoId = extractYouTubeVideoId(link.url || "");
   if (videoId) {
-    const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+    const embedOrigin = typeof location !== "undefined" ? location.origin : "";
+    const embedUrl = new URL(`https://www.youtube-nocookie.com/embed/${encodeURIComponent(videoId)}`);
+    embedUrl.searchParams.set("playsinline", "1");
+    embedUrl.searchParams.set("rel", "0");
+    if (embedOrigin && embedOrigin !== "null") {
+      embedUrl.searchParams.set("origin", embedOrigin);
+    }
     return `
       <article class="album-external-youtube">
         <div class="album-external-player">
           <iframe
-            src="${embedUrl}"
+            src="${embedUrl.toString()}"
             title="${escapeHtml(link.title || "YouTube видео")}"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
