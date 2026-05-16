@@ -1,6 +1,7 @@
 window.PHOTO_ALBUMS = [
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
     "personId": "tamara-grigoryeva",
     "photos": [
       {
@@ -76,18 +77,17 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/WhatsApp Image1 2026-05-09 at 5.10.44 AM.jpeg"
       },
       {
-        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev2.jpeg",
-        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 19"
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 19",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev2.jpeg"
       },
       {
-        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev3.jpeg",
-        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 20"
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 20",
+        "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev3.jpeg"
       }
     ],
+    "portrait": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231105-WA0002.jpg",
     "title": "Тамара Николаевна Григорьева / Повалюхина",
-    "videos": [],
-    "externalLinks": [],
-    "portrait": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev2.jpeg"
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -716,6 +716,7 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
     "personId": "petr-povalyukhin",
     "photos": [
       {
@@ -747,30 +748,29 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/petr-povalyukhin/WhatsApp Image6 2026-05-11 at 11.14.02 AM.jpeg"
       },
       {
-        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin1.jpeg",
-        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 8"
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 8",
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin1.jpeg"
       },
       {
-        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin2.jpeg",
-        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 9"
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 9",
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin2.jpeg"
       },
       {
-        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin3.jpeg",
-        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 10"
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 10",
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin3.jpeg"
       },
       {
-        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin4.jpeg",
-        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 11"
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 11",
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin4.jpeg"
       },
       {
-        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin5.jpeg",
-        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 12"
+        "caption": "Фотоальбом Пётр Петрович Повалюхин. Фото 12",
+        "src": "assets/photo-albums/petr-povalyukhin/petr-povalyukhin5.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/petr-povalyukhin/WhatsApp Image3 2026-05-08 at 9.56.57 AM.jpeg",
     "title": "Пётр Петрович Повалюхин",
-    "videos": [],
-    "externalLinks": []
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -862,6 +862,7 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
     "personId": "oleg-povalyukhin",
     "photos": [
       {
@@ -903,10 +904,15 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Олега Игоревича. Фото 10",
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0006.jpg"
+      },
+      {
+        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 11",
+        "src": "assets/photo-albums/oleg-povalyukhin/uploaded/8b978173af2d39ef1c83.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-202501126-WA0006.jpg",
-    "title": "Олег Игоревич Повалюхин"
+    "title": "Олег Игоревич Повалюхин",
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1048,6 +1054,7 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
     "personId": "igor-grigoryev",
     "photos": [
       {
@@ -1067,14 +1074,13 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/igor-grigoryev/ChatGPT Image 11 мая 2026 г., 15_28_12.png"
       },
       {
-        "src": "assets/photo-albums/igor-grigoryev/igor-grigoryev11.jpeg",
-        "caption": "Фотоальбом Игорь Николаевич Григорьев. Фото 5"
+        "caption": "Фотоальбом Игорь Николаевич Григорьев. Фото 5",
+        "src": "assets/photo-albums/igor-grigoryev/igor-grigoryev11.jpeg"
       }
     ],
     "portrait": "assets/photo-albums/igor-grigoryev/ChatGPT Image 11 мая 2026 г., 15_28_12.png",
     "title": "Игорь Николаевич Григорьев",
-    "videos": [],
-    "externalLinks": []
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
