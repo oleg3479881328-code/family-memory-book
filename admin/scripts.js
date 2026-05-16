@@ -7,6 +7,7 @@ const state = {
   selectedPersonId: "",
   search: "",
   uploadQueue: {},
+  videoUploadQueue: {},
   nextUploadId: 1,
   deletedPhotos: [],
   dirty: false,
@@ -66,6 +67,8 @@ function createAlbumDraft(personId) {
       title: person?.name || "Фотоальбом",
       description: "Фотографии из семейного альбома.",
       photos: [],
+      videos: [],
+      externalLinks: [],
     }
   );
 }
@@ -80,6 +83,14 @@ function releaseUploadEntries(entries = []) {
       URL.revokeObjectURL(entry.previewUrl);
     }
   });
+}
+
+function createLinkDraft() {
+  return {
+    title: "",
+    url: "",
+    kind: "external",
+  };
 }
 
 function renderPeopleList() {
@@ -169,6 +180,32 @@ function renderUploadQueue(personId) {
   `;
 }
 
+function renderVideoUploadQueue(personId) {
+  const uploads = state.videoUploadQueue[personId] || [];
+  if (!uploads.length) {
+    return `<div class="empty-state"><p>Новых видео в очереди пока нет.</p></div>`;
+  }
+
+  return `
+    <div class="upload-list">
+      ${uploads
+        .map(
+          (entry) => `
+            <article class="photo-card">
+              <video src="${entry.previewUrl}" controls preload="metadata" playsinline></video>
+              <div class="upload-chip">${escapeHtml(entry.name)}</div>
+              <div class="photo-controls">
+                <span class="field-help">Видео добавится после сохранения.</span>
+                <button type="button" class="danger-link" data-remove-video-upload="${entry.id}">Убрать из очереди</button>
+              </div>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
 function renderPhotoCards(album) {
   if (!album.photos.length) {
     return `<div class="empty-state"><p>Фото пока нет. Загрузите изображения ниже.</p></div>`;
@@ -200,6 +237,78 @@ function renderPhotoCards(album) {
             </article>
           `;
         })
+        .join("")}
+    </div>
+  `;
+}
+
+function renderVideoCards(album) {
+  if (!album.videos?.length) {
+    return `<div class="empty-state"><p>Видео пока нет.</p></div>`;
+  }
+
+  return `
+    <div class="photo-list">
+      ${album.videos
+        .map(
+          (video, index) => `
+            <article class="photo-card">
+              <video src="/${encodeURI(video.src)}" controls preload="metadata" playsinline ${
+                video.poster ? `poster="/${encodeURI(video.poster)}"` : ""
+              }></video>
+              <input
+                class="photo-caption-input"
+                type="text"
+                value="${escapeHtml(video.caption || `Видео ${index + 1}`)}"
+                data-video-caption="${escapeHtml(video.src)}"
+                aria-label="Подпись к видео ${index + 1}"
+              />
+              <div class="photo-controls">
+                <span class="field-help">${escapeHtml(video.src.split("/").pop() || "Видео")}</span>
+                <button type="button" class="danger-link" data-remove-video="${escapeHtml(video.src)}">Убрать из альбома</button>
+              </div>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderExternalLinkRows(album) {
+  const links = album.externalLinks?.length ? album.externalLinks : [createLinkDraft()];
+
+  return `
+    <div class="link-editor-list">
+      ${links
+        .map(
+          (link, index) => `
+            <article class="link-editor-card">
+              <div class="field-row">
+                <div class="field-block">
+                  <label class="field-label" for="link-title-${index}">Название ссылки</label>
+                  <input id="link-title-${index}" type="text" value="${escapeHtml(link.title || "")}" data-link-title="${index}" />
+                </div>
+                <div class="field-block">
+                  <label class="field-label" for="link-kind-${index}">Тип</label>
+                  <select id="link-kind-${index}" data-link-kind="${index}">
+                    <option value="external" ${link.kind === "external" ? "selected" : ""}>Обычная ссылка</option>
+                    <option value="video" ${link.kind === "video" ? "selected" : ""}>Видео-ссылка</option>
+                    <option value="photos" ${link.kind === "photos" ? "selected" : ""}>Фотоархив</option>
+                  </select>
+                </div>
+              </div>
+              <div class="field-block">
+                <label class="field-label" for="link-url-${index}">URL</label>
+                <input id="link-url-${index}" type="text" value="${escapeHtml(link.url || "")}" data-link-url="${index}" />
+              </div>
+              <div class="photo-controls">
+                <span class="field-help">Подойдут YouTube, Google Photos, Яндекс Диск и другие публичные ссылки.</span>
+                <button type="button" class="danger-link" data-remove-link="${index}">Убрать ссылку</button>
+              </div>
+            </article>
+          `,
+        )
         .join("")}
     </div>
   `;
@@ -240,15 +349,43 @@ function renderAlbumSection() {
         <p class="field-help">Новые файлы появятся в альбоме после сохранения.</p>
       </div>
 
+      <div class="album-actions">
+        <label class="field-label" for="album-video-upload">Добавить видео</label>
+        <input id="album-video-upload" type="file" accept="video/*" multiple />
+        <p class="field-help">Поддерживаются обычные видеофайлы. Они появятся в альбоме после сохранения.</p>
+      </div>
+
       <section>
         <h3>Очередь на загрузку</h3>
         ${renderUploadQueue(state.selectedPersonId)}
       </section>
 
       <section>
+        <h3>Очередь видео</h3>
+        ${renderVideoUploadQueue(state.selectedPersonId)}
+      </section>
+
+      <section>
         <h3>Фотографии в альбоме</h3>
         <p class="field-help">Удалённые фото исчезнут из альбома и будут стёрты из папки сайта после сохранения.</p>
         ${renderPhotoCards(album)}
+      </section>
+
+      <section>
+        <h3>Видео в альбоме</h3>
+        <p class="field-help">Видео сохраняются в папку сайта и показываются на странице альбома.</p>
+        ${renderVideoCards(album)}
+      </section>
+
+      <section>
+        <div class="card-head">
+          <div>
+            <h3>Внешние ссылки</h3>
+            <p class="field-help">YouTube, Google Photos, Яндекс и любые другие публичные ссылки.</p>
+          </div>
+          <button type="button" class="button inline" data-add-link>Добавить ссылку</button>
+        </div>
+        ${renderExternalLinkRows(album)}
       </section>
 
       <p class="save-note">После любых правок нажмите «Сохранить изменения» вверху страницы.</p>
@@ -290,8 +427,9 @@ function updateAlbumFromForm() {
   const description = document.querySelector("#album-description")?.value.trim() || "";
   let album = getAlbum(state.selectedPersonId);
   const hasPendingFiles = (state.uploadQueue[state.selectedPersonId] || []).length > 0;
+  const hasPendingVideos = (state.videoUploadQueue[state.selectedPersonId] || []).length > 0;
 
-  if (!album && !(title || description || hasPendingFiles)) {
+  if (!album && !(title || description || hasPendingFiles || hasPendingVideos)) {
     return;
   }
 
@@ -301,12 +439,16 @@ function updateAlbumFromForm() {
       title: title || person.name,
       description: description || "Фотографии из семейного альбома.",
       photos: [],
+      videos: [],
+      externalLinks: [],
     };
     state.albums.push(album);
   }
 
   album.title = title || person.name;
   album.description = description || "Фотографии из семейного альбома.";
+  album.videos = Array.isArray(album.videos) ? album.videos : [];
+  album.externalLinks = Array.isArray(album.externalLinks) ? album.externalLinks : [];
 }
 
 function updatePhotoCaption(photoPath, caption) {
@@ -321,6 +463,50 @@ function updatePhotoCaption(photoPath, caption) {
   }
 
   photo.caption = caption.trim() || photo.caption || "Без подписи";
+}
+
+function updateVideoCaption(videoPath, caption) {
+  const album = getAlbum(state.selectedPersonId);
+  if (!album) {
+    return;
+  }
+
+  const video = (album.videos || []).find((item) => item.src === videoPath);
+  if (!video) {
+    return;
+  }
+
+  video.caption = caption.trim() || video.caption || "Без подписи";
+}
+
+function updateExternalLink(index, field, value) {
+  let album = getAlbum(state.selectedPersonId);
+  if (!album) {
+    const person = getPerson(state.selectedPersonId);
+    if (!person) {
+      return;
+    }
+    album = {
+      personId: state.selectedPersonId,
+      title: person.name,
+      description: "Фотографии из семейного альбома.",
+      photos: [],
+      videos: [],
+      externalLinks: [],
+    };
+    state.albums.push(album);
+  }
+
+  if (!album) {
+    return;
+  }
+
+  album.externalLinks = Array.isArray(album.externalLinks) ? album.externalLinks : [];
+  if (!album.externalLinks[index]) {
+    album.externalLinks[index] = createLinkDraft();
+  }
+
+  album.externalLinks[index][field] = value.trim();
 }
 
 function removePhoto(photoPath) {
@@ -343,6 +529,20 @@ function removePhoto(photoPath) {
   renderPersonEditor();
 }
 
+function removeVideo(videoPath) {
+  const album = getAlbum(state.selectedPersonId);
+  if (!album) {
+    return;
+  }
+
+  if (!state.deletedPhotos.includes(videoPath)) {
+    state.deletedPhotos.push(videoPath);
+  }
+  album.videos = (album.videos || []).filter((video) => video.src !== videoPath);
+  markDirty("Видео помечено на удаление. После сохранения оно исчезнет из альбома и папки сайта.");
+  renderPersonEditor();
+}
+
 function queueUploads(files) {
   if (!files.length) {
     return;
@@ -355,6 +555,21 @@ function queueUploads(files) {
   }));
   state.uploadQueue[state.selectedPersonId] = [...(state.uploadQueue[state.selectedPersonId] || []), ...queuedUploads];
   markDirty("Фото добавлены. Последний шаг: нажмите «Сохранить изменения».");
+  renderPersonEditor();
+}
+
+function queueVideoUploads(files) {
+  if (!files.length) {
+    return;
+  }
+  const queuedUploads = Array.from(files).map((file) => ({
+    id: `video-upload-${state.nextUploadId++}`,
+    file,
+    name: file.name,
+    previewUrl: URL.createObjectURL(file),
+  }));
+  state.videoUploadQueue[state.selectedPersonId] = [...(state.videoUploadQueue[state.selectedPersonId] || []), ...queuedUploads];
+  markDirty("Видео добавлены. Последний шаг: нажмите «Сохранить изменения».");
   renderPersonEditor();
 }
 
@@ -380,6 +595,43 @@ function removeQueuedUpload(uploadId) {
   renderPersonEditor();
 }
 
+function removeQueuedVideoUpload(uploadId) {
+  const entries = state.videoUploadQueue[state.selectedPersonId] || [];
+  const removed = entries.filter((entry) => entry.id === uploadId);
+  if (!removed.length) {
+    return;
+  }
+
+  releaseUploadEntries(removed);
+  state.videoUploadQueue[state.selectedPersonId] = entries.filter((entry) => entry.id !== uploadId);
+  markDirty("Видео убрано из очереди.");
+  renderPersonEditor();
+}
+
+function addExternalLink() {
+  updateAlbumFromForm();
+  const album = getAlbum(state.selectedPersonId);
+  if (!album) {
+    return;
+  }
+
+  album.externalLinks = Array.isArray(album.externalLinks) ? album.externalLinks : [];
+  album.externalLinks.push(createLinkDraft());
+  markDirty("Ссылка добавлена.");
+  renderPersonEditor();
+}
+
+function removeExternalLink(index) {
+  const album = getAlbum(state.selectedPersonId);
+  if (!album?.externalLinks?.length) {
+    return;
+  }
+
+  album.externalLinks.splice(index, 1);
+  markDirty("Ссылка удалена.");
+  renderPersonEditor();
+}
+
 function buildSavePayload() {
   return {
     family: state.family,
@@ -399,10 +651,12 @@ async function loadState() {
     state.family = payload.family;
     state.albums = payload.albums;
     Object.values(state.uploadQueue).forEach((entries) => releaseUploadEntries(entries));
+    Object.values(state.videoUploadQueue).forEach((entries) => releaseUploadEntries(entries));
     state.selectedPersonId = state.selectedPersonId && state.family.people[state.selectedPersonId]
       ? state.selectedPersonId
       : Object.keys(state.family.people)[0] || "";
     state.uploadQueue = {};
+    state.videoUploadQueue = {};
     state.deletedPhotos = [];
     state.serverReady = true;
     state.dirty = false;
@@ -435,6 +689,12 @@ async function saveAllChanges() {
     });
   });
 
+  Object.entries(state.videoUploadQueue).forEach(([personId, files]) => {
+    files.forEach((entry) => {
+      formData.append(`video-upload:${personId}:${entry.id}`, entry.file, entry.name);
+    });
+  });
+
   try {
     const response = await fetch(API_SAVE_URL, {
       method: "POST",
@@ -449,11 +709,13 @@ async function saveAllChanges() {
     state.family = payload.family;
     state.albums = payload.albums;
     Object.values(state.uploadQueue).forEach((entries) => releaseUploadEntries(entries));
+    Object.values(state.videoUploadQueue).forEach((entries) => releaseUploadEntries(entries));
     state.uploadQueue = {};
+    state.videoUploadQueue = {};
     state.deletedPhotos = [];
     state.dirty = false;
     ui.serverWarning.hidden = true;
-    setStatus("Изменения сохранены. Фото записаны в папку сайта.");
+    setStatus("Изменения сохранены. Фото, видео и ссылки обновлены.");
     renderAll();
   } catch (error) {
     setStatus("Сохранение не удалось. Проверьте, что локальный сервер запущен.", true);
@@ -489,6 +751,29 @@ document.addEventListener("click", (event) => {
   const removeUploadButton = event.target.closest("[data-remove-upload]");
   if (removeUploadButton) {
     removeQueuedUpload(removeUploadButton.dataset.removeUpload);
+    return;
+  }
+
+  const removeVideoButton = event.target.closest("[data-remove-video]");
+  if (removeVideoButton) {
+    removeVideo(removeVideoButton.dataset.removeVideo);
+    return;
+  }
+
+  const removeVideoUploadButton = event.target.closest("[data-remove-video-upload]");
+  if (removeVideoUploadButton) {
+    removeQueuedVideoUpload(removeVideoUploadButton.dataset.removeVideoUpload);
+    return;
+  }
+
+  if (event.target.closest("[data-add-link]")) {
+    addExternalLink();
+    return;
+  }
+
+  const removeLinkButton = event.target.closest("[data-remove-link]");
+  if (removeLinkButton) {
+    removeExternalLink(Number(removeLinkButton.dataset.removeLink));
   }
 });
 
@@ -506,6 +791,24 @@ document.addEventListener("input", (event) => {
   if (event.target.matches("[data-photo-caption]")) {
     updatePhotoCaption(event.target.dataset.photoCaption, event.target.value);
     markDirty("Подпись к фото изменена.");
+    return;
+  }
+
+  if (event.target.matches("[data-video-caption]")) {
+    updateVideoCaption(event.target.dataset.videoCaption, event.target.value);
+    markDirty("Подпись к видео изменена.");
+    return;
+  }
+
+  if (event.target.matches("[data-link-title]")) {
+    updateExternalLink(Number(event.target.dataset.linkTitle), "title", event.target.value);
+    markDirty("Название ссылки изменено.");
+    return;
+  }
+
+  if (event.target.matches("[data-link-url]")) {
+    updateExternalLink(Number(event.target.dataset.linkUrl), "url", event.target.value);
+    markDirty("Ссылка обновлена.");
   }
 });
 
@@ -524,6 +827,18 @@ document.addEventListener("change", (event) => {
   if (event.target.matches("#album-upload")) {
     queueUploads(event.target.files || []);
     event.target.value = "";
+    return;
+  }
+
+  if (event.target.matches("#album-video-upload")) {
+    queueVideoUploads(event.target.files || []);
+    event.target.value = "";
+    return;
+  }
+
+  if (event.target.matches("[data-link-kind]")) {
+    updateExternalLink(Number(event.target.dataset.linkKind), "kind", event.target.value);
+    markDirty("Тип ссылки изменён.");
   }
 });
 

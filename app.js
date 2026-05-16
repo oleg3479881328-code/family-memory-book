@@ -133,8 +133,158 @@ function photoButton(photo, label, className = "photo-open", setId = "", index =
   `;
 }
 
+function normalizeAlbum(album) {
+  return {
+    ...album,
+    photos: Array.isArray(album?.photos) ? album.photos : [],
+    videos: Array.isArray(album?.videos) ? album.videos : [],
+    externalLinks: Array.isArray(album?.externalLinks) ? album.externalLinks : [],
+  };
+}
+
+function albumCoverSrc(album) {
+  if (album?.portrait) {
+    return album.portrait;
+  }
+
+  if (album?.photos?.[0]?.src) {
+    return album.photos[0].src;
+  }
+
+  if (album?.videos?.[0]?.poster) {
+    return album.videos[0].poster;
+  }
+
+  return "";
+}
+
+function albumMediaSummary(album) {
+  const parts = [];
+  if (album.photos.length) {
+    parts.push(`${album.photos.length} фото`);
+  }
+  if (album.videos.length) {
+    parts.push(`${album.videos.length} видео`);
+  }
+  if (album.externalLinks.length) {
+    parts.push(`${album.externalLinks.length} ссылок`);
+  }
+  return parts.join(" · ") || "Пока без материалов";
+}
+
+function externalLinkLabel(link) {
+  if (link.title) {
+    return link.title;
+  }
+
+  try {
+    const parsed = new URL(link.url);
+    return parsed.hostname.replace(/^www\./, "");
+  } catch {
+    return link.url;
+  }
+}
+
+function extractYouTubeVideoId(rawUrl = "") {
+  try {
+    const parsed = new URL(rawUrl);
+    const hostname = parsed.hostname.replace(/^www\./, "");
+
+    if (hostname === "youtu.be") {
+      return parsed.pathname.split("/").filter(Boolean)[0] || "";
+    }
+
+    if (hostname === "youtube.com" || hostname === "m.youtube.com") {
+      if (parsed.pathname === "/watch") {
+        return parsed.searchParams.get("v") || "";
+      }
+
+      if (parsed.pathname.startsWith("/embed/")) {
+        return parsed.pathname.split("/")[2] || "";
+      }
+
+      if (parsed.pathname.startsWith("/shorts/")) {
+        return parsed.pathname.split("/")[2] || "";
+      }
+    }
+  } catch {
+    return "";
+  }
+
+  return "";
+}
+
+function renderExternalLinkCard(link) {
+  const videoId = extractYouTubeVideoId(link.url || "");
+  if (videoId) {
+    const embedUrl = `https://www.youtube.com/embed/${encodeURIComponent(videoId)}`;
+    return `
+      <article class="album-external-youtube">
+        <div class="album-external-player">
+          <iframe
+            src="${embedUrl}"
+            title="${escapeHtml(link.title || "YouTube видео")}"
+            loading="lazy"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
+        </div>
+        <div class="album-external-meta">
+          <strong>${escapeHtml(externalLinkLabel(link))}</strong>
+          <span>YouTube</span>
+          <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">Открыть на YouTube</a>
+        </div>
+      </article>
+    `;
+  }
+
+  return `
+    <a class="album-external-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">
+      <strong>${escapeHtml(externalLinkLabel(link))}</strong>
+      <span>${escapeHtml(link.kind || "ссылка")}</span>
+    </a>
+  `;
+}
+
+function renderVideoCards(videos, className = "album-video-grid") {
+  if (!videos.length) {
+    return "";
+  }
+
+  return `
+    <div class="${className}">
+      ${videos
+        .map(
+          (video, index) => `
+            <article class="album-video-card">
+              <video controls preload="metadata" playsinline ${video.poster ? `poster="${escapeHtml(assetUrl(video.poster))}"` : ""}>
+                <source src="${escapeHtml(assetUrl(video.src))}" />
+              </video>
+              <span>${escapeHtml(video.caption || `Видео ${index + 1}`)}</span>
+            </article>
+          `,
+        )
+        .join("")}
+    </div>
+  `;
+}
+
+function renderExternalLinkCards(links, className = "album-link-list") {
+  if (!links.length) {
+    return "";
+  }
+
+  return `
+    <div class="${className}">
+      ${links.map((link) => renderExternalLinkCard(link)).join("")}
+    </div>
+  `;
+}
+
 function renderPersonAlbum(album) {
-  const thumbnails = album.photos
+  const normalizedAlbum = normalizeAlbum(album);
+  const thumbnails = normalizedAlbum.photos
     .slice(0, 6)
     .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb", album.personId, index))
     .join("");
@@ -142,7 +292,10 @@ function renderPersonAlbum(album) {
   return `
     <div class="person-album-slot">
       <h4>Фотоальбом</h4>
-      <div class="person-album-thumbs">${thumbnails}</div>
+      <p class="person-album-summary">${escapeHtml(albumMediaSummary(normalizedAlbum))}</p>
+      ${thumbnails ? `<div class="person-album-thumbs">${thumbnails}</div>` : ""}
+      ${renderVideoCards(normalizedAlbum.videos.slice(0, 2), "person-album-videos")}
+      ${renderExternalLinkCards(normalizedAlbum.externalLinks.slice(0, 4), "person-album-links")}
       <button class="album-link" type="button" data-scroll-album="${album.personId}">
         Открыть альбом
       </button>
@@ -211,21 +364,28 @@ function showMemoir(id = memoirs.sections[0].id) {
 function renderPhotos() {
   const albumCards = photoAlbums
     .map((album) => {
-      const cover = album.photos[0];
-      const strip = album.photos
+      const normalizedAlbum = normalizeAlbum(album);
+      const cover = albumCoverSrc(normalizedAlbum);
+      const strip = normalizedAlbum.photos
         .slice(0, 4)
         .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb", album.personId, index))
         .join("");
 
       return `
         <article class="album-card" id="album-${album.personId}">
-          <button class="album-cover" type="button" data-open-album="${album.personId}" aria-label="Открыть фотоальбом: ${album.title}">
-            <img src="${assetUrl(cover.src)}" alt="${album.title}" loading="lazy" />
+          <button class="album-cover" type="button" data-open-album="${album.personId}" aria-label="Открыть фотоальбом: ${album.title}" ${normalizedAlbum.photos.length ? "" : "disabled"}>
+            ${
+              cover
+                ? `<img src="${assetUrl(cover)}" alt="${album.title}" loading="lazy" />`
+                : `<div class="album-cover-placeholder">Нет обложки</div>`
+            }
             <span>Фотоальбом</span>
             <strong>${album.title}</strong>
-            <small>${album.photos.length} фото</small>
+            <small>${escapeHtml(albumMediaSummary(normalizedAlbum))}</small>
           </button>
-          <div class="album-strip">${strip}</div>
+          ${strip ? `<div class="album-strip">${strip}</div>` : ""}
+          ${renderVideoCards(normalizedAlbum.videos.slice(0, 2))}
+          ${renderExternalLinkCards(normalizedAlbum.externalLinks)}
           <button class="album-card-link" type="button" data-person="${album.personId}">
             Открыть карточку в родословной
           </button>
@@ -253,8 +413,8 @@ function renderPhotos() {
 }
 
 function portraitForPerson(personId) {
-  const album = albumsByPerson.get(personId);
-  return album?.portrait || album?.photos?.[0]?.src || "";
+  const album = normalizeAlbum(albumsByPerson.get(personId));
+  return albumCoverSrc(album);
 }
 
 function buildTreeData() {

@@ -12,7 +12,19 @@ CHANGES_FILE = OUTPUT_DIR / "photo-albums-changes.json"
 CHANGES_MARKDOWN = OUTPUT_DIR / "PHOTO_ALBUM_CHANGES.md"
 IGNORED_DIRS = {"_incoming", "__pycache__"}
 IGNORED_FILES = {"desktop.ini"}
-ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".bmp"}
+ALLOWED_EXTENSIONS = {
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".webp",
+    ".gif",
+    ".bmp",
+    ".mp4",
+    ".mov",
+    ".webm",
+    ".m4v",
+    ".ogv",
+}
 
 
 def iso_utc(timestamp: float) -> str:

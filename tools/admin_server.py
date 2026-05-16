@@ -17,7 +17,19 @@ FAMILY_FILE = DATA_DIR / "family.js"
 ALBUMS_FILE = DATA_DIR / "photo-albums.js"
 INDEX_FILE = ROOT / "index.html"
 MAX_CONTENT_LENGTH = 64 * 1024 * 1024
-ALLOWED_EXTENSIONS = {".jpg", ".jpeg", ".png", ".gif", ".webp", ".bmp"}
+ALLOWED_EXTENSIONS = {
+    ".jpg",
+    ".jpeg",
+    ".png",
+    ".gif",
+    ".webp",
+    ".bmp",
+    ".mp4",
+    ".mov",
+    ".webm",
+    ".m4v",
+    ".ogv",
+}
 GITHUB_REPO = "oleg3479881328-code/family-memory-book"
 
 app = Flask(__name__)
@@ -153,7 +165,7 @@ def delete_removed_files(paths):
             candidate.unlink()
 
 
-def append_uploads(albums, uploaded_files):
+def append_photo_uploads(albums, uploaded_files):
     albums_by_person = album_index_by_person(albums)
 
     for person_id, files in uploaded_files.items():
@@ -187,6 +199,37 @@ def append_uploads(albums, uploaded_files):
                 album["portrait"] = relative_path
 
 
+def append_video_uploads(albums, uploaded_files):
+    albums_by_person = album_index_by_person(albums)
+
+    for person_id, files in uploaded_files.items():
+        album = albums_by_person.get(person_id)
+        if not album:
+            continue
+
+        target_dir = ASSETS_DIR / person_id / "uploaded"
+        target_dir.mkdir(parents=True, exist_ok=True)
+        album.setdefault("videos", [])
+
+        for _, storage in files:
+            if not storage.filename:
+                continue
+            if not allowed_file(storage.filename):
+                continue
+
+            filename = ensure_unique_name(target_dir, storage.filename)
+            target_path = target_dir / filename
+            storage.save(target_path)
+            relative_path = target_path.relative_to(ROOT).as_posix()
+            next_index = len(album.get("videos", [])) + 1
+            album["videos"].append(
+                {
+                    "src": relative_path,
+                    "caption": f"Видеоальбом {album.get('title') or person_id}. Видео {next_index}",
+                }
+            )
+
+
 @app.get("/api/admin/state")
 def admin_state():
     return jsonify({"family": load_family(), "albums": load_albums()})
@@ -204,14 +247,19 @@ def admin_save():
     deleted_photos = data.get("deletedPhotos", [])
 
     uploads = defaultdict(list)
+    video_uploads = defaultdict(list)
     for field_name, storage in request.files.items(multi=True):
-        if not field_name.startswith("upload:"):
+        if field_name.startswith("upload:"):
+            _, person_id, upload_id = field_name.split(":", 2)
+            uploads[person_id].append((upload_id, storage))
             continue
-        _, person_id, upload_id = field_name.split(":", 2)
-        uploads[person_id].append((upload_id, storage))
+        if field_name.startswith("video-upload:"):
+            _, person_id, upload_id = field_name.split(":", 2)
+            video_uploads[person_id].append((upload_id, storage))
 
     delete_removed_files(deleted_photos)
-    append_uploads(albums, uploads)
+    append_photo_uploads(albums, uploads)
+    append_video_uploads(albums, video_uploads)
 
     write_window_assignment(FAMILY_FILE, "window.FAMILY =", family)
     write_window_assignment(ALBUMS_FILE, "window.PHOTO_ALBUMS =", albums)

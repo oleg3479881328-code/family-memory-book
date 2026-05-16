@@ -221,6 +221,13 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [
+      {
+        "kind": "video",
+        "title": "С Маруськой",
+        "url": "https://www.youtube.com/watch?v=RG9H6C0TPQE"
+      }
+    ],
     "personId": "maria-povalyukhina",
     "photos": [
       {
@@ -269,7 +276,8 @@ window.PHOTO_ALBUMS = [
       }
     ],
     "portrait": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_2021160317_152849.jpg",
-    "title": "Мария Олеговна Повалюхина"
+    "title": "Мария Олеговна Повалюхина",
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1270,9 +1278,17 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [
+      {
+        "kind": "external",
+        "title": "",
+        "url": ""
+      }
+    ],
     "personId": "alexander-fateev",
     "photos": [],
-    "title": "Александр Константинович Фатеев"
+    "title": "Александр Константинович Фатеев",
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",

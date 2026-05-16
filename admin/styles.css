@@ -32,7 +32,8 @@ body {
 
 button,
 input,
-textarea {
+textarea,
+select {
   font: inherit;
 }
 
@@ -183,6 +184,7 @@ code {
 
 input[type="search"],
 input[type="text"],
+select,
 textarea {
   width: 100%;
   padding: 11px 12px;
@@ -350,6 +352,15 @@ textarea {
   background: #efe7dc;
 }
 
+.photo-card video {
+  width: 100%;
+  border-radius: 10px;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  display: block;
+  background: #efe7dc;
+}
+
 .photo-caption-input {
   width: 100%;
   padding: 8px 10px;
@@ -386,6 +397,18 @@ textarea {
   cursor: pointer;
   padding: 0;
   text-decoration: underline;
+}
+
+.link-editor-list {
+  display: grid;
+  gap: 12px;
+}
+
+.link-editor-card {
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  background: var(--panel-soft);
 }
 
 .admin-footer {
