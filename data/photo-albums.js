@@ -171,9 +171,16 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Игоря Петровича. Фото 5",
         "src": "assets/photo-albums/igor-povalyukhin/СТАРЫЕ ФОТКИ 057.jpg"
+      },
+      {
+        "src": "assets/photo-albums/igor-povalyukhin/IPP.png",
+        "caption": "Фотоальбом Игорь Петрович Повалюхин. Фото 6"
       }
     ],
-    "title": "Игорь Петрович Повалюхин"
+    "title": "Игорь Петрович Повалюхин",
+    "videos": [],
+    "externalLinks": [],
+    "portrait": "assets/photo-albums/igor-povalyukhin/IPP.png"
   },
   {
     "description": "Фотографии из семейного альбома.",
