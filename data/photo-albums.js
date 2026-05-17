@@ -150,6 +150,7 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
     "personId": "igor-povalyukhin",
     "photos": [
       {
@@ -173,14 +174,13 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/igor-povalyukhin/СТАРЫЕ ФОТКИ 057.jpg"
       },
       {
-        "src": "assets/photo-albums/igor-povalyukhin/IPP.png",
-        "caption": "Фотоальбом Игорь Петрович Повалюхин. Фото 6"
+        "caption": "Фотоальбом Игорь Петрович Повалюхин. Фото 6",
+        "src": "assets/photo-albums/igor-povalyukhin/IPP.png"
       }
     ],
+    "portrait": "assets/photo-albums/igor-povalyukhin/IPP.png",
     "title": "Игорь Петрович Повалюхин",
-    "videos": [],
-    "externalLinks": [],
-    "portrait": "assets/photo-albums/igor-povalyukhin/IPP.png"
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -864,8 +864,10 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/WhatsApp Image1 2026-05-10 at 11.39.54 AM.jpeg"
       }
     ],
-    "portrait": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/IMG-202301216-WA0000.jpg",
-    "title": "Анатолий Игоревич Повалюхин"
+    "portrait": "assets/photo-albums/anatoly-povalyukhin/Photos-3-001 (18)/ChatGPT Image 10 мая 2026 г., 19_11_25.png",
+    "title": "Анатолий Игоревич Повалюхин",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",
