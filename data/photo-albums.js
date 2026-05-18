@@ -85,20 +85,20 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/igor-grigoryev3.jpeg"
       },
       {
-        "src": "assets/photo-albums/tamara-grigoryeva/506992077_3270401549764826_22800088864971003_n.jpg",
-        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 21"
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 21",
+        "src": "assets/photo-albums/tamara-grigoryeva/506992077_3270401549764826_22800088864971003_n.jpg"
       },
       {
-        "src": "assets/photo-albums/tamara-grigoryeva/508303737_3270401523098162_2836224684831276133_n.jpg",
-        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 22"
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 22",
+        "src": "assets/photo-albums/tamara-grigoryeva/508303737_3270401523098162_2836224684831276133_n.jpg"
       },
       {
-        "src": "assets/photo-albums/tamara-grigoryeva/СТАРЫЕ ФОТКИ 078.jpg",
-        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 23"
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 23",
+        "src": "assets/photo-albums/tamara-grigoryeva/СТАРЫЕ ФОТКИ 078.jpg"
       },
       {
-        "src": "assets/photo-albums/tamara-grigoryeva/я на море.jpg",
-        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 24"
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 24",
+        "src": "assets/photo-albums/tamara-grigoryeva/я на море.jpg"
       }
     ],
     "portrait": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231105-WA0002.jpg",
@@ -903,10 +903,6 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/img_3_1686433580090.jpg"
       },
       {
-        "caption": "Фотоальбом Олега Игоревича. Фото 4",
-        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20230401-WA0003.jpg"
-      },
-      {
         "caption": "Фотоальбом Олега Игоревича. Фото 5",
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20230401-WA0020.jpg"
       },
@@ -931,36 +927,20 @@ window.PHOTO_ALBUMS = [
         "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-20250126-WA0006.jpg"
       },
       {
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 11",
-        "src": "assets/photo-albums/oleg-povalyukhin/uploaded/8b978173af2d39ef1c83.jpeg"
+        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 12",
+        "src": "assets/photo-albums/oleg-povalyukhin/1 апреля 2.jpg"
       },
       {
-        "src": "assets/photo-albums/oleg-povalyukhin/1 апреля 2.jpg",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 12"
+        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 13",
+        "src": "assets/photo-albums/oleg-povalyukhin/1 апреля.jpg"
       },
       {
-        "src": "assets/photo-albums/oleg-povalyukhin/1 апреля.jpg",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 13"
+        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 17",
+        "src": "assets/photo-albums/oleg-povalyukhin/СТАРЫЕ ФОТКИ 023.jpg"
       },
       {
-        "src": "assets/photo-albums/oleg-povalyukhin/IMG_20210114_191556.jpg",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 14"
-      },
-      {
-        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/СТАРЫЕ ФОТКИ 023.jpg",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 15"
-      },
-      {
-        "src": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/СТАРЫЕ ФОТКИ 050.jpg",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 16"
-      },
-      {
-        "src": "assets/photo-albums/oleg-povalyukhin/СТАРЫЕ ФОТКИ 023.jpg",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 17"
-      },
-      {
-        "src": "assets/photo-albums/oleg-povalyukhin/СТАРЫЕ ФОТКИ 050.jpg",
-        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 18"
+        "caption": "Фотоальбом Олег Игоревич Повалюхин. Фото 18",
+        "src": "assets/photo-albums/oleg-povalyukhin/СТАРЫЕ ФОТКИ 050.jpg"
       }
     ],
     "portrait": "assets/photo-albums/oleg-povalyukhin/Photos-3-001 (19)/IMG-202501126-WA0006.jpg",
