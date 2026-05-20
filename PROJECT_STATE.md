@@ -17,6 +17,12 @@ Working static GitHub Pages family memory site with:
 - extracted photo archive;
 - local DOCX extraction workflow.
 
+Public GitHub Pages URL confirmed by the user as working:
+
+```text
+https://oleg3479881328-code.github.io/family-memory-book/
+```
+
 ## Repository Role Summary
 
 - `index.html` - main site entry page
@@ -40,6 +46,10 @@ Treat these as maintainer-facing implementation or documentation artifacts:
 - `PROJECT_STATE.md`
 - `PROJECT_RULES.md`
 - `docs/CODEX_HANDOFF.md`
+- `docs/MAINTENANCE.md`
+- `docs/ARCHITECTURE.md`
+- `CHANGELOG.md`
+- `LICENSE.md`
 - `index.html`
 - `styles.css`
 
@@ -53,13 +63,16 @@ Treat these as maintainer-facing implementation or documentation artifacts:
 - Photo removal or replacement must be explicit and reviewable.
 - Generated or extracted files must not be edited casually without explaining whether extraction was re-run.
 
+## Closed Questions
+
+- Public GitHub Pages URL: confirmed working by the user.
+
 ## Open Questions
 
-- What is the intended public GitHub Pages URL?
 - Who is the primary maintainer?
 - Is the external DOCX storage model intentional long-term?
 - Should privacy or consent rules be documented more explicitly for family photos and memoirs?
 
 ## Current Next Step
 
-Review this documentation package and decide whether to transfer it into `family-memory-book`.
+Clarify the source DOCX storage model and primary maintainer.
