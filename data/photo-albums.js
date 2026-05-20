@@ -1364,9 +1364,21 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
     "personId": "alexander-tankov",
-    "photos": [],
-    "title": "Александр Николаевич Таньков"
+    "photos": [
+      {
+        "caption": "Фотоальбом Александр Николаевич Таньков. Фото 1",
+        "src": "assets/photo-albums/alexander-tankov/uploaded/20120922_190005.jpg"
+      },
+      {
+        "caption": "Фотоальбом Александр Николаевич Таньков. Фото 2",
+        "src": "assets/photo-albums/alexander-tankov/uploaded/20120922_190017.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/alexander-tankov/uploaded/20120922_190017.jpg",
+    "title": "Александр Николаевич Таньков",
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1461,5 +1473,13 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/anna-kuteinikova/uploaded/IMG-20260515-WA0007.jpg",
     "title": "Анна Сергеевна Кутейникова"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
+    "personId": "nina-tankova",
+    "photos": [],
+    "title": "Нина Ивановна Калинина",
+    "videos": []
   }
 ];

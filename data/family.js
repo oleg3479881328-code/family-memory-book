@@ -21,7 +21,7 @@ window.FAMILY = {
         "olga-tankova",
         "natalya-tankova"
       ],
-      "dates": "",
+      "dates": "07.11.1948",
       "gender": "M",
       "name": "Александр Николаевич Таньков",
       "notes": [
@@ -429,7 +429,7 @@ window.FAMILY = {
     },
     "natalya-tankova": {
       "children": [],
-      "dates": "",
+      "dates": "23.02.1975",
       "gender": "F",
       "name": "Наталья Александровна Танькова",
       "notes": [
@@ -499,9 +499,9 @@ window.FAMILY = {
         "olga-tankova",
         "natalya-tankova"
       ],
-      "dates": "",
+      "dates": "01.04.1948",
       "gender": "F",
-      "name": "Нина Ивановна Танькова",
+      "name": "Нина Ивановна Калинина",
       "notes": [
         "Мать Ольги Александровны Таньковой и Натальи Александровны Таньковой."
       ],
