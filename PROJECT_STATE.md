@@ -23,6 +23,18 @@ Public GitHub Pages URL confirmed by the user as working:
 https://oleg3479881328-code.github.io/family-memory-book/
 ```
 
+## Maintainer
+
+Primary maintainer: Oleg Povalyukhin.
+
+## Source DOCX Storage Model
+
+The source DOCX is stored locally on the maintainer's computer.
+
+This is intentional for the current project state.
+
+Before running extraction, the maintainer must confirm the local DOCX path and file availability.
+
 ## Repository Role Summary
 
 - `index.html` - main site entry page
@@ -58,6 +70,7 @@ Treat these as maintainer-facing implementation or documentation artifacts:
 ## Known Risks
 
 - `tools/extract_docx.py` depends on a local Windows DOCX path.
+- The source DOCX is local to the maintainer's computer and is not documented as a shared repository asset.
 - Family memoir text is sensitive and should not be silently rewritten.
 - Family relationships must not be changed without source evidence.
 - Photo removal or replacement must be explicit and reviewable.
@@ -66,13 +79,14 @@ Treat these as maintainer-facing implementation or documentation artifacts:
 ## Closed Questions
 
 - Public GitHub Pages URL: confirmed working by the user.
+- Primary maintainer: Oleg Povalyukhin.
+- Source DOCX storage model: local computer storage.
+- Separate privacy/consent rules: not needed at this stage.
 
 ## Open Questions
 
-- Who is the primary maintainer?
-- Is the external DOCX storage model intentional long-term?
-- Should privacy or consent rules be documented more explicitly for family photos and memoirs?
+No blocking open questions for documentation v1.0.
 
 ## Current Next Step
 
-Clarify the source DOCX storage model and primary maintainer.
+Run a final documentation review for v1.0 completeness.
