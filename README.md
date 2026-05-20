@@ -10,6 +10,16 @@
 - фотоархив;
 - данные, извлечённые из исходного DOCX-документа.
 
+## Публичный сайт
+
+Ожидаемый GitHub Pages URL:
+
+```text
+https://oleg3479881328-code.github.io/family-memory-book/
+```
+
+Если ссылка не открывается, проверьте настройки GitHub Pages в репозитории.
+
 ## Статус проекта
 
 Статус: рабочий статический сайт.
@@ -37,6 +47,15 @@ data/memoirs.js             Разделы мемуаров, извлечённ�
 assets/photos/              Фотоархив, извлечённый из DOCX
 vendor/family-chart/        Локальная зависимость для отображения родословной
 tools/extract_docx.py       Скрипт извлечения текста и фото из DOCX
+README.md                   Главная страница документации
+PROJECT_ENTRYPOINT.md       Точка входа для человека и ИИ
+PROJECT_STATE.md            Текущее состояние проекта
+PROJECT_RULES.md            Правила сопровождения
+docs/CODEX_HANDOFF.md       Шаблон задач для Codex
+docs/MAINTENANCE.md         Руководство по сопровождению
+docs/ARCHITECTURE.md        Архитектура сайта и поток данных
+CHANGELOG.md                История заметных изменений
+LICENSE.md                  Условия использования и права
 ```
 
 ## Важные материалы
@@ -61,6 +80,25 @@ tools/extract_docx.py       Скрипт извлечения текста и ф
 
 Перед повторным запуском скрипта нужно проверить путь к исходному DOCX и убедиться, что файл доступен локально.
 
+## Документация
+
+Перед сопровождением проекта читать по порядку:
+
+1. `PROJECT_ENTRYPOINT.md`
+2. `PROJECT_STATE.md`
+3. `PROJECT_RULES.md`
+4. `docs/MAINTENANCE.md`
+5. `docs/ARCHITECTURE.md`
+6. `docs/CODEX_HANDOFF.md`
+7. `CHANGELOG.md`
+8. `LICENSE.md`
+
+## Права и использование
+
+См. `LICENSE.md`.
+
+Коротко: не считать репозиторий open-source по умолчанию. Семейные материалы, фотографии, мемуары, родословные данные, код и документация не предназначены для свободного повторного использования без явного разрешения владельца.
+
 ## Для человека
 
 Начните с просмотра сайта через `index.html`, затем изучите структуру данных в `data/` и правила сопровождения.
@@ -72,6 +110,8 @@ tools/extract_docx.py       Скрипт извлечения текста и ф
 1. `PROJECT_ENTRYPOINT.md`
 2. `PROJECT_STATE.md`
 3. `PROJECT_RULES.md`
-4. `docs/CODEX_HANDOFF.md`
+4. `docs/MAINTENANCE.md`
+5. `docs/ARCHITECTURE.md`
+6. `docs/CODEX_HANDOFF.md`
 
 Не начинать изменения без explicit handoff packet — явного пакета задачи с целью, областью изменений, запретами и критериями приёмки.
