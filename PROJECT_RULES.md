@@ -2,70 +2,35 @@
 
 ## Scope
 
-This repository is a static family memory website that combines genealogy, memoir text, and photos.
+This repository is a static family memory website that combines genealogy, memoir text, photos, photo albums, and maintainer tooling.
 
 Documentation and maintenance changes must preserve family content integrity.
 
-## Content Preservation Rules
+## Rules
 
-Do not:
+1. Preserve content-bearing artifacts carefully.
+   This includes at minimum `data/*.js`, `family-memory-book.ged`, `assets/photo-albums/**`, and user-facing site copy.
 
-- invent family facts;
-- rewrite memoir prose unless explicitly instructed;
-- change genealogy relationships without source evidence;
-- rename people or family links without confirmation;
-- delete photos without explicit approval;
-- remove source-sensitive context silently.
+2. Do not invent or silently normalize family content.
+   Do not invent family facts, rewrite memoir prose without instruction, change genealogy relationships without source evidence, or rename people/family links by assumption.
 
-## Generated And Extracted Files
+3. Do not perform destructive content changes without explicit approval.
+   Do not mass-delete, mass-rename, reorganize, or remove photos or albums without clear user approval.
 
-Treat generated or extracted artifacts carefully.
+4. Treat generated and extracted files carefully.
+   Do not modify `data/memoirs.js` or `assets/photos/` casually without stating whether extraction was re-run, content was manually edited, or the DOCX source changed.
 
-Do not modify `data/memoirs.js` or `assets/photos/` casually without stating whether:
+5. Preserve static-first architecture by default.
+   The current baseline is vanilla HTML/CSS/JS plus vendored libraries and Python helper tooling. Do not introduce a framework, bundler, or backend rewrite unless that decision is explicitly recorded first.
 
-- extraction was re-run;
-- content was manually edited;
-- the source DOCX changed.
+6. Preserve UTF-8 and Cyrillic text faithfully.
+   Do not transliterate names or rewrite user content into ASCII unless there is a specific, recorded reason.
 
-## Tooling Rules
+7. Use evidence for admin, publish, and extraction claims.
+   Do not claim local admin flow, Pages publish, album sync, or extraction succeeded without command output or direct verification.
 
-`tools/extract_docx.py` depends on a local DOCX source path.
+8. Respect existing unrelated worktree changes.
+   If the repo is dirty, do not overwrite or revert pre-existing user changes unless explicitly instructed.
 
-Do not assume it is portable without verification.
-
-Do not run extraction blindly without confirming:
-
-- source path exists;
-- output impact is understood;
-- resulting file changes are reviewable.
-
-## Documentation Rules
-
-Documentation should help:
-
-- a human maintainer;
-- a future AI executor;
-- a reviewer checking sensitive family content.
-
-Repository docs should distinguish:
-
-- public-facing site purpose;
-- maintainer-facing workflow;
-- generated versus manually maintained content.
-
-## Review Rules
-
-Before accepting repository changes, verify:
-
-- memoir text preservation;
-- genealogy integrity;
-- photo handling safety;
-- local preview still works when relevant;
-- generated-file behavior is explained;
-- no silent scope expansion occurred.
-
-## State Rule
-
-Important project state must not live only in chat.
-
-If a rule, risk, or constraint matters for future maintenance, record it in repository artifacts.
+9. Keep important state out of chat-only memory.
+   If a rule, risk, coordination decision, or durable next step matters for future maintenance, record it in repository artifacts or the GitHub execution surface.
