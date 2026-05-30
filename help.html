@@ -1,0 +1,527 @@
+<!doctype html>
+<html lang="ru">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Как пользоваться сайтом «Книга памяти семьи»</title>
+    <meta
+      name="description"
+      content="Простая инструкция для родственников: как смотреть родословную, открывать карточки людей, читать мемуары, смотреть фото и видео на сайте «Книга памяти семьи»."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f1e8;
+        --paper: #fffaf1;
+        --ink: #241b16;
+        --muted: #75675e;
+        --line: #dacdbe;
+        --accent: #8e3f2b;
+        --accent-dark: #5f2b22;
+        --shadow: 0 20px 60px rgba(55, 37, 24, 0.12);
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 16px clamp(18px, 4vw, 56px);
+        background: rgba(246, 241, 232, 0.94);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(12px);
+      }
+
+      .brand {
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0;
+      }
+
+      .top-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .top-nav a {
+        text-decoration: none;
+      }
+
+      .hero,
+      .quick-grid,
+      .help-step,
+      .faq,
+      .start-note {
+        margin: 18px clamp(18px, 6vw, 84px);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.92fr);
+        gap: 28px;
+        align-items: center;
+        padding: clamp(28px, 5vw, 52px);
+      }
+
+      .hero h1,
+      .help-step h2,
+      .faq h2,
+      .start-note h2 {
+        margin: 0;
+        line-height: 0.98;
+        font-weight: 700;
+      }
+
+      .hero h1 {
+        font-size: clamp(46px, 7vw, 86px);
+      }
+
+      .hero p,
+      .hero li,
+      .quick-grid p,
+      .help-step p,
+      .help-step li,
+      .faq p,
+      .start-note p {
+        color: var(--muted);
+      }
+
+      .hero p {
+        margin: 20px 0 0;
+        font-size: 20px;
+      }
+
+      .hero ul,
+      .help-step ul {
+        margin: 18px 0 0;
+        padding-left: 20px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 46px;
+        padding: 10px 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+        border-color: var(--accent);
+      }
+
+      .button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fffaf1;
+      }
+
+      .button.secondary {
+        background: transparent;
+      }
+
+      .hero img,
+      .help-step img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        border: 1px solid var(--line);
+      }
+
+      .hero-notes {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .hero-notes article,
+      .quick-grid article,
+      .faq article {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #fffcf7;
+      }
+
+      .hero-notes h3,
+      .quick-grid h3,
+      .faq h3 {
+        margin: 0 0 6px;
+        font-size: 20px;
+        line-height: 1.15;
+      }
+
+      .quick-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        padding: 1px;
+        background: var(--line);
+      }
+
+      .quick-grid article {
+        border: 0;
+        border-radius: 0;
+      }
+
+      .help-step {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: 26px;
+        padding: 24px;
+      }
+
+      .help-step.reverse {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      }
+
+      .step-pill {
+        display: inline-grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        margin-bottom: 10px;
+        border-radius: 999px;
+        background: rgba(142, 63, 43, 0.12);
+        color: var(--accent);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .help-step h2 {
+        font-size: clamp(34px, 4.6vw, 54px);
+      }
+
+      .tip {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border-left: 4px solid var(--accent);
+        background: #fcf4ea;
+        color: var(--muted);
+      }
+
+      .faq,
+      .start-note {
+        padding: 24px;
+      }
+
+      .faq h2,
+      .start-note h2 {
+        font-size: clamp(34px, 4vw, 52px);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .start-note {
+        text-align: center;
+      }
+
+      @media (max-width: 900px) {
+        .site-header,
+        .hero,
+        .help-step,
+        .help-step.reverse {
+          grid-template-columns: 1fr;
+        }
+
+        .site-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .quick-grid,
+        .faq-grid,
+        .hero-notes {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .button {
+          justify-content: center;
+          flex: 1 1 100%;
+        }
+
+        .hero p {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html">Книга памяти семьи</a>
+      <nav class="top-nav" aria-label="Навигация по инструкции">
+        <a href="#start">С чего начать</a>
+        <a href="#tree">Родословная</a>
+        <a href="#memoirs">Мемуары</a>
+        <a href="#media">Фото и видео</a>
+        <a href="#faq">Вопросы</a>
+      </nav>
+    </header>
+
+    <main id="start">
+      <section class="hero">
+        <div>
+          <h1>Как пользоваться этим сайтом</h1>
+          <p>
+            Это простая инструкция для родственников. Здесь без сложных слов
+            показано, как открыть родословную, найти человека, почитать
+            мемуары и посмотреть фотографии или видео.
+          </p>
+          <ul>
+            <li>Ничего устанавливать не нужно.</li>
+            <li>Сайт можно спокойно нажимать и исследовать.</li>
+            <li>Если непонятно, начните с родословной и карточек людей.</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="button primary" href="index.html">Открыть главную страницу</a>
+            <a class="button secondary" href="#tree">Перейти к шагам</a>
+          </div>
+        </div>
+
+        <div>
+          <img src="assets/help/hero.png" alt="Главный экран сайта «Книга памяти семьи»" />
+          <div class="hero-notes">
+            <article>
+              <h3>Родословная</h3>
+              <p>Показывает людей и семейные связи между ними.</p>
+            </article>
+            <article>
+              <h3>Мемуары</h3>
+              <p>Открывают тексты и воспоминания для чтения.</p>
+            </article>
+            <article>
+              <h3>Фото и видео</h3>
+              <p>Помогают увидеть человека и материалы о нём.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-grid" aria-label="Короткие подсказки">
+        <article>
+          <h3>Хотите найти человека</h3>
+          <p>Откройте раздел «Родословная» и нажмите на нужного человека.</p>
+        </article>
+        <article>
+          <h3>Хотите почитать</h3>
+          <p>Перейдите в раздел «Мемуары» и выберите название нужного текста.</p>
+        </article>
+        <article>
+          <h3>Хотите посмотреть фото</h3>
+          <p>Откройте карточку человека или раздел «Фотоархив».</p>
+        </article>
+        <article>
+          <h3>Хотите посмотреть видео</h3>
+          <p>Видео может быть в альбоме или вести на внешний сервис.</p>
+        </article>
+      </section>
+
+      <section class="help-step" id="tree">
+        <div>
+          <span class="step-pill">1</span>
+          <h2>Как смотреть родословную</h2>
+          <p>
+            Родословная показывает, кто с кем связан: родители, супруги, дети и
+            другие родственники.
+          </p>
+          <ul>
+            <li>Откройте раздел «Родословная».</li>
+            <li>Нажмите на человека, который вас интересует.</li>
+            <li>Откроется его карточка с подробностями.</li>
+          </ul>
+          <div class="tip">
+            Если дерево кажется слишком большим, это нормально. Нажмите на
+            конкретного человека, и дальше сайт сам сделает всё понятнее.
+          </div>
+        </div>
+        <div>
+          <img src="assets/help/tree.png" alt="Общий вид родословной" />
+        </div>
+      </section>
+
+      <section class="help-step reverse">
+        <div>
+          <img src="assets/help/person-card.png" alt="Карточка человека с данными, текстами, фото и видео" />
+        </div>
+        <div>
+          <span class="step-pill">2</span>
+          <h2>Что есть в карточке человека</h2>
+          <p>Карточка человека собирает самое важное о нём в одном месте.</p>
+          <ul>
+            <li>Имя и даты.</li>
+            <li>Родители, супруги и дети.</li>
+            <li>Связанные тексты и мемуары.</li>
+            <li>Фотоальбом и иногда видео.</li>
+          </ul>
+          <div class="tip">
+            Если хотите посмотреть фотографии или видео человека, чаще всего это
+            удобнее делать прямо из его карточки.
+          </div>
+        </div>
+      </section>
+
+      <section class="help-step">
+        <div>
+          <span class="step-pill">3</span>
+          <h2>Почему дерево меняется после закрытия карточки</h2>
+          <p>
+            Это сделано специально, чтобы было легче разобраться в семье. После
+            закрытия карточки дерево перестраивается вокруг выбранного человека.
+          </p>
+          <ul>
+            <li>Остаются самые важные связи вокруг него.</li>
+            <li>Становится проще увидеть родителей, супруга и детей.</li>
+            <li>Так легче изучать одного человека и его ветку семьи.</li>
+          </ul>
+          <div class="tip">
+            Если хотите снова увидеть больше людей, можно выбрать другого
+            человека или нажать кнопку «Показать всё».
+          </div>
+        </div>
+        <div>
+          <img src="assets/help/tree-refocus.png" alt="Дерево после перестроения вокруг выбранного человека" />
+        </div>
+      </section>
+
+      <section class="help-step reverse" id="memoirs">
+        <div>
+          <img src="assets/help/memoir-card.png" alt="Открытый текст мемуаров" />
+        </div>
+        <div>
+          <span class="step-pill">4</span>
+          <h2>Как читать мемуары и воспоминания</h2>
+          <p>
+            В разделе «Мемуары» собраны тексты и воспоминания. Они открываются в
+            отдельном окне, чтобы их было удобно читать.
+          </p>
+          <ul>
+            <li>Откройте раздел «Мемуары».</li>
+            <li>Нажмите на название нужного текста.</li>
+            <li>Текст откроется в отдельном большом окне.</li>
+          </ul>
+          <div class="tip">
+            Если рядом с человеком есть связанные тексты, значит по ним можно
+            перейти к воспоминаниям о нём.
+          </div>
+        </div>
+      </section>
+
+      <section class="help-step" id="media">
+        <div>
+          <span class="step-pill">5</span>
+          <h2>Как смотреть фотографии и видео</h2>
+          <p>
+            Фото и видео собраны в альбомы. Иногда видео хранится прямо внутри
+            сайта, а иногда открывается через внешний сервис, например YouTube.
+          </p>
+          <ul>
+            <li>Откройте карточку человека или раздел «Фотоархив».</li>
+            <li>Нажмите на альбом или превью.</li>
+            <li>Если это видео, оно может открыться как ролик или как ссылка.</li>
+          </ul>
+          <div class="tip">
+            Если открылась новая вкладка или отдельное окно, это нормально:
+            значит видео хранится на внешнем сервисе.
+          </div>
+        </div>
+        <div>
+          <img src="assets/help/photos.png" alt="Фотоархив с альбомами" />
+        </div>
+      </section>
+
+      <section class="faq" id="faq">
+        <h2>Частые вопросы</h2>
+        <div class="faq-grid">
+          <article>
+            <h3>Я боюсь что-то сломать</h3>
+            <p>
+              Ничего страшного не произойдёт. Сайт можно спокойно смотреть,
+              нажимать и изучать. Обычными действиями вы ничего не испортите.
+            </p>
+          </article>
+          <article>
+            <h3>Не понимаю, куда нажимать сначала</h3>
+            <p>
+              Самый простой путь: откройте родословную, нажмите на знакомого
+              человека, потом откройте его карточку.
+            </p>
+          </article>
+          <article>
+            <h3>Почему после закрытия карточки дерево стало другим</h3>
+            <p>
+              Это не ошибка. Сайт специально перестраивает дерево вокруг
+              выбранного человека, чтобы было легче понять его ветку семьи.
+            </p>
+          </article>
+          <article>
+            <h3>Где лучше искать фотографии</h3>
+            <p>
+              Либо в карточке конкретного человека, либо в разделе «Фотоархив»,
+              если хочется просто посмотреть альбомы.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="start-note">
+        <h2>Самый простой способ начать</h2>
+        <p>
+          Откройте родословную, нажмите на знакомого человека, посмотрите его
+          карточку, а потом перейдите к текстам, фотографиям или видео. Так
+          сайт становится понятнее всего.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>
