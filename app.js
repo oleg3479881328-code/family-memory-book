@@ -9,7 +9,9 @@ const modalEl = document.querySelector("#person-modal");
 const panelContentEl = document.querySelector("#person-panel-content");
 const searchEl = document.querySelector("#person-search");
 const tabsEl = document.querySelector("#memoir-tabs");
-const readerEl = document.querySelector("#memoir-reader");
+const memoirModalEl = document.querySelector("#memoir-modal");
+const memoirModalContentEl = document.querySelector("#memoir-modal-content");
+const memoirDialogEl = document.querySelector(".memoir-dialog");
 const photosEl = document.querySelector("#photo-grid");
 const photoModalEl = document.querySelector("#photo-modal");
 const photoViewerImageEl = document.querySelector("#photo-viewer-image");
@@ -32,6 +34,11 @@ let lastSearchFocusId = "";
 let currentTreeMainId = defaultTreeMainId;
 let marriageFanTimerId = 0;
 const multiPartnerIds = Object.keys(people).filter((id) => (people[id].partners || []).length > 1);
+
+function updateModalOpenState() {
+  const anyModalOpen = !modalEl.hidden || !photoModalEl.hidden || !memoirModalEl.hidden;
+  document.body.classList.toggle("modal-open", anyModalOpen);
+}
 
 function focusTreeSection() {
   document.querySelector("#tree")?.scrollIntoView({ behavior: "auto", block: "start" });
@@ -76,7 +83,7 @@ function relatedList(ids = []) {
 
 function closePersonModal() {
   modalEl.hidden = true;
-  document.body.classList.remove("modal-open");
+  updateModalOpenState();
 }
 
 function closePhotoModal() {
@@ -87,7 +94,15 @@ function closePhotoModal() {
   photoViewerCounterEl.textContent = "";
   currentPhotoSet = [];
   currentPhotoIndex = 0;
-  document.body.classList.remove("modal-open");
+  updateModalOpenState();
+}
+
+function closeMemoirModal() {
+  memoirModalEl.hidden = true;
+  if (memoirDialogEl) {
+    memoirDialogEl.scrollTop = 0;
+  }
+  updateModalOpenState();
 }
 
 function updatePhotoViewer() {
@@ -113,7 +128,7 @@ function openPhotoSet(photos, index = 0) {
   currentPhotoIndex = Math.min(Math.max(index, 0), photos.length - 1);
   updatePhotoViewer();
   photoModalEl.hidden = false;
-  document.body.classList.add("modal-open");
+  updateModalOpenState();
 }
 
 function showAdjacentPhoto(direction) {
@@ -341,7 +356,7 @@ function showPerson(id) {
   `;
 
   modalEl.hidden = false;
-  document.body.classList.add("modal-open");
+  updateModalOpenState();
 }
 
 function renderMemoirTabs(activeId) {
@@ -359,12 +374,17 @@ function renderMemoirTabs(activeId) {
 function showMemoir(id = memoirs.sections[0].id) {
   const section = memoirs.sections.find((item) => item.id === id) || memoirs.sections[0];
   renderMemoirTabs(section.id);
-  readerEl.innerHTML = `
+  memoirModalContentEl.innerHTML = `
     <h3>${section.title}</h3>
     <div class="memoir-text">
       ${section.paragraphs.map((paragraph) => `<p>${paragraph.replace(/\n/g, "<br>")}</p>`).join("")}
     </div>
   `;
+  memoirModalEl.hidden = false;
+  if (memoirDialogEl) {
+    memoirDialogEl.scrollTop = 0;
+  }
+  updateModalOpenState();
 }
 
 function renderPhotos() {
@@ -825,6 +845,11 @@ document.addEventListener("click", (event) => {
     return;
   }
 
+  if (event.target.closest("[data-close-memoir]")) {
+    closeMemoirModal();
+    return;
+  }
+
   if (event.target.closest("[data-photo-prev]")) {
     showAdjacentPhoto(-1);
     return;
@@ -855,11 +880,16 @@ document.addEventListener("click", (event) => {
   if (memoirButton) {
     showMemoir(memoirButton.dataset.memoir);
     closePersonModal();
-    document.querySelector("#memoirs").scrollIntoView({ behavior: "smooth", block: "start" });
+    return;
   }
 });
 
 document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !memoirModalEl.hidden) {
+    closeMemoirModal();
+    return;
+  }
+
   if (event.key === "Escape" && !photoModalEl.hidden) {
     closePhotoModal();
     return;
@@ -947,5 +977,5 @@ document.querySelector("#collapse-all").addEventListener("click", () => {
 });
 
 renderTree();
-showMemoir();
+renderMemoirTabs(memoirs.sections[0].id);
 renderPhotos();

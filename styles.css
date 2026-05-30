@@ -757,12 +757,14 @@ a {
 }
 
 .person-modal[hidden],
-.photo-modal[hidden] {
+.photo-modal[hidden],
+.memoir-modal[hidden] {
   display: none;
 }
 
 .person-modal,
-.photo-modal {
+.photo-modal,
+.memoir-modal {
   position: fixed;
   inset: 0;
   z-index: 50;
@@ -864,6 +866,31 @@ a {
   z-index: 3;
 }
 
+.memoir-dialog {
+  position: relative;
+  z-index: 1;
+  width: min(980px, calc(100vw - 32px));
+  max-height: min(88vh, 920px);
+  overflow: auto;
+  padding: clamp(24px, 4vw, 48px);
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  box-shadow: 0 28px 90px rgba(45, 31, 22, 0.28);
+}
+
+.memoir-dialog h3 {
+  margin: 0 0 24px;
+  padding-right: 44px;
+  font-size: clamp(28px, 4vw, 44px);
+  line-height: 1.1;
+}
+
+.memoir-dialog .memoir-text p {
+  margin: 0 0 18px;
+  font-size: 19px;
+}
+
 .photo-viewer figcaption {
   padding-right: 38px;
   color: var(--muted);
@@ -882,26 +909,6 @@ a {
   background: var(--green);
   border-color: var(--green);
   color: #fffaf1;
-}
-
-.memoir-reader {
-  max-width: 920px;
-  padding: clamp(22px, 4vw, 48px);
-  background: var(--paper);
-  border: 1px solid var(--line);
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-}
-
-.memoir-reader h3 {
-  margin: 0 0 24px;
-  font-size: clamp(28px, 4vw, 44px);
-  line-height: 1.1;
-}
-
-.memoir-text p {
-  margin: 0 0 18px;
-  font-size: 19px;
 }
 
 .photo-grid {

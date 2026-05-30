@@ -10,7 +10,7 @@
     />
     <script>
       (function () {
-        const hostedVersion = "20260530000100";
+        const hostedVersion = "20260530001500";
         const localVersion = Date.now().toString();
         const isLocalPreview =
           location.protocol === "file:" ||
@@ -84,6 +84,14 @@
         </a>
       </section>
 
+      <section id="memoirs" class="section">
+        <div class="section-heading">
+          <h2>Мемуары</h2>
+          <p>Русский текст опубликован дословно, разделами, без пересказа и редактирования.</p>
+        </div>
+        <div id="memoir-tabs" class="memoir-tabs" role="tablist" aria-label="Разделы мемуаров"></div>
+      </section>
+
       <section id="tree" class="section">
         <div class="section-heading">
           <h2>Родословная</h2>
@@ -109,15 +117,6 @@
             <div id="family-tree" class="family-tree" aria-live="polite"></div>
           </div>
         </div>
-      </section>
-
-      <section id="memoirs" class="section">
-        <div class="section-heading">
-          <h2>Мемуары</h2>
-          <p>Русский текст опубликован дословно, разделами, без пересказа и редактирования.</p>
-        </div>
-        <div id="memoir-tabs" class="memoir-tabs" role="tablist" aria-label="Разделы мемуаров"></div>
-        <article id="memoir-reader" class="memoir-reader"></article>
       </section>
 
       <section id="photos" class="section">
@@ -153,6 +152,14 @@
         <div id="photo-viewer-counter" class="photo-counter"></div>
         <figcaption id="photo-viewer-caption"></figcaption>
       </figure>
+    </div>
+
+    <div id="memoir-modal" class="memoir-modal" hidden>
+      <button class="modal-backdrop" type="button" data-close-memoir aria-label="Закрыть текст"></button>
+      <article class="memoir-dialog" role="dialog" aria-modal="true" aria-label="Текст мемуаров">
+        <button class="modal-close" type="button" data-close-memoir aria-label="Закрыть">×</button>
+        <div id="memoir-modal-content"></div>
+      </article>
     </div>
     <script>
       (function () {
