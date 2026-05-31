@@ -309,7 +309,6 @@ function renderExternalLinkCards(links, className = "album-link-list") {
 function renderPersonAlbum(album) {
   const normalizedAlbum = normalizeAlbum(album);
   const thumbnails = normalizedAlbum.photos
-    .slice(0, 6)
     .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb", album.personId, index))
     .join("");
 
@@ -317,7 +316,7 @@ function renderPersonAlbum(album) {
     <div class="person-album-slot">
       <h4>Фотоальбом</h4>
       <p class="person-album-summary">${escapeHtml(albumMediaSummary(normalizedAlbum))}</p>
-      ${thumbnails ? `<div class="person-album-thumbs">${thumbnails}</div>` : ""}
+      ${thumbnails ? `<div class="person-album-thumbs-scroll"><div class="person-album-thumbs">${thumbnails}</div></div>` : ""}
       ${renderVideoCards(normalizedAlbum.videos.slice(0, 2), "person-album-videos")}
       ${renderExternalLinkCards(normalizedAlbum.externalLinks.slice(0, 4), "person-album-links")}
       <button class="album-link" type="button" data-scroll-album="${album.personId}">
