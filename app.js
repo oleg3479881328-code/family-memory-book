@@ -23,10 +23,6 @@ const publishSiteButtonEl = document.querySelector("[data-publish-site]");
 const publishStatusEl = document.querySelector("[data-publish-status]");
 const navToggleEl = document.querySelector(".nav-toggle");
 const topNavEl = document.querySelector(".top-nav");
-const TREE_CARD_WIDTH = 224;
-const TREE_CARD_HEIGHT = 98;
-
-
 const defaultTreeMainId = "anna-kuteinikova";
 const assetUrl = window.__withAssetVersion || ((path) => path);
 
@@ -36,7 +32,27 @@ let familyChart = null;
 let lastSearchFocusId = "";
 let currentTreeMainId = defaultTreeMainId;
 let marriageFanTimerId = 0;
+let treeViewportMode = "";
+let treeResizeTimerId = 0;
 const multiPartnerIds = Object.keys(people).filter((id) => (people[id].partners || []).length > 1);
+
+function getTreeMetrics() {
+  const viewportWidth = typeof window !== "undefined" ? window.innerWidth : 1280;
+
+  if (viewportWidth <= 375) {
+    return { key: "phone-xs", cardWidth: 160, cardHeight: 70, cardXSpacing: 196, cardYSpacing: 170 };
+  }
+
+  if (viewportWidth <= 430) {
+    return { key: "phone-sm", cardWidth: 180, cardHeight: 80, cardXSpacing: 220, cardYSpacing: 184 };
+  }
+
+  if (viewportWidth <= 560) {
+    return { key: "phone", cardWidth: 188, cardHeight: 82, cardXSpacing: 230, cardYSpacing: 192 };
+  }
+
+  return { key: "desktop", cardWidth: 224, cardHeight: 98, cardXSpacing: 290, cardYSpacing: 245 };
+}
 
 function updateModalOpenState() {
   const anyModalOpen = !modalEl.hidden || !photoModalEl.hidden || !memoirModalEl.hidden;
@@ -507,17 +523,19 @@ function getCardBox(personId) {
     return null;
   }
 
+  const metrics = getTreeMetrics();
+
   return {
     x: point.x,
     y: point.y,
-    width: TREE_CARD_WIDTH,
-    height: TREE_CARD_HEIGHT,
+    width: metrics.cardWidth,
+    height: metrics.cardHeight,
     left: point.x,
     top: point.y,
-    right: point.x + TREE_CARD_WIDTH,
-    bottom: point.y + TREE_CARD_HEIGHT,
-    cx: point.x + TREE_CARD_WIDTH / 2,
-    cy: point.y + TREE_CARD_HEIGHT / 2,
+    right: point.x + metrics.cardWidth,
+    bottom: point.y + metrics.cardHeight,
+    cx: point.x + metrics.cardWidth / 2,
+    cy: point.y + metrics.cardHeight / 2,
   };
 }
 
@@ -532,7 +550,53 @@ function setCardPoint(personId, point) {
 
 function clearMarriageFanLayout() {
   treeEl.querySelectorAll(".marriage-fan-link").forEach((line) => line.remove());
+  treeEl.querySelectorAll(".spouse-link-marker").forEach((marker) => marker.remove());
   treeEl.querySelectorAll(".link.is-hidden-marriage-link").forEach((line) => line.classList.remove("is-hidden-marriage-link"));
+}
+
+function addSpouseLinkMarkers() {
+  const linksView = treeEl.querySelector(".links_view");
+  if (!linksView) {
+    return;
+  }
+
+  treeEl.querySelectorAll(".link.is-spouse-link").forEach((link) => {
+    if (typeof link.getTotalLength !== "function" || typeof link.getPointAtLength !== "function") {
+      return;
+    }
+
+    const totalLength = link.getTotalLength();
+    if (!Number.isFinite(totalLength) || totalLength < 12) {
+      return;
+    }
+
+    const middle = link.getPointAtLength(totalLength / 2);
+    const marker = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+    marker.setAttribute("class", "spouse-link-marker");
+    marker.setAttribute("cx", middle.x);
+    marker.setAttribute("cy", middle.y);
+    marker.setAttribute("r", "5.5");
+    linksView.appendChild(marker);
+  });
+}
+
+function decorateTreeLinks() {
+  const links = treeEl.querySelectorAll(".links_view .link");
+
+  links.forEach((link) => {
+    link.classList.remove("is-spouse-link", "is-parent-link");
+    const data = link.__data__;
+    if (!data) {
+      return;
+    }
+
+    if (data.spouse) {
+      link.classList.add("is-spouse-link");
+      return;
+    }
+
+    link.classList.add("is-parent-link");
+  });
 }
 
 function spouseChildrenFor(personId, spouseId) {
@@ -585,12 +649,97 @@ function hideOriginalMarriageLinks(personId, spouseId, childIds) {
   });
 }
 
+function layoutShiftedFamilyCluster({
+  personId,
+  spouseId,
+  childOrder,
+  spouseShiftX = 0,
+  childrenShiftX = 0,
+}) {
+  const linksView = treeEl.querySelector(".links_view");
+  const personBox = getCardBox(personId);
+  const spouseBox = getCardBox(spouseId);
+  if (!linksView || !personBox || !spouseBox) {
+    return;
+  }
+
+  const orderedChildBoxes = childOrder
+    .map((childId) => ({ childId, box: getCardBox(childId) }))
+    .filter((entry) => entry.box);
+
+  if (!orderedChildBoxes.length) {
+    return;
+  }
+
+  const currentChildSlots = orderedChildBoxes
+    .map((entry) => entry.box)
+    .slice()
+    .sort((a, b) => a.x - b.x)
+    .map((box) => ({
+      x: box.x + childrenShiftX,
+      y: box.y,
+    }));
+
+  setCardPoint(spouseId, {
+    x: spouseBox.x + spouseShiftX,
+    y: spouseBox.y,
+  });
+
+  childOrder.forEach((childId, index) => {
+    const targetSlot = currentChildSlots[index];
+    if (!targetSlot || !getCardBox(childId)) {
+      return;
+    }
+
+    setCardPoint(childId, targetSlot);
+  });
+
+  hideOriginalMarriageLinks(personId, spouseId, childOrder);
+
+  const updatedSpouseBox = getCardBox(spouseId);
+  const updatedChildBoxes = childOrder
+    .map((childId) => getCardBox(childId))
+    .filter(Boolean);
+
+  if (!updatedSpouseBox || !updatedChildBoxes.length) {
+    return;
+  }
+
+  addMarriageFanPath(
+    linksView,
+    [
+      { x: personBox.right, y: personBox.cy },
+      { x: updatedSpouseBox.left, y: updatedSpouseBox.cy },
+    ],
+    "marriage-fan-link spouse-cluster-link",
+  );
+
+  const familyJoinX = (personBox.cx + updatedSpouseBox.cx) / 2;
+  const childJoinY = Math.min(...updatedChildBoxes.map((box) => box.top)) - 18;
+
+  addMarriageFanPath(linksView, [
+    { x: familyJoinX, y: personBox.bottom },
+    { x: familyJoinX, y: childJoinY },
+    { x: updatedChildBoxes[0].cx, y: childJoinY },
+    { x: updatedChildBoxes[updatedChildBoxes.length - 1].cx, y: childJoinY },
+  ]);
+
+  updatedChildBoxes.forEach((box) => {
+    addMarriageFanPath(linksView, [
+      { x: box.cx, y: childJoinY },
+      { x: box.cx, y: box.top },
+    ]);
+  });
+}
+
 function layoutMarriageFan(personId) {
   const person = people[personId];
   const spouses = (person.partners || []).slice();
   if (spouses.length < 2) {
     return;
   }
+
+  const metrics = getTreeMetrics();
 
   const linksView = treeEl.querySelector(".links_view");
   const personBox = getCardBox(personId);
@@ -629,11 +778,11 @@ function layoutMarriageFan(personId) {
   const branchY = personBox.bottom + 24;
   const defaultSpouseTopY = personBox.bottom + 58;
   const minSpouseTopY = personBox.bottom + 34;
-  const minSpouseCenterGap = TREE_CARD_WIDTH + 42;
+  const minSpouseCenterGap = metrics.cardWidth + 42;
   const allChildBoxes = spouseTargets.flatMap((spouse) => spouse.childBoxes);
   const minChildTop = allChildBoxes.length ? Math.min(...allChildBoxes.map((box) => box.top)) : Infinity;
   const maxAllowedSpouseTopY = Number.isFinite(minChildTop)
-    ? minChildTop - TREE_CARD_HEIGHT - 28
+    ? minChildTop - metrics.cardHeight - 28
     : defaultSpouseTopY;
   const spouseTopY = Number.isFinite(maxAllowedSpouseTopY)
     ? Math.max(minSpouseTopY, Math.min(defaultSpouseTopY, maxAllowedSpouseTopY))
@@ -653,7 +802,7 @@ function layoutMarriageFan(personId) {
     spouse.spouseTopY = spouseTopY;
     spouse.spouseCenterX = rowStartX + rowGap * index;
     setCardPoint(spouse.spouseId, {
-      x: spouse.spouseCenterX - TREE_CARD_WIDTH / 2,
+      x: spouse.spouseCenterX - metrics.cardWidth / 2,
       y: spouse.spouseTopY,
     });
     hideOriginalMarriageLinks(personId, spouse.spouseId, spouse.childIds);
@@ -673,7 +822,7 @@ function layoutMarriageFan(personId) {
 
     const childJoinY = Math.min(...spouse.childBoxes.map((box) => box.top)) - 18;
     addMarriageFanPath(linksView, [
-      { x: spouse.spouseCenterX, y: spouse.spouseTopY + TREE_CARD_HEIGHT },
+      { x: spouse.spouseCenterX, y: spouse.spouseTopY + metrics.cardHeight },
       { x: spouse.spouseCenterX, y: childJoinY },
       { x: spouse.targetCenterX, y: childJoinY },
     ], "marriage-fan-link");
@@ -696,6 +845,20 @@ function layoutMarriageFan(personId) {
 
 function applyCustomMarriageFanLayout() {
   clearMarriageFanLayout();
+  decorateTreeLinks();
+  const metrics = getTreeMetrics();
+  layoutShiftedFamilyCluster({
+    personId: "oleg-povalyukhin",
+    spouseId: "alexandra-pirina",
+    childOrder: [
+      "anna-povalyukhina",
+      "maria-povalyukhina",
+      "natalya-povalyukhina",
+    ],
+    spouseShiftX: metrics.key === "desktop" ? -92 : -56,
+    childrenShiftX: metrics.key === "desktop" ? 76 : 46,
+  });
+  addSpouseLinkMarkers();
 }
 
 function scheduleMarriageFanLayout(transitionTime = 0) {
@@ -754,14 +917,16 @@ function syncSearchToTree() {
 }
 
 function createTreeChart() {
+  const metrics = getTreeMetrics();
   treeEl.innerHTML = "";
   treeEl.classList.add("f3", "family-tree-auto");
+  treeViewportMode = metrics.key;
 
   const chart = window.f3
     .createChart(treeEl, buildTreeData())
     .setOrientationVertical()
-    .setCardXSpacing(290)
-    .setCardYSpacing(245)
+    .setCardXSpacing(metrics.cardXSpacing)
+    .setCardYSpacing(metrics.cardYSpacing)
     .setShowSiblingsOfMain(true)
     .setSingleParentEmptyCard(false)
     .setTransitionTime(700)
@@ -773,7 +938,7 @@ function createTreeChart() {
   const card = chart.setCardHtml();
   card
     .setStyle("rect")
-    .setCardDim({ w: 224, h: 98 })
+    .setCardDim({ w: metrics.cardWidth, h: metrics.cardHeight })
     .setCardInnerHtmlCreator((datum) => buildTreeCardHtml(datum))
     .setOnCardUpdate(function onCardUpdate(datum) {
       const cardEl = this.querySelector(".card");
@@ -794,8 +959,8 @@ function createTreeChart() {
       focusTreeSection();
     });
 
-  currentTreeMainId = defaultTreeMainId;
-  chart.updateMainId(defaultTreeMainId);
+  currentTreeMainId = people[currentTreeMainId] ? currentTreeMainId : defaultTreeMainId;
+  chart.updateMainId(currentTreeMainId);
   chart.updateTree({ initial: true, tree_position: "fit", transition_time: 0 });
   centerTreeMainCard(chart, 0);
   return chart;
@@ -1054,6 +1219,20 @@ photoModalEl?.addEventListener("touchmove", (event) => {
 photoModalEl?.addEventListener("touchend", () => {
   photoSwipeActive = false;
 }, { passive: true });
+
+window.addEventListener("resize", () => {
+  if (treeResizeTimerId) {
+    window.clearTimeout(treeResizeTimerId);
+  }
+
+  treeResizeTimerId = window.setTimeout(() => {
+    treeResizeTimerId = 0;
+    const nextMode = getTreeMetrics().key;
+    if (nextMode !== treeViewportMode) {
+      renderTree();
+    }
+  }, 120);
+});
 
 renderTree();
 renderMemoirTabs(memoirs.sections[0].id);

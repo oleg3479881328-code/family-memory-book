@@ -368,6 +368,9 @@ a {
 .family-tree {
   overflow: auto;
   padding: 32px 24px;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x pan-y;
   background:
     radial-gradient(circle at 50% 10%, rgba(255, 255, 255, 0.8), transparent 42%),
     linear-gradient(135deg, #fffaf1 0%, #f7efe3 100%);
@@ -410,6 +413,26 @@ a {
   vector-effect: non-scaling-stroke;
 }
 
+.family-tree-auto .link.is-parent-link {
+  stroke: #2f2721;
+  stroke-width: 1.8px;
+}
+
+.family-tree-auto .link.is-spouse-link {
+  stroke: #8b413f;
+  stroke-width: 2.3px;
+  stroke-dasharray: 7 5;
+  opacity: 0.92;
+}
+
+.family-tree-auto .spouse-link-marker {
+  fill: #fffaf1;
+  stroke: #8b413f;
+  stroke-width: 2px;
+  vector-effect: non-scaling-stroke;
+  pointer-events: none;
+}
+
 .family-tree-auto .link.is-hidden-marriage-link {
   opacity: 0;
 }
@@ -422,6 +445,13 @@ a {
   stroke-linejoin: round;
   vector-effect: non-scaling-stroke;
   pointer-events: none;
+}
+
+.family-tree-auto .marriage-fan-link.spouse-cluster-link {
+  stroke: #8b413f;
+  stroke-width: 2.3px;
+  stroke-dasharray: 7 5;
+  opacity: 0.92;
 }
 
 .family-tree-auto .card {
@@ -1267,7 +1297,16 @@ a {
   }
 
   .family-tree {
-    padding: 14px;
+    padding: 12px 10px 18px;
+  }
+
+  .family-tree-auto {
+    min-height: 540px;
+    height: 64vh;
+  }
+
+  .family-chart-card {
+    box-shadow: 0 4px 10px rgba(62, 43, 28, 0.06);
   }
 }
 
@@ -1365,8 +1404,8 @@ a {
   }
 
   .family-tree-auto {
-    min-height: 600px;
-    height: 70vh;
+    min-height: 500px;
+    height: 62vh;
   }
 
   .family-chart-card {
@@ -1443,8 +1482,8 @@ a {
 
   .person-panel {
     width: calc(100vw - 16px);
-    max-height: min(85vh, 600px);
-    padding: 14px 16px 12px;
+    max-height: min(88vh, 640px);
+    padding: 12px 14px 12px;
   }
 
   .person-modal-layout {
@@ -1454,11 +1493,16 @@ a {
 
   .person-panel h3 {
     font-size: 20px;
-    margin-right: 32px;
+    margin-right: 28px;
+    line-height: 1.08;
   }
 
   .person-album-thumbs {
     grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .person-album-thumbs-scroll {
+    max-height: 46vh;
   }
 
   .person-photo-placeholder {
@@ -1503,8 +1547,8 @@ a {
 
   .memoir-dialog {
     width: calc(100vw - 16px);
-    max-height: min(85vh, 700px);
-    padding: 16px;
+    max-height: min(88vh, 700px);
+    padding: 14px;
   }
 
   .memoir-dialog h3 {
@@ -1559,8 +1603,8 @@ a {
   }
 
   .family-chart-card {
-    width: 160px;
-    min-height: 70px;
+    width: 154px;
+    min-height: 68px;
     gap: 8px;
     padding: 4px 6px 4px 8px;
   }
@@ -1588,6 +1632,10 @@ a {
 
   .person-panel h3 {
     font-size: 18px;
+  }
+
+  .person-album-thumbs-scroll {
+    max-height: 42vh;
   }
 
   .person-album-thumbs {
@@ -1629,8 +1677,8 @@ a {
   }
 
   .family-tree-auto {
-    min-height: 400px;
-    height: 60vh;
+    min-height: 360px;
+    height: 58vh;
   }
 
   .photo-viewer {
