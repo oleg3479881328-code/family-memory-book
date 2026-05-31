@@ -1671,6 +1671,39 @@ a {
     max-height: 42vh;
   }
 
+  .memoir-modal {
+    padding: 6px;
+  }
+
+  .memoir-dialog {
+    width: calc(100vw - 12px);
+    max-width: calc(100vw - 12px);
+    max-height: min(90vh, 680px);
+    padding: 12px 10px 14px;
+    border-radius: 10px;
+  }
+
+  .memoir-dialog h3 {
+    margin-bottom: 12px;
+    padding-right: 30px;
+    font-size: 18px;
+    line-height: 1.12;
+  }
+
+  .memoir-dialog .memoir-text p {
+    margin-bottom: 12px;
+    font-size: 15px;
+    line-height: 1.42;
+  }
+
+  .memoir-dialog .modal-close {
+    top: 6px;
+    right: 6px;
+    width: 26px;
+    height: 26px;
+    font-size: 17px;
+  }
+
   .person-album-thumbs {
     grid-template-columns: repeat(2, minmax(0, 1fr));
   }
