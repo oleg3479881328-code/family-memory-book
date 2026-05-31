@@ -42,6 +42,8 @@ a {
   color: inherit;
 }
 
+/* ===== Header / Nav ===== */
+
 .site-header {
   position: sticky;
   top: 0;
@@ -60,6 +62,68 @@ a {
   font-weight: 700;
   text-decoration: none;
   letter-spacing: 0;
+  white-space: nowrap;
+}
+
+/* Hamburger toggle — hidden on desktop */
+.nav-toggle {
+  display: none;
+  position: relative;
+  z-index: 11;
+  width: 36px;
+  height: 36px;
+  padding: 6px;
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  background: transparent;
+  cursor: pointer;
+  flex-shrink: 0;
+}
+
+.nav-toggle-icon,
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  display: block;
+  width: 22px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--ink);
+  transition: transform 200ms ease, opacity 200ms ease;
+}
+
+.nav-toggle-icon {
+  position: relative;
+  margin: 0 auto;
+}
+
+.nav-toggle-icon::before,
+.nav-toggle-icon::after {
+  content: "";
+  position: absolute;
+  left: 0;
+}
+
+.nav-toggle-icon::before {
+  top: -7px;
+}
+
+.nav-toggle-icon::after {
+  top: 7px;
+}
+
+/* Open state: X animation */
+.nav-toggle.is-open .nav-toggle-icon {
+  background: transparent;
+}
+
+.nav-toggle.is-open .nav-toggle-icon::before {
+  top: 0;
+  transform: rotate(45deg);
+}
+
+.nav-toggle.is-open .nav-toggle-icon::after {
+  top: 0;
+  transform: rotate(-45deg);
 }
 
 .top-nav {
@@ -72,6 +136,9 @@ a {
 .top-nav a {
   text-decoration: none;
 }
+
+
+/* ===== Hero ===== */
 
 .hero {
   display: grid;
@@ -107,6 +174,8 @@ a {
   gap: 12px;
   margin-top: 34px;
 }
+
+/* ===== Buttons ===== */
 
 .button,
 .tree-toolbar button,
@@ -153,6 +222,8 @@ a {
   border-color: var(--accent);
 }
 
+/* ===== Hero Photo ===== */
+
 .hero-photo {
   align-self: stretch;
   min-width: 0;
@@ -171,6 +242,8 @@ a {
   object-fit: cover;
   display: block;
 }
+
+/* ===== Sections ===== */
 
 .section-band,
 .section {
@@ -250,6 +323,8 @@ a {
   margin: 0;
   font-size: 18px;
 }
+
+/* ===== Tree ===== */
 
 .tree-layout {
   background: linear-gradient(135deg, #fffdf7 0%, #fbf3e7 100%);
@@ -537,6 +612,8 @@ a {
   opacity: 0.2;
 }
 
+/* ===== Person Panel ===== */
+
 .person-panel {
   position: relative;
   z-index: 1;
@@ -756,6 +833,8 @@ a {
   text-decoration: none;
 }
 
+/* ===== Modals ===== */
+
 .person-modal[hidden],
 .photo-modal[hidden],
 .memoir-modal[hidden] {
@@ -911,6 +990,8 @@ a {
   color: #fffaf1;
 }
 
+/* ===== Photo Grid ===== */
+
 .photo-grid {
   display: grid;
   gap: 28px;
@@ -1063,6 +1144,10 @@ a {
   color: var(--muted);
 }
 
+/* ================================================================
+   RESPONSIVE: Tablet (≤900px)
+   ================================================================ */
+
 @media (max-width: 900px) {
   .site-header,
   .section-heading {
@@ -1104,10 +1189,42 @@ a {
   }
 }
 
+/* ================================================================
+   RESPONSIVE: Phone (≤560px)
+   ================================================================ */
+
 @media (max-width: 560px) {
+  .nav-toggle {
+    display: block;
+  }
+
   .top-nav {
-    flex-wrap: wrap;
-    gap: 12px;
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10;
+    flex-direction: column;
+    gap: 0;
+    width: 260px;
+    height: 100vh;
+    padding: 72px 20px 24px;
+    background: rgba(246, 241, 232, 0.98);
+    border-left: 1px solid var(--line);
+    box-shadow: -8px 0 30px rgba(36, 27, 22, 0.12);
+    transform: translateX(100%);
+    transition: transform 240ms ease;
+    overflow-y: auto;
+  }
+
+  .top-nav.is-open {
+    transform: translateX(0);
+  }
+
+  .top-nav a {
+    display: block;
+    padding: 14px 0;
+    font-size: 17px;
+    border-bottom: 1px solid var(--line);
   }
 
   .hero h1 {
@@ -1145,5 +1262,384 @@ a {
 
   .family-tree {
     padding: 14px;
+  }
+}
+
+
+/* ================================================================
+   RESPONSIVE: Small Phone (≤430px)
+   ================================================================ */
+
+@media (max-width: 430px) {
+  .site-header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    padding: 12px 16px;
+  }
+
+  .brand {
+    font-size: 18px;
+    text-align: center;
+  }
+
+  .top-nav {
+    justify-content: center;
+    gap: 14px;
+    font-size: 14px;
+  }
+
+  .hero {
+    padding: 24px 16px 32px;
+  }
+
+  .hero h1 {
+    font-size: 34px;
+  }
+
+  .hero p {
+    font-size: 16px;
+    margin-top: 16px;
+  }
+
+  .hero-actions {
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+  }
+
+  .hero-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .hero-photo {
+    min-height: 220px;
+  }
+
+  .section-band,
+  .section {
+    padding: 36px 16px;
+  }
+
+  .intro-grid a {
+    min-height: 140px;
+    padding: 20px;
+  }
+
+  .intro-grid strong {
+    font-size: 20px;
+  }
+
+  .section-heading h2 {
+    font-size: 28px;
+  }
+
+  .section-heading p {
+    font-size: 15px;
+  }
+
+  .tree-toolbar {
+    flex-direction: column;
+    gap: 8px;
+    padding: 12px;
+  }
+
+  .tree-toolbar input {
+    flex: 1 1 auto;
+    width: 100%;
+  }
+
+  .tree-toolbar button {
+    width: 100%;
+  }
+
+  .tree-shell {
+    min-height: 480px;
+  }
+
+  .family-tree-auto {
+    min-height: 600px;
+    height: 70vh;
+  }
+
+  .family-chart-card {
+    width: 180px;
+    min-height: 80px;
+    gap: 10px;
+    padding: 6px 8px 6px 10px;
+  }
+
+  .family-chart-card__portrait {
+    width: 60px;
+    height: 74px;
+  }
+
+  .family-chart-card__name {
+    font-size: 11px;
+  }
+
+  .family-chart-card__dates {
+    font-size: 10px;
+  }
+
+  .tree-top-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 8px;
+  }
+
+  .tree-top-actions .button {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .memoir-tabs {
+    gap: 8px;
+  }
+
+  .memoir-tabs button {
+    flex: 1 1 auto;
+    min-width: 0;
+    font-size: 13px;
+    padding: 8px 10px;
+  }
+
+  .photo-grid {
+    gap: 18px;
+  }
+
+  .album-grid,
+  .archive-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .album-cover {
+    min-height: 200px;
+  }
+
+  .album-cover strong {
+    font-size: 18px;
+  }
+
+  .album-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .archive-subtitle {
+    font-size: 20px;
+  }
+
+  .photo-card img {
+    aspect-ratio: 4 / 3;
+  }
+
+  .person-panel {
+    width: calc(100vw - 16px);
+    max-height: min(85vh, 600px);
+    padding: 14px 16px 12px;
+  }
+
+  .person-modal-layout {
+    grid-template-columns: 1fr;
+    gap: 12px;
+  }
+
+  .person-panel h3 {
+    font-size: 20px;
+    margin-right: 32px;
+  }
+
+  .person-album-thumbs {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .person-photo-placeholder {
+    min-height: 100px;
+  }
+
+  .photo-viewer {
+    width: calc(100vw - 16px);
+    padding: 10px;
+    gap: 6px;
+  }
+
+  .photo-nav {
+    width: 34px;
+    height: 44px;
+    font-size: 24px;
+  }
+
+  .photo-prev {
+    left: 8px;
+  }
+
+  .photo-next {
+    right: 8px;
+  }
+
+  .photo-counter {
+    left: 10px;
+    bottom: 44px;
+    font-size: 11px;
+    padding: 2px 7px;
+  }
+
+  .photo-viewer img {
+    max-height: min(60vh, 480px);
+  }
+
+  .photo-viewer figcaption {
+    font-size: 13px;
+    padding-right: 32px;
+  }
+
+  .memoir-dialog {
+    width: calc(100vw - 16px);
+    max-height: min(85vh, 700px);
+    padding: 16px;
+  }
+
+  .memoir-dialog h3 {
+    font-size: 22px;
+    margin-bottom: 16px;
+    padding-right: 36px;
+  }
+
+  .memoir-dialog .memoir-text p {
+    font-size: 16px;
+  }
+
+  .site-footer {
+    padding: 20px 16px;
+    font-size: 14px;
+  }
+
+  .modal-close {
+    width: 28px;
+    height: 28px;
+    font-size: 18px;
+    top: 6px;
+    right: 6px;
+  }
+
+  .person-modal,
+  .photo-modal,
+  .memoir-modal {
+    padding: 8px;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE: Very Small Phone (≤375px)
+   ================================================================ */
+
+@media (max-width: 375px) {
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero p {
+    font-size: 15px;
+  }
+
+  .hero-photo {
+    min-height: 180px;
+  }
+
+  .section-heading h2 {
+    font-size: 24px;
+  }
+
+  .family-chart-card {
+    width: 160px;
+    min-height: 70px;
+    gap: 8px;
+    padding: 4px 6px 4px 8px;
+  }
+
+  .family-chart-card__portrait {
+    width: 50px;
+    height: 62px;
+  }
+
+  .family-chart-card__name {
+    font-size: 10px;
+  }
+
+  .family-chart-card__dates {
+    font-size: 9px;
+  }
+
+  .album-cover {
+    min-height: 170px;
+  }
+
+  .album-cover strong {
+    font-size: 16px;
+  }
+
+  .person-panel h3 {
+    font-size: 18px;
+  }
+
+  .person-album-thumbs {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .photo-nav {
+    width: 30px;
+    height: 38px;
+    font-size: 20px;
+  }
+
+  .photo-prev {
+    left: 4px;
+  }
+
+  .photo-next {
+    right: 4px;
+  }
+}
+
+/* ================================================================
+   RESPONSIVE: Landscape Phone (≤768px, landscape)
+   ================================================================ */
+
+@media (max-height: 500px) and (orientation: landscape) {
+  .hero {
+    min-height: auto;
+    padding: 20px 16px 24px;
+  }
+
+  .hero h1 {
+    font-size: 28px;
+  }
+
+  .hero-photo {
+    min-height: 160px;
+    max-height: 200px;
+  }
+
+  .family-tree-auto {
+    min-height: 400px;
+    height: 60vh;
+  }
+
+  .photo-viewer {
+    max-height: min(80vh, 500px);
+  }
+
+  .photo-viewer img {
+    max-height: min(55vh, 350px);
+  }
+
+  .person-panel {
+    max-height: min(80vh, 450px);
+  }
+
+  .memoir-dialog {
+    max-height: min(80vh, 500px);
   }
 }

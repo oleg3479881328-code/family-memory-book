@@ -21,8 +21,11 @@ const photoPrevButtonEl = document.querySelector("[data-photo-prev]");
 const photoNextButtonEl = document.querySelector("[data-photo-next]");
 const publishSiteButtonEl = document.querySelector("[data-publish-site]");
 const publishStatusEl = document.querySelector("[data-publish-status]");
+const navToggleEl = document.querySelector(".nav-toggle");
+const topNavEl = document.querySelector(".top-nav");
 const TREE_CARD_WIDTH = 224;
 const TREE_CARD_HEIGHT = 98;
+
 
 const defaultTreeMainId = "anna-kuteinikova";
 const assetUrl = window.__withAssetVersion || ((path) => path);
@@ -976,6 +979,84 @@ document.querySelector("#collapse-all").addEventListener("click", () => {
   showPerson(defaultTreeMainId);
 });
 
+/* ===== Mobile: Hamburger Menu ===== */
+
+function closeNav() {
+  navToggleEl?.classList.remove("is-open");
+  topNavEl?.classList.remove("is-open");
+  navToggleEl?.setAttribute("aria-expanded", "false");
+  navToggleEl?.setAttribute("aria-label", "Открыть меню");
+}
+
+function toggleNav() {
+  const isOpen = topNavEl?.classList.toggle("is-open");
+  navToggleEl?.classList.toggle("is-open", isOpen);
+  navToggleEl?.setAttribute("aria-expanded", String(Boolean(isOpen)));
+  navToggleEl?.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+}
+
+navToggleEl?.addEventListener("click", (event) => {
+  event.stopPropagation();
+  toggleNav();
+});
+
+// Close nav when clicking a link inside it
+topNavEl?.addEventListener("click", (event) => {
+  if (event.target.closest("a")) {
+    closeNav();
+  }
+});
+
+// Close nav when clicking outside
+document.addEventListener("click", (event) => {
+  if (topNavEl?.classList.contains("is-open") && !event.target.closest(".site-header")) {
+    closeNav();
+  }
+});
+
+// Close nav on Escape
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && topNavEl?.classList.contains("is-open")) {
+    closeNav();
+  }
+});
+
+/* ===== Mobile: Touch swipe for photo viewer ===== */
+
+let photoSwipeStartX = 0;
+let photoSwipeStartY = 0;
+let photoSwipeActive = false;
+
+photoModalEl?.addEventListener("touchstart", (event) => {
+  const touch = event.touches[0];
+  if (!touch) return;
+  photoSwipeStartX = touch.clientX;
+  photoSwipeStartY = touch.clientY;
+  photoSwipeActive = true;
+}, { passive: true });
+
+photoModalEl?.addEventListener("touchmove", (event) => {
+  if (!photoSwipeActive) return;
+  const touch = event.touches[0];
+  if (!touch) return;
+  const dx = touch.clientX - photoSwipeStartX;
+  const dy = touch.clientY - photoSwipeStartY;
+  // Only trigger horizontal swipe if more horizontal than vertical
+  if (Math.abs(dx) > Math.abs(dy) && Math.abs(dx) > 40) {
+    photoSwipeActive = false;
+    if (dx > 0) {
+      showAdjacentPhoto(-1); // swipe right → prev
+    } else {
+      showAdjacentPhoto(1);  // swipe left → next
+    }
+  }
+}, { passive: true });
+
+photoModalEl?.addEventListener("touchend", () => {
+  photoSwipeActive = false;
+}, { passive: true });
+
 renderTree();
 renderMemoirTabs(memoirs.sections[0].id);
 renderPhotos();
+

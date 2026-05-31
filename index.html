@@ -10,7 +10,7 @@
     />
     <script>
       (function () {
-        const hostedVersion = "20260530154000";
+        const hostedVersion = "20260531193000";
         const localVersion = Date.now().toString();
         const isLocalPreview =
           location.protocol === "file:" ||
@@ -41,6 +41,9 @@
   <body>
     <header class="site-header">
       <a class="brand" href="#top">Книга памяти семьи</a>
+      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+        <span class="nav-toggle-icon"></span>
+      </button>
       <nav class="top-nav" aria-label="Главная навигация">
         <a href="#tree">Родословная</a>
         <a href="#memoirs">Мемуары</a>
@@ -48,6 +51,7 @@
         <a href="help.html">Как пользоваться</a>
       </nav>
     </header>
+
 
     <main id="top">
       <section class="hero">

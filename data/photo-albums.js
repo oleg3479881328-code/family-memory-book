@@ -528,10 +528,20 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Павла Александровича. Фото 9",
         "src": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/ChatGPT Image 10 мая 2026 г., 20_54_00.png"
+      },
+      {
+        "src": "assets/photo-albums/pavel-fateev/Без имени.jpg",
+        "caption": "Фотоальбом Павел Александрович Фатеев. Фото 10"
+      },
+      {
+        "src": "assets/photo-albums/pavel-fateev/Пашин улов.jpg",
+        "caption": "Фотоальбом Павел Александрович Фатеев. Фото 11"
       }
     ],
     "portrait": "assets/photo-albums/pavel-fateev/Photos-3-001 (14)/ChatGPT Image 10 мая 2026 г., 20_54_00.png",
-    "title": "Павел Александрович Фатеев"
+    "title": "Павел Александрович Фатеев",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1028,10 +1038,16 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Даниила Фатеева. Фото 8",
         "src": "assets/photo-albums/daniil-fateev/WhatsApp Image7 2026-05-09 at 5.13.09 AM.jpeg"
+      },
+      {
+        "src": "assets/photo-albums/daniil-fateev/ДАНЯ.jpg",
+        "caption": "Фотоальбом Даниил Фатеев. Фото 9"
       }
     ],
     "portrait": "assets/photo-albums/daniil-fateev/WhatsApp Image21 2026-05-09 at 5.10.44 AM.jpeg",
-    "title": "Даниил Фатеев"
+    "title": "Даниил Фатеев",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1048,10 +1064,16 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Дарьяны Сергеевны. Фото 3",
         "src": "assets/photo-albums/daryana-medvedeva/WhatsApp Image2 2026-05-09 at 5.16.10 AM.jpeg"
+      },
+      {
+        "src": "assets/photo-albums/daryana-medvedeva/ДАНЯ И ДАРЬЯНА.jpg",
+        "caption": "Фотоальбом Дарьяна Сергеевна Медведева. Фото 4"
       }
     ],
     "portrait": "assets/photo-albums/daryana-medvedeva/WhatsApp Image2 2026-05-09 at 5.16.10 AM.jpeg",
-    "title": "Дарьяна Сергеевна Медведева"
+    "title": "Дарьяна Сергеевна Медведева",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1080,10 +1102,16 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Никиты Павловича. Фото 3",
         "src": "assets/photo-albums/nikita-fateev/WhatsApp Image1 2026-05-09 at 5.15.29 AM.jpeg"
+      },
+      {
+        "src": "assets/photo-albums/nikita-fateev/НИКИТА.jpg",
+        "caption": "Фотоальбом Никита Павлович Фатеев. Фото 4"
       }
     ],
     "portrait": "assets/photo-albums/nikita-fateev/ChatGPT Image 10 мая 2026 г., 18_44_08.png",
-    "title": "Никита Павлович Фатеев"
+    "title": "Никита Павлович Фатеев",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1390,9 +1418,23 @@ window.PHOTO_ALBUMS = [
       }
     ],
     "personId": "alexander-fateev",
-    "photos": [],
+    "photos": [
+      {
+        "src": "assets/photo-albums/alexander-fateev/С Ф.jpg",
+        "caption": "Фотоальбом Александр Константинович Фатеев. Фото 1"
+      },
+      {
+        "src": "assets/photo-albums/alexander-fateev/САША Ф.jpg",
+        "caption": "Фотоальбом Александр Константинович Фатеев. Фото 2"
+      },
+      {
+        "src": "assets/photo-albums/alexander-fateev/САША.jpg",
+        "caption": "Фотоальбом Александр Константинович Фатеев. Фото 3"
+      }
+    ],
     "title": "Александр Константинович Фатеев",
-    "videos": []
+    "videos": [],
+    "portrait": "assets/photo-albums/alexander-fateev/С Ф.jpg"
   },
   {
     "description": "Фотографии из семейного альбома.",
@@ -1421,10 +1463,24 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Александры Дмитриевны Куреневой. Фото 6",
         "src": "assets/photo-albums/alexandra-kureneva/IMG-20260513-WA0014.jpg"
+      },
+      {
+        "src": "assets/photo-albums/alexandra-kureneva/48464bd8-74df-4ff4-9a32-484978ac6043.png",
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 7"
+      },
+      {
+        "src": "assets/photo-albums/alexandra-kureneva/56be37a7-7161-44ee-9fa2-316d89c5af64.png",
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 8"
+      },
+      {
+        "src": "assets/photo-albums/alexandra-kureneva/d8ebac3b-c4dd-4e35-88a9-0654c2820e08.png",
+        "caption": "Фотоальбом Александра Дмитриевна Куренева. Фото 9"
       }
     ],
     "portrait": "assets/photo-albums/alexandra-kureneva/uploaded/IMG-20260513-WA0011.jpg",
-    "title": "Александра Дмитриевна Куренева"
+    "title": "Александра Дмитриевна Куренева",
+    "videos": [],
+    "externalLinks": []
   },
   {
     "description": "Фотографии из семейного альбома.",
