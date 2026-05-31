@@ -617,19 +617,19 @@ a {
 .person-panel {
   position: relative;
   z-index: 1;
-  width: min(880px, calc(100vw - 32px));
+  width: min(1040px, calc(100vw - 32px));
   max-height: min(78vh, 680px);
   padding: 18px 20px 16px;
   background: #fbf4e8;
   border: 1px solid var(--line);
   border-radius: var(--radius);
   box-shadow: 0 28px 90px rgba(45, 31, 22, 0.24);
-  overflow: auto;
+  overflow: hidden;
 }
 
 .person-modal-layout {
   display: grid;
-  grid-template-columns: minmax(0, 1fr) 210px;
+  grid-template-columns: minmax(0, 1fr) 340px;
   gap: 18px;
   align-items: stretch;
 }
@@ -691,7 +691,7 @@ a {
 }
 
 .person-album-slot {
-  min-height: 190px;
+  min-height: 340px;
   padding: 12px;
   border: 1px solid var(--line);
   border-radius: 8px;
@@ -708,10 +708,16 @@ a {
   font-size: 14px;
 }
 
+.person-album-thumbs-scroll {
+  max-height: 520px;
+  overflow-y: auto;
+  padding-right: 4px;
+}
+
 .person-album-thumbs {
   display: grid;
-  grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 7px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
 }
 
 .person-album-videos,
@@ -734,7 +740,7 @@ a {
 .album-thumb img {
   display: block;
   width: 100%;
-  aspect-ratio: 1 / 1;
+  aspect-ratio: 0.95 / 1;
   object-fit: cover;
 }
 
