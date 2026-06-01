@@ -33,6 +33,11 @@ body.modal-open {
   overflow: hidden;
 }
 
+body.nav-open {
+  overflow: hidden;
+  touch-action: none;
+}
+
 button,
 input {
   font: inherit;
@@ -1245,22 +1250,34 @@ a {
     position: fixed;
     top: 0;
     right: 0;
-    z-index: 10;
+    left: auto;
+    z-index: 40;
     flex-direction: column;
     gap: 0;
-    width: 260px;
-    height: 100vh;
+    width: min(78vw, 280px);
+    max-width: calc(100vw - 24px);
+    height: 100dvh;
     padding: 72px 20px 24px;
     background: rgba(246, 241, 232, 0.98);
     border-left: 1px solid var(--line);
     box-shadow: -8px 0 30px rgba(36, 27, 22, 0.12);
-    transform: translateX(100%);
-    transition: transform 240ms ease;
+    transform: translate3d(100%, 0, 0);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transition: transform 240ms ease, opacity 180ms ease, visibility 0ms linear 240ms;
     overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+    will-change: transform;
   }
 
   .top-nav.is-open {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transition: transform 240ms ease, opacity 180ms ease;
   }
 
   .top-nav a {

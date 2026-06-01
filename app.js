@@ -1148,6 +1148,7 @@ document.querySelector("#collapse-all").addEventListener("click", () => {
 function closeNav() {
   navToggleEl?.classList.remove("is-open");
   topNavEl?.classList.remove("is-open");
+  document.body.classList.remove("nav-open");
   navToggleEl?.setAttribute("aria-expanded", "false");
   navToggleEl?.setAttribute("aria-label", "Открыть меню");
 }
@@ -1155,6 +1156,7 @@ function closeNav() {
 function toggleNav() {
   const isOpen = topNavEl?.classList.toggle("is-open");
   navToggleEl?.classList.toggle("is-open", isOpen);
+  document.body.classList.toggle("nav-open", Boolean(isOpen));
   navToggleEl?.setAttribute("aria-expanded", String(Boolean(isOpen)));
   navToggleEl?.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
 }
