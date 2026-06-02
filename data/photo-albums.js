@@ -1417,22 +1417,22 @@ window.PHOTO_ALBUMS = [
         "url": ""
       }
     ],
-    "personId": "alexander-fateev",
+    "personId": "sasha-fateev",
     "photos": [
       {
         "src": "assets/photo-albums/alexander-fateev/С Ф.jpg",
-        "caption": "Фотоальбом Александр Константинович Фатеев. Фото 1"
+        "caption": "Фотоальбом Александр Павлович Фатеев. Фото 1"
       },
       {
         "src": "assets/photo-albums/alexander-fateev/САША Ф.jpg",
-        "caption": "Фотоальбом Александр Константинович Фатеев. Фото 2"
+        "caption": "Фотоальбом Александр Павлович Фатеев. Фото 2"
       },
       {
         "src": "assets/photo-albums/alexander-fateev/САША.jpg",
-        "caption": "Фотоальбом Александр Константинович Фатеев. Фото 3"
+        "caption": "Фотоальбом Александр Павлович Фатеев. Фото 3"
       }
     ],
-    "title": "Александр Константинович Фатеев",
+    "title": "Александр Павлович Фатеев",
     "videos": [],
     "portrait": "assets/photo-albums/alexander-fateev/С Ф.jpg"
   },
