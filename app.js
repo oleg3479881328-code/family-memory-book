@@ -3,6 +3,35 @@ const memoirs = window.MEMOIRS;
 const photoAlbums = window.PHOTO_ALBUMS || [];
 const people = family.people;
 const albumsByPerson = new Map(photoAlbums.map((album) => [album.personId, album]));
+const memoirSectionOrder = [
+  "воспоминания-веры-дмитриевны-подковцевой",
+  "русская-печь",
+  "семейные-хроники",
+  "воспоминания-о-детстве-и-бабушке",
+  "отец",
+  "родители",
+  "земляничное-мыло",
+  "письма-к-сыну",
+  "устами-младенцев",
+];
+const memoirSectionAuthors = {
+  "воспоминания-веры-дмитриевны-подковцевой": "Подковцева В. Д.",
+  "русская-печь": "Подковцева В. Д.",
+  "семейные-хроники": "Подковцева Е. Н.",
+  "воспоминания-о-детстве-и-бабушке": "Фатеев К. А.",
+  "отец": "Повалюхина Т. Н.",
+  "родители": "Повалюхина Т. Н.",
+  "земляничное-мыло": "Повалюхина Т. Н.",
+  "письма-к-сыну": "Повалюхина Т. Н.",
+};
+const memoirSections = (() => {
+  const orderIndex = new Map(memoirSectionOrder.map((id, index) => [id, index]));
+  return [...(memoirs.sections || [])].sort((left, right) => {
+    const leftIndex = orderIndex.has(left.id) ? orderIndex.get(left.id) : Number.MAX_SAFE_INTEGER;
+    const rightIndex = orderIndex.has(right.id) ? orderIndex.get(right.id) : Number.MAX_SAFE_INTEGER;
+    return leftIndex - rightIndex;
+  });
+})();
 
 const treeEl = document.querySelector("#family-tree");
 const modalEl = document.querySelector("#person-modal");
@@ -353,7 +382,7 @@ function showPerson(id) {
 
   const memoirLinks = (person.memoirs || [])
     .map((memoirId) => {
-      const section = memoirs.sections.find((item) => item.id === memoirId);
+      const section = memoirSections.find((item) => item.id === memoirId);
       return section ? `<button type="button" class="memoir-link" data-memoir="${section.id}">${section.title}</button>` : "";
     })
     .join("");
@@ -378,19 +407,23 @@ function showPerson(id) {
 }
 
 function renderMemoirTabs(activeId) {
-  tabsEl.innerHTML = memoirs.sections
+  tabsEl.innerHTML = memoirSections
     .map(
-      (section) => `
+      (section) => {
+        const author = memoirSectionAuthors[section.id];
+        return `
         <button type="button" class="${section.id === activeId ? "is-active" : ""}" data-memoir="${section.id}" role="tab">
-          ${section.title}
+          <span class="memoir-tab-title">${section.title}</span>
+          ${author ? `<span class="memoir-tab-author">${author}</span>` : ""}
         </button>
-      `,
+      `;
+      },
     )
     .join("");
 }
 
-function showMemoir(id = memoirs.sections[0].id) {
-  const section = memoirs.sections.find((item) => item.id === id) || memoirs.sections[0];
+function showMemoir(id = memoirSections[0].id) {
+  const section = memoirSections.find((item) => item.id === id) || memoirSections[0];
   renderMemoirTabs(section.id);
   memoirModalContentEl.innerHTML = `
     <h3>${section.title}</h3>
@@ -1237,6 +1270,6 @@ window.addEventListener("resize", () => {
 });
 
 renderTree();
-renderMemoirTabs(memoirs.sections[0].id);
+renderMemoirTabs(memoirSections[0].id);
 renderPhotos();
 

@@ -364,6 +364,27 @@ a {
   padding: 8px 12px;
 }
 
+.memoir-tabs button {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 2px;
+}
+
+.memoir-tab-title {
+  line-height: 1.2;
+}
+
+.memoir-tab-author {
+  font-size: 12px;
+  line-height: 1.2;
+  color: var(--muted);
+}
+
+.memoir-tabs button.is-active .memoir-tab-author {
+  color: rgba(255, 250, 241, 0.82);
+}
+
 .tree-shell {
   display: grid;
   grid-template-columns: minmax(0, 1fr);
