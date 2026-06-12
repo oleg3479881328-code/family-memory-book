@@ -61,7 +61,10 @@ window.FAMILY = {
       "notes": [
         "Жена Олега Игоревича Повалюхина."
       ],
-      "parents": [],
+      "parents": [
+        "natalya-pirina",
+        "sergey-pirin"
+      ],
       "partners": [
         "oleg-povalyukhin"
       ]
@@ -429,6 +432,21 @@ window.FAMILY = {
         "gerard-hurley"
       ]
     },
+    "natalya-pirina": {
+      "children": [
+        "alexandra-pirina"
+      ],
+      "dates": "даты неизвестны",
+      "gender": "F",
+      "name": "Наталья Николаевна Пирина",
+      "notes": [
+        "Мать Александры Сергеевны Пириной."
+      ],
+      "parents": [],
+      "partners": [
+        "sergey-pirin"
+      ]
+    },
     "natalya-tankova": {
       "children": [],
       "dates": "23.02.1975",
@@ -607,6 +625,21 @@ window.FAMILY = {
         "pavel-fateev"
       ],
       "partners": []
+    },
+    "sergey-pirin": {
+      "children": [
+        "alexandra-pirina"
+      ],
+      "dates": "даты неизвестны",
+      "gender": "M",
+      "name": "Сергей Иванович Пирин",
+      "notes": [
+        "Отец Александры Сергеевны Пириной."
+      ],
+      "parents": [],
+      "partners": [
+        "natalya-pirina"
+      ]
     },
     "sergey-kuteinikov": {
       "children": [

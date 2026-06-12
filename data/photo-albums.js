@@ -1189,6 +1189,20 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
+    "personId": "alexandra-pirina",
+    "photos": [
+      {
+        "caption": "Фотоальбом Александры Сергеевны Пириной. Фото 1",
+        "src": "assets/photo-albums/alexandra-pirina/Саша.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/alexandra-pirina/Саша.jpg",
+    "title": "Александра Сергеевна Пирина",
+    "videos": []
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
     "personId": "anna-povalyukhina",
     "photos": [
       {
@@ -1529,6 +1543,22 @@ window.PHOTO_ALBUMS = [
     ],
     "portrait": "assets/photo-albums/anna-kuteinikova/uploaded/IMG-20260515-WA0007.jpg",
     "title": "Анна Сергеевна Кутейникова"
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
+    "personId": "natalya-pirina",
+    "photos": [],
+    "title": "Наталья Николаевна Пирина",
+    "videos": []
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
+    "personId": "sergey-pirin",
+    "photos": [],
+    "title": "Сергей Иванович Пирин",
+    "videos": []
   },
   {
     "description": "Фотографии из семейного альбома.",
