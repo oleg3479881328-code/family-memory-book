@@ -53,7 +53,8 @@ window.FAMILY = {
     },
     "alexandra-pirina": {
       "children": [
-        "anna-povalyukhina"
+        "anna-povalyukhina",
+        "polina-musienko"
       ],
       "dates": "17.10.1970",
       "gender": "F",
@@ -596,6 +597,20 @@ window.FAMILY = {
         "vera-plitkina",
         "marina-drozdova"
       ]
+    },
+    "polina-musienko": {
+      "children": [],
+      "dates": "даты неизвестны",
+      "gender": "F",
+      "name": "Полина Юрьевна Мусиенко",
+      "notes": [
+        "Дочь Александры Сергеевны Пириной.",
+        "Сестра Анны Олеговны Повалюхиной."
+      ],
+      "parents": [
+        "alexandra-pirina"
+      ],
+      "partners": []
     },
     "petr-povalyukhin": {
       "children": [

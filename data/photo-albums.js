@@ -1319,6 +1319,14 @@ window.PHOTO_ALBUMS = [
   },
   {
     "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
+    "personId": "polina-musienko",
+    "photos": [],
+    "title": "Полина Юрьевна Мусиенко",
+    "videos": []
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
     "personId": "dmitry-solovyov",
     "photos": [
       {
