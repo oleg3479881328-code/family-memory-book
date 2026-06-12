@@ -879,9 +879,6 @@ function layoutMarriageFan(personId) {
 function applyCustomMarriageFanLayout() {
   clearMarriageFanLayout();
   decorateTreeLinks();
-  multiPartnerIds.forEach((personId) => {
-    layoutMarriageFan(personId);
-  });
   addSpouseLinkMarkers();
 }
 
