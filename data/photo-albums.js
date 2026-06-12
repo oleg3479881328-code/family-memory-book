@@ -1321,7 +1321,17 @@ window.PHOTO_ALBUMS = [
     "description": "Фотографии из семейного альбома.",
     "externalLinks": [],
     "personId": "polina-musienko",
-    "photos": [],
+    "photos": [
+      {
+        "caption": "Фотоальбом Полины Юрьевны Мусиенко. Фото 1",
+        "src": "assets/photo-albums/polina-musienko/Поля.jpg"
+      },
+      {
+        "caption": "Фотоальбом Полины Юрьевны Мусиенко. Фото 2",
+        "src": "assets/photo-albums/polina-musienko/Без имени.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/polina-musienko/Поля.jpg",
     "title": "Полина Юрьевна Мусиенко",
     "videos": []
   },
@@ -1556,7 +1566,17 @@ window.PHOTO_ALBUMS = [
     "description": "Фотографии из семейного альбома.",
     "externalLinks": [],
     "personId": "natalya-pirina",
-    "photos": [],
+    "photos": [
+      {
+        "caption": "Фотоальбом Натальи Николаевны Пириной. Фото 1",
+        "src": "assets/photo-albums/natalya-pirina/Наталья Николаевна.jpg"
+      },
+      {
+        "caption": "Фотоальбом Натальи Николаевны Пириной. Фото 2",
+        "src": "assets/photo-albums/natalya-pirina/Без имени.jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/natalya-pirina/Наталья Николаевна.jpg",
     "title": "Наталья Николаевна Пирина",
     "videos": []
   },
@@ -1564,8 +1584,22 @@ window.PHOTO_ALBUMS = [
     "description": "Фотографии из семейного альбома.",
     "externalLinks": [],
     "personId": "sergey-pirin",
-    "photos": [],
+    "photos": [
+      {
+        "caption": "Фотоальбом Сергея Ивановича Пирина. Фото 1",
+        "src": "assets/photo-albums/sergey-pirin/С, И..jpg"
+      }
+    ],
+    "portrait": "assets/photo-albums/sergey-pirin/С, И..jpg",
     "title": "Сергей Иванович Пирин",
+    "videos": []
+  },
+  {
+    "description": "Фотографии из семейного альбома.",
+    "externalLinks": [],
+    "personId": "yuriy-musienko",
+    "photos": [],
+    "title": "Юрий Мусиенко",
     "videos": []
   },
   {

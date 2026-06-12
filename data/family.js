@@ -67,7 +67,8 @@ window.FAMILY = {
         "sergey-pirin"
       ],
       "partners": [
-        "oleg-povalyukhin"
+        "oleg-povalyukhin",
+        "yuriy-musienko"
       ]
     },
     "anatoly-povalyukhin": {
@@ -608,7 +609,8 @@ window.FAMILY = {
         "Сестра Анны Олеговны Повалюхиной."
       ],
       "parents": [
-        "alexandra-pirina"
+        "alexandra-pirina",
+        "yuriy-musienko"
       ],
       "partners": []
     },
@@ -830,6 +832,21 @@ window.FAMILY = {
       "parents": [],
       "partners": [
         "vera-solovyova"
+      ]
+    },
+    "yuriy-musienko": {
+      "children": [
+        "polina-musienko"
+      ],
+      "dates": "даты неизвестны",
+      "gender": "M",
+      "name": "Юрий Мусиенко",
+      "notes": [
+        "Отец Полины Юрьевны Мусиенко."
+      ],
+      "parents": [],
+      "partners": [
+        "alexandra-pirina"
       ]
     }
   },
