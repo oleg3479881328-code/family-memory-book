@@ -879,17 +879,8 @@ function layoutMarriageFan(personId) {
 function applyCustomMarriageFanLayout() {
   clearMarriageFanLayout();
   decorateTreeLinks();
-  const metrics = getTreeMetrics();
-  layoutShiftedFamilyCluster({
-    personId: "oleg-povalyukhin",
-    spouseId: "alexandra-pirina",
-    childOrder: [
-      "anna-povalyukhina",
-      "maria-povalyukhina",
-      "natalya-povalyukhina",
-    ],
-    spouseShiftX: metrics.key === "desktop" ? -92 : -56,
-    childrenShiftX: metrics.key === "desktop" ? 76 : 46,
+  multiPartnerIds.forEach((personId) => {
+    layoutMarriageFan(personId);
   });
   addSpouseLinkMarkers();
 }
