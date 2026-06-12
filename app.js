@@ -53,13 +53,17 @@ const publishStatusEl = document.querySelector("[data-publish-status]");
 const navToggleEl = document.querySelector(".nav-toggle");
 const topNavEl = document.querySelector(".top-nav");
 const defaultTreeMainId = "anna-kuteinikova";
+const requestedTreeMainId = (() => {
+  const mainId = new URLSearchParams(window.location.search).get("main");
+  return mainId && people[mainId] ? mainId : "";
+})();
 const assetUrl = window.__withAssetVersion || ((path) => path);
 
 let currentPhotoSet = [];
 let currentPhotoIndex = 0;
 let familyChart = null;
 let lastSearchFocusId = "";
-let currentTreeMainId = defaultTreeMainId;
+let currentTreeMainId = requestedTreeMainId || defaultTreeMainId;
 let marriageFanTimerId = 0;
 let treeViewportMode = "";
 let treeResizeTimerId = 0;
@@ -949,6 +953,7 @@ function createTreeChart() {
     .setCardXSpacing(metrics.cardXSpacing)
     .setCardYSpacing(metrics.cardYSpacing)
     .setShowSiblingsOfMain(true)
+    .setDuplicateBranchToggle(true)
     .setSingleParentEmptyCard(false)
     .setTransitionTime(700)
     .setAfterUpdate((updateOptions = {}) => {
