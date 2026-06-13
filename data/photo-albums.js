@@ -99,6 +99,18 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 24",
         "src": "assets/photo-albums/tamara-grigoryeva/я на море.jpg"
+      },
+      {
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 25",
+        "src": "assets/photo-albums/tamara-grigoryeva/20260612_182623.jpg"
+      },
+      {
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 26",
+        "src": "assets/photo-albums/tamara-grigoryeva/20260612_182641.jpg"
+      },
+      {
+        "caption": "Фотоальбом Тамара Николаевна Григорьева / Повалюхина. Фото 27",
+        "src": "assets/photo-albums/tamara-grigoryeva/bf0a774a-a695-4be8-bd2d-483e2aa34690.png"
       }
     ],
     "portrait": "assets/photo-albums/tamara-grigoryeva/Photos-3-001 (5)/IMG-20231105-WA0002.jpg",
@@ -160,6 +172,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Елены Николаевны. Фото 13",
         "src": "assets/photo-albums/elena-podkovtseva/Photos-3-001 (6)/WhatsApp Image7 2026-05-09 at 5.13.09 AM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Елены Николаевны. Фото 14",
+        "src": "assets/photo-albums/elena-podkovtseva/bf0a774a-a695-4be8-bd2d-483e2aa34690.png"
       }
     ],
     "title": "Елена Николаевна Подковцева"
@@ -1263,7 +1279,7 @@ window.PHOTO_ALBUMS = [
       },
       {
         "caption": "Фотоальбом Анны Олеговны. Фото 15",
-        "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0045.jpg"
+        "src": "assets/photo-albums/anna-povalyukhina/20260612_182623.jpg"
       },
       {
         "caption": "Фотоальбом Анны Олеговны. Фото 16",
@@ -1312,6 +1328,14 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Анны Олеговны. Фото 27",
         "src": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/viber image2.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 28",
+        "src": "assets/photo-albums/anna-povalyukhina/20260612_182641.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 29",
+        "src": "assets/photo-albums/anna-povalyukhina/Аня, Туся.jpg"
       }
     ],
     "portrait": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0034.jpg",
