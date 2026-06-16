@@ -15,22 +15,13 @@ Prepared in repository files:
 - `data/i18n/ui.en-US.js` — English UI strings.
 - `data/i18n/family.en-US.js` — English display names, short names, notes, and transliteration rules for family cards.
 - `data/i18n/help.en-US.js` — full English text layer for the help page.
+- `data/i18n/memoirs.en-US.js` — English memoir translations with original Russian section IDs preserved.
 
-Prepared in Issue #2 comments:
+Prepared in Issue #2 comments as supporting context / audit trail:
 
 - `EN-US Translation Pack v1` — UI, genealogy, photo captions, memoir title map, adaptation rules.
-- `EN-US Translation Pack v2A` — memoir translations for:
-  - `воспоминания-веры-дмитриевны-подковцевой`
-  - `русская-печь`
-  - `семейные-хроники`
-- `EN-US Translation Pack v2B` — memoir translations for:
-  - `отец`
-  - `родители`
-  - `письма-к-сыну`
-  - `устами-младенцев`
-  - `воспоминания-о-детстве-и-бабушке`
-  - `земляничное-мыло`
-- `SELF-REVIEW` — risks and corrections before implementation.
+- `EN-US Translation Pack v2A` and `v2B` — memoir translation source comments later consolidated into `data/i18n/memoirs.en-US.js`.
+- `SELF-REVIEW` and `SECOND SELF-REVIEW` — risks and corrections before implementation.
 
 ## Objective
 
@@ -200,24 +191,11 @@ Recommended minimal option: add `help.en.html` if it is faster and safer. Preser
 
 ## Memoirs implementation
 
-Create:
+Use the already prepared file:
 
 ```text
 data/i18n/memoirs.en-US.js
 ```
-
-Recommended object:
-
-```js
-window.MEMOIRS_EN_US = {
-  title: "Family Memory Book",
-  source: "Adapted English translation from: Мемуары воспоминания (1).docx",
-  translationNote: "The English text is adapted for readability for a US-based audience. The Russian original remains the source version.",
-  sections: []
-};
-```
-
-Populate `sections` from Issue #2 comments `EN-US Translation Pack v2A` and `EN-US Translation Pack v2B`.
 
 Important: keep every Russian section `id` exactly unchanged, because app logic can map translations by `id`.
 
@@ -274,7 +252,7 @@ Recommended:
 
 - Default language: Russian.
 - Add clear switcher: `Русский | English`.
-- Store selection in `localStorage`.
+- Store selection in `localStorage` for return visits.
 - Also support URL query:
   - `?lang=ru`
   - `?lang=en`
@@ -284,6 +262,60 @@ Recommended:
   - memoir titles and bodies;
   - photo captions;
   - help page.
+
+## Shareable language URLs — required
+
+The selected language must be encoded in the shareable URL.
+
+Owner requirement:
+
+> If the user copies a link while viewing the English version and sends it to someone else, the recipient must open the English version, not the Russian default.
+
+Required behavior:
+
+- Opening `?lang=en` must force English mode, even if `localStorage` says Russian.
+- Opening `?lang=ru` must force Russian mode, even if `localStorage` says English.
+- URL query must take priority over `localStorage`.
+- When the user switches to English, update the current URL to include `?lang=en` without losing the current hash/section.
+- When the user switches to Russian, update the current URL to include `?lang=ru` or remove `lang` only if the product owner approves Russian as implicit default.
+- If the current URL has a hash, preserve it:
+  - `index.html#memoirs` + English switch → `index.html?lang=en#memoirs`
+  - `index.html?lang=en#photos` must reopen in English and keep the photo-section location.
+- Internal links generated while in English mode should keep `lang=en`, including links to `help.html` or `help.en.html`.
+- The browser address bar must reflect the active language before the user copies the link.
+
+Recommended implementation:
+
+```js
+const url = new URL(window.location.href);
+const urlLang = url.searchParams.get("lang");
+const storedLang = localStorage.getItem("familyBookLanguage");
+const currentLang = urlLang === "en" || urlLang === "ru" ? urlLang : storedLang || "ru";
+
+function setLanguage(nextLang) {
+  const nextUrl = new URL(window.location.href);
+  nextUrl.searchParams.set("lang", nextLang);
+  history.replaceState(null, "", nextUrl.toString());
+  localStorage.setItem("familyBookLanguage", nextLang);
+  renderLanguage(nextLang);
+}
+```
+
+Acceptance examples:
+
+```text
+https://oleg3479881328-code.github.io/family-memory-book/?lang=en
+→ opens English version
+
+https://oleg3479881328-code.github.io/family-memory-book/?lang=ru
+→ opens Russian version
+
+https://oleg3479881328-code.github.io/family-memory-book/?lang=en#memoirs
+→ opens English version at Memoirs
+
+https://oleg3479881328-code.github.io/family-memory-book/help.html?lang=en
+→ opens English help content, or redirects to `help.en.html` if that strategy is chosen
+```
 
 ## Fallback rules
 
@@ -309,7 +341,12 @@ Before reporting completion, executor must verify:
 - English version works.
 - Language switcher works.
 - `localStorage` language choice works, if implemented.
-- `?lang=ru` and `?lang=en` work, if implemented.
+- `?lang=ru` and `?lang=en` work.
+- URL query language takes priority over `localStorage`.
+- Copying a link from English mode produces a URL containing `lang=en`.
+- Opening a copied `?lang=en` URL in a fresh browser/session opens English.
+- Hash links preserve language, for example `?lang=en#memoirs`.
+- Internal links preserve active language where relevant.
 - `data/memoirs.js` was not modified.
 - `data/family.js` was not modified unless explicitly approved.
 - `data/photo-albums.js` was not modified unless explicitly approved.
@@ -332,14 +369,16 @@ Before reporting completion, executor must verify:
    - `docs/CODEX_HANDOFF.md`
 2. Add/load i18n files.
 3. Add language state resolver.
-4. Add UI text resolver.
-5. Add person-card translation resolver.
-6. Add memoir translation resolver.
-7. Add photo caption resolver.
-8. Add help-page English path or dynamic help translation.
-9. Validate RU mode.
-10. Validate EN mode.
-11. Report exactly what was changed and what was not validated.
+4. Add shareable URL language resolver.
+5. Add UI text resolver.
+6. Add person-card translation resolver.
+7. Add memoir translation resolver.
+8. Add photo caption resolver.
+9. Add help-page English path or dynamic help translation.
+10. Validate RU mode.
+11. Validate EN mode.
+12. Validate copied EN links in a fresh browser/session.
+13. Report exactly what was changed and what was not validated.
 
 ## Required execution report format
 
