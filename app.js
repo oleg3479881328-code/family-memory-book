@@ -1,3 +1,89 @@
+/* ===== i18n Runtime ===== */
+var __lang = window.__lang || "ru";
+var __ui = window.UI_EN_US || {};
+var __familyEn = window.FAMILY_EN_US || {};
+var __memoirsEn = window.MEMOIRS_EN_US || {};
+
+function __(key) {
+  if (__lang !== "en" || !__ui) return "";
+  var parts = key.split(".");
+  var val = __ui;
+  for (var i = 0; i < parts.length; i++) {
+    val = val && val[parts[i]];
+    if (val === undefined || val === null) return "";
+  }
+  return typeof val === "string" ? val : "";
+}
+
+function __aria(key) {
+  var val = __(key);
+  return val || "";
+}
+
+function __placeholder(key) {
+  var val = __(key);
+  return val || "";
+}
+
+function applyI18n() {
+  if (__lang !== "en" || !__ui) return;
+  // data-i18n: replace textContent
+  document.querySelectorAll("[data-i18n]").forEach(function (el) {
+    var val = __(el.getAttribute("data-i18n"));
+    if (val) el.textContent = val;
+  });
+  // data-i18n-aria: replace aria-label
+  document.querySelectorAll("[data-i18n-aria]").forEach(function (el) {
+    var val = __aria(el.getAttribute("data-i18n-aria"));
+    if (val) el.setAttribute("aria-label", val);
+  });
+  // data-i18n-placeholder: replace placeholder
+  document.querySelectorAll("[data-i18n-placeholder]").forEach(function (el) {
+    var val = __placeholder(el.getAttribute("data-i18n-placeholder"));
+    if (val) el.placeholder = val;
+  });
+  // Update help links to point to help.en.html in EN mode
+  var helpLinks = document.querySelectorAll("#nav-help-link, #intro-help-link");
+  helpLinks.forEach(function (el) {
+    el.href = "help.en.html";
+  });
+  // Update lang switch text
+  var langSwitch = document.getElementById("lang-switch");
+  if (langSwitch) {
+    langSwitch.textContent = __lang === "en" ? "Русский" : "English";
+  }
+  // Update document title and meta description
+  var titleVal = __("siteTitle");
+  if (titleVal) document.title = titleVal;
+  var descVal = __("metaDescription");
+  if (descVal) {
+    var meta = document.querySelector("meta[name='description']");
+    if (meta) meta.content = descVal;
+  }
+}
+
+function switchLanguage(lang) {
+  if (lang !== "en" && lang !== "ru") return;
+  localStorage.setItem("family-memory-book-lang", lang);
+  var url = new URL(window.location.href);
+  if (lang === "en") {
+    url.searchParams.set("lang", "en");
+  } else {
+    url.searchParams.delete("lang");
+  }
+  window.location.href = url.toString();
+}
+
+// Apply i18n on DOMContentLoaded (for static HTML elements)
+document.addEventListener("DOMContentLoaded", applyI18n);
+
+// Also apply after all scripts load (for dynamic elements)
+var origPushState = history.pushState;
+history.pushState = function () {
+  origPushState.apply(this, arguments);
+  applyI18n();
+};
+
 const family = window.FAMILY;
 const memoirs = window.MEMOIRS;
 const photoAlbums = window.PHOTO_ALBUMS || [];
@@ -126,6 +212,9 @@ function escapeHtml(value = "") {
 }
 
 function personName(id) {
+  if (__lang === "en" && __familyEn.people && __familyEn.people[id]) {
+    return __familyEn.people[id].displayName || __familyEn.people[id].shortName || people[id]?.name || id;
+  }
   return people[id]?.name || id;
 }
 
@@ -227,6 +316,12 @@ function albumCoverSrc(album) {
 
 function albumMediaSummary(album) {
   const parts = [];
+  if (__lang === "en") {
+    if (album.photos.length) parts.push(`${album.photos.length} photos`);
+    if (album.videos.length) parts.push(`${album.videos.length} videos`);
+    if (album.externalLinks.length) parts.push(`${album.externalLinks.length} links`);
+    return parts.join(" · ") || "No media yet";
+  }
   if (album.photos.length) {
     parts.push(`${album.photos.length} фото`);
   }
@@ -282,6 +377,9 @@ function extractYouTubeVideoId(rawUrl = "") {
 }
 
 function renderExternalLinkCard(link) {
+  var openYouTubeLabel = __lang === "en" ? "Open on YouTube" : "Открыть на YouTube";
+  var linkLabel = __lang === "en" ? "link" : "ссылка";
+  var youtubeTitle = __lang === "en" ? "YouTube video" : "YouTube видео";
   const videoId = extractYouTubeVideoId(link.url || "");
   if (videoId) {
     const embedOrigin = typeof location !== "undefined" ? location.origin : "";
@@ -296,7 +394,7 @@ function renderExternalLinkCard(link) {
         <div class="album-external-player">
           <iframe
             src="${embedUrl.toString()}"
-            title="${escapeHtml(link.title || "YouTube видео")}"
+            title="${escapeHtml(link.title || youtubeTitle)}"
             loading="lazy"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen
@@ -306,7 +404,7 @@ function renderExternalLinkCard(link) {
         <div class="album-external-meta">
           <strong>${escapeHtml(externalLinkLabel(link))}</strong>
           <span>YouTube</span>
-          <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">Открыть на YouTube</a>
+          <a href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">${openYouTubeLabel}</a>
         </div>
       </article>
     `;
@@ -315,7 +413,7 @@ function renderExternalLinkCard(link) {
   return `
     <a class="album-external-link" href="${escapeHtml(link.url)}" target="_blank" rel="noopener noreferrer">
       <strong>${escapeHtml(externalLinkLabel(link))}</strong>
-      <span>${escapeHtml(link.kind || "ссылка")}</span>
+      <span>${escapeHtml(link.kind || linkLabel)}</span>
     </a>
   `;
 }
@@ -324,6 +422,7 @@ function renderVideoCards(videos, className = "album-video-grid") {
   if (!videos.length) {
     return "";
   }
+  var videoFallback = __lang === "en" ? "Video" : "Видео";
 
   return `
     <div class="${className}">
@@ -334,7 +433,7 @@ function renderVideoCards(videos, className = "album-video-grid") {
               <video controls preload="metadata" playsinline ${video.poster ? `poster="${escapeHtml(assetUrl(video.poster))}"` : ""}>
                 <source src="${escapeHtml(assetUrl(video.src))}" />
               </video>
-              <span>${escapeHtml(video.caption || `Видео ${index + 1}`)}</span>
+              <span>${escapeHtml(video.caption || `${videoFallback} ${index + 1}`)}</span>
             </article>
           `,
         )
@@ -357,19 +456,24 @@ function renderExternalLinkCards(links, className = "album-link-list") {
 
 function renderPersonAlbum(album) {
   const normalizedAlbum = normalizeAlbum(album);
+  var photoLabel = __lang === "en" ? "Open photo" : "Открыть фотографию";
+  var albumTitle = __lang === "en" ? "Photo Album" : "Фотоальбом";
+  var openAlbumLabel = __lang === "en" ? "Open album" : "Открыть альбом";
+  var placeholderLabel = __lang === "en" ? "Photo archive placeholder" : "Место для фотоархива";
+  var placeholderText = __lang === "en" ? "Photo archive may go here" : "Здесь может быть фотоархив";
   const thumbnails = normalizedAlbum.photos
-    .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb", album.personId, index))
+    .map((photo, index) => photoButton(photo, photoLabel + " " + (index + 1), "album-thumb", album.personId, index))
     .join("");
 
   return `
     <div class="person-album-slot">
-      <h4>Фотоальбом</h4>
+      <h4>${albumTitle}</h4>
       <p class="person-album-summary">${escapeHtml(albumMediaSummary(normalizedAlbum))}</p>
       ${thumbnails ? `<div class="person-album-thumbs-scroll"><div class="person-album-thumbs">${thumbnails}</div></div>` : ""}
       ${renderVideoCards(normalizedAlbum.videos.slice(0, 2), "person-album-videos")}
       ${renderExternalLinkCards(normalizedAlbum.externalLinks.slice(0, 4), "person-album-links")}
       <button class="album-link" type="button" data-scroll-album="${album.personId}">
-        Открыть альбом
+        ${openAlbumLabel}
       </button>
     </div>
   `;
@@ -379,15 +483,35 @@ function showPerson(id) {
   const person = people[id];
   if (!person) return;
 
+  var en = __lang === "en";
+  var datesLabel = en ? "dates unknown" : "даты не указаны";
+  var parentsLabel = en ? "Parents" : "Родители";
+  var partnersLabel = en ? "Spouse / Partner" : "Супруги";
+  var childrenLabel = en ? "Children" : "Дети";
+  var memoirsLabel = en ? "Related Memoirs" : "Связанные тексты";
+  var placeholderAria = en ? "Photo archive placeholder" : "Место для фотоархива";
+  var placeholderText = en ? "Photo archive may go here" : "Здесь может быть фотоархив";
+
+  // Use English notes if available
+  var notes = person.notes || [];
+  if (en && __familyEn.people && __familyEn.people[id] && __familyEn.people[id].notes) {
+    notes = __familyEn.people[id].notes;
+  }
+
   const album = albumsByPerson.get(id);
   const albumPanel = album
     ? renderPersonAlbum(album)
-    : `<div class="person-photo-placeholder" aria-label="Место для фотоархива"><span>Здесь может быть фотоархив</span></div>`;
+    : `<div class="person-photo-placeholder" aria-label="${placeholderAria}"><span>${placeholderText}</span></div>`;
 
   const memoirLinks = (person.memoirs || [])
     .map((memoirId) => {
       const section = memoirSections.find((item) => item.id === memoirId);
-      return section ? `<button type="button" class="memoir-link" data-memoir="${section.id}">${section.title}</button>` : "";
+      var sectionTitle = section ? section.title : "";
+      if (en && __memoirsEn && __memoirsEn.sections) {
+        var enSection = __memoirsEn.sections.find(function (s) { return s.id === memoirId; });
+        if (enSection && enSection.title) sectionTitle = enSection.title;
+      }
+      return section ? `<button type="button" class="memoir-link" data-memoir="${section.id}">${sectionTitle}</button>` : "";
     })
     .join("");
 
@@ -395,12 +519,12 @@ function showPerson(id) {
     <div class="person-modal-layout">
       <div class="person-details">
         <h3>${person.name}</h3>
-        <p class="dates">${person.dates || "даты не указаны"}</p>
-        ${person.notes?.length ? `<ul class="fact-list">${person.notes.map((note) => `<li>${note}</li>`).join("")}</ul>` : ""}
-        ${person.parents?.length ? `<h4>Родители</h4><div class="relation-list">${relatedList(person.parents)}</div>` : ""}
-        ${person.partners?.length ? `<h4>Супруги</h4><div class="relation-list">${relatedList(person.partners)}</div>` : ""}
-        ${person.children?.length ? `<h4>Дети</h4><div class="relation-list">${relatedList(person.children)}</div>` : ""}
-        ${memoirLinks ? `<h4>Связанные тексты</h4><div class="relation-list">${memoirLinks}</div>` : ""}
+        <p class="dates">${person.dates || datesLabel}</p>
+        ${notes.length ? `<ul class="fact-list">${notes.map(function (note) { return "<li>" + note + "</li>"; }).join("")}</ul>` : ""}
+        ${person.parents?.length ? `<h4>${parentsLabel}</h4><div class="relation-list">${relatedList(person.parents)}</div>` : ""}
+        ${person.partners?.length ? `<h4>${partnersLabel}</h4><div class="relation-list">${relatedList(person.partners)}</div>` : ""}
+        ${person.children?.length ? `<h4>${childrenLabel}</h4><div class="relation-list">${relatedList(person.children)}</div>` : ""}
+        ${memoirLinks ? `<h4>${memoirsLabel}</h4><div class="relation-list">${memoirLinks}</div>` : ""}
       </div>
       ${albumPanel}
     </div>
@@ -415,9 +539,14 @@ function renderMemoirTabs(activeId) {
     .map(
       (section) => {
         const author = memoirSectionAuthors[section.id];
+        var sectionTitle = section.title;
+        if (__lang === "en" && __memoirsEn && __memoirsEn.sections) {
+          var enSection = __memoirsEn.sections.find(function (s) { return s.id === section.id; });
+          if (enSection && enSection.title) sectionTitle = enSection.title;
+        }
         return `
         <button type="button" class="${section.id === activeId ? "is-active" : ""}" data-memoir="${section.id}" role="tab">
-          <span class="memoir-tab-title">${section.title}</span>
+          <span class="memoir-tab-title">${sectionTitle}</span>
           ${author ? `<span class="memoir-tab-author">${author}</span>` : ""}
         </button>
       `;
@@ -426,13 +555,23 @@ function renderMemoirTabs(activeId) {
     .join("");
 }
 
-function showMemoir(id = memoirSections[0].id) {
+function showMemoir(id) {
+  if (!id) id = memoirSections[0].id;
   const section = memoirSections.find((item) => item.id === id) || memoirSections[0];
   renderMemoirTabs(section.id);
+  var sectionTitle = section.title;
+  var paragraphs = section.paragraphs;
+  if (__lang === "en" && __memoirsEn && __memoirsEn.sections) {
+    var enSection = __memoirsEn.sections.find(function (s) { return s.id === section.id; });
+    if (enSection) {
+      if (enSection.title) sectionTitle = enSection.title;
+      if (enSection.paragraphs && enSection.paragraphs.length) paragraphs = enSection.paragraphs;
+    }
+  }
   memoirModalContentEl.innerHTML = `
-    <h3>${section.title}</h3>
+    <h3>${sectionTitle}</h3>
     <div class="memoir-text">
-      ${section.paragraphs.map((paragraph) => `<p>${paragraph.replace(/\n/g, "<br>")}</p>`).join("")}
+      ${paragraphs.map(function (p) { return "<p>" + p.replace(/\n/g, "<br>") + "</p>"; }).join("")}
     </div>
   `;
   memoirModalEl.hidden = false;
@@ -443,24 +582,32 @@ function showMemoir(id = memoirSections[0].id) {
 }
 
 function renderPhotos() {
+  var en = __lang === "en";
+  var openPhotoLabel = en ? "Open photo" : "Открыть фотографию";
+  var openAlbumLabel = en ? "Open album:" : "Открыть фотоальбом:";
+  var photoAlbumLabel = en ? "Photo Archive" : "Фотоальбом";
+  var noCoverLabel = en ? "No cover" : "Нет обложки";
+  var openCardLabel = en ? "Open person card in family tree" : "Открыть карточку в родословной";
+  var archiveSubtitle = en ? "Photos from the source document" : "Фотографии из исходного документа";
+
   const albumCards = photoAlbums
     .map((album) => {
       const normalizedAlbum = normalizeAlbum(album);
       const cover = albumCoverSrc(normalizedAlbum);
       const strip = normalizedAlbum.photos
         .slice(0, 4)
-        .map((photo, index) => photoButton(photo, `Открыть фотографию ${index + 1} из альбома`, "album-thumb", album.personId, index))
+        .map((photo, index) => photoButton(photo, openPhotoLabel + " " + (index + 1) + " from album", "album-thumb", album.personId, index))
         .join("");
 
       return `
         <article class="album-card" id="album-${album.personId}">
-          <button class="album-cover" type="button" data-open-album="${album.personId}" aria-label="Открыть фотоальбом: ${album.title}" ${normalizedAlbum.photos.length ? "" : "disabled"}>
+          <button class="album-cover" type="button" data-open-album="${album.personId}" aria-label="${openAlbumLabel} ${album.title}" ${normalizedAlbum.photos.length ? "" : "disabled"}>
             ${
               cover
                 ? `<img src="${assetUrl(cover)}" alt="${album.title}" loading="lazy" />`
-                : `<div class="album-cover-placeholder">Нет обложки</div>`
+                : `<div class="album-cover-placeholder">${noCoverLabel}</div>`
             }
-            <span>Фотоальбом</span>
+            <span>${photoAlbumLabel}</span>
             <strong>${album.title}</strong>
             <small>${escapeHtml(albumMediaSummary(normalizedAlbum))}</small>
           </button>
@@ -468,7 +615,7 @@ function renderPhotos() {
           ${renderVideoCards(normalizedAlbum.videos.slice(0, 2))}
           ${renderExternalLinkCards(normalizedAlbum.externalLinks)}
           <button class="album-card-link" type="button" data-person="${album.personId}">
-            Открыть карточку в родословной
+            ${openCardLabel}
           </button>
         </article>
       `;
@@ -479,7 +626,7 @@ function renderPhotos() {
     .map(
       (photo, index) => `
         <figure class="photo-card">
-          ${photoButton(photo, `Открыть фотографию ${index + 1}`, "photo-open", "doc-archive", index)}
+          ${photoButton(photo, openPhotoLabel + " " + (index + 1), "photo-open", "doc-archive", index)}
           <figcaption>${photo.caption}</figcaption>
         </figure>
       `,
@@ -488,7 +635,7 @@ function renderPhotos() {
 
   photosEl.innerHTML = `
     <div class="album-grid">${albumCards}</div>
-    <h3 class="archive-subtitle">Фотографии из исходного документа</h3>
+    <h3 class="archive-subtitle">${archiveSubtitle}</h3>
     <div class="archive-grid">${archiveCards}</div>
   `;
 }
@@ -518,12 +665,14 @@ function buildTreeData() {
 
 function buildTreeCardHtml(datum) {
   const { name, dates, avatar } = datum.data.data;
+  var portraitAlt = __lang === "en" ? "Portrait: " : "Портрет: ";
+  var datesUnknown = __lang === "en" ? "dates unknown" : "даты неизвестны";
   return `
     <div class="card-inner family-chart-card ${avatar ? "has-portrait" : ""}">
-      ${avatar ? `<img class="family-chart-card__portrait" src="${escapeHtml(assetUrl(avatar))}" alt="Портрет: ${escapeHtml(name)}" loading="lazy" />` : ""}
+      ${avatar ? `<img class="family-chart-card__portrait" src="${escapeHtml(assetUrl(avatar))}" alt="${portraitAlt}${escapeHtml(name)}" loading="lazy" />` : ""}
       <div class="family-chart-card__body">
         <strong class="family-chart-card__name">${escapeHtml(name)}</strong>
-        <span class="family-chart-card__dates">${escapeHtml(dates || "даты неизвестны")}</span>
+        <span class="family-chart-card__dates">${escapeHtml(dates || datesUnknown)}</span>
       </div>
     </div>
   `;
@@ -994,7 +1143,8 @@ function createTreeChart() {
 
 function renderTree() {
   if (!window.f3?.createChart) {
-    treeEl.innerHTML = `<p class="panel-empty">Не удалось загрузить модуль автоматического дерева.</p>`;
+    var treeError = __lang === "en" ? "Failed to load the family tree module." : "Не удалось загрузить модуль автоматического дерева.";
+    treeEl.innerHTML = `<p class="panel-empty">${treeError}</p>`;
     return;
   }
 
@@ -1121,8 +1271,9 @@ async function publishSiteFromLocalPreview() {
     return;
   }
 
+  var en = __lang === "en";
   publishSiteButtonEl.disabled = true;
-  publishStatusEl.textContent = "Публикую...";
+  publishStatusEl.textContent = en ? "Publishing..." : "Публикую...";
 
   try {
     const response = await fetch("http://127.0.0.1:8765/api/admin/publish", {
@@ -1135,16 +1286,16 @@ async function publishSiteFromLocalPreview() {
     }
 
     if (payload.noChanges) {
-      publishStatusEl.textContent = "Изменений нет.";
+      publishStatusEl.textContent = en ? "No changes." : "Изменений нет.";
       return;
     }
 
     const buildStatus = payload.pagesBuild?.status;
     publishStatusEl.textContent = buildStatus
-      ? `Опубликовано: ${payload.commit} · Pages: ${buildStatus}`
-      : `Опубликовано: ${payload.commit}`;
+      ? (en ? "Published: " : "Опубликовано: ") + payload.commit + (buildStatus ? " · Pages: " + buildStatus : "")
+      : (en ? "Published: " : "Опубликовано: ") + payload.commit;
   } catch (error) {
-    publishStatusEl.textContent = "Запусти start-admin.bat и попробуй снова.";
+    publishStatusEl.textContent = en ? "Run start-admin.bat and try again." : "Запусти start-admin.bat и попробуй снова.";
     console.error("Publish failed:", error);
   } finally {
     publishSiteButtonEl.disabled = false;
@@ -1156,6 +1307,13 @@ document.querySelectorAll('[data-tree-action="expand-all"]').forEach((button) =>
 });
 
 publishSiteButtonEl?.addEventListener("click", publishSiteFromLocalPreview);
+
+/* ===== Language Switch ===== */
+document.getElementById("lang-switch")?.addEventListener("click", function (event) {
+  event.preventDefault();
+  var targetLang = __lang === "en" ? "ru" : "en";
+  switchLanguage(targetLang);
+});
 
 document.querySelector("#collapse-all").addEventListener("click", () => {
   searchEl.value = "";
@@ -1172,19 +1330,22 @@ document.querySelector("#collapse-all").addEventListener("click", () => {
 /* ===== Mobile: Hamburger Menu ===== */
 
 function closeNav() {
+  var openMenuLabel = __lang === "en" ? "Open menu" : "Открыть меню";
   navToggleEl?.classList.remove("is-open");
   topNavEl?.classList.remove("is-open");
   document.body.classList.remove("nav-open");
   navToggleEl?.setAttribute("aria-expanded", "false");
-  navToggleEl?.setAttribute("aria-label", "Открыть меню");
+  navToggleEl?.setAttribute("aria-label", openMenuLabel);
 }
 
 function toggleNav() {
+  var closeMenuLabel = __lang === "en" ? "Close menu" : "Закрыть меню";
+  var openMenuLabel = __lang === "en" ? "Open menu" : "Открыть меню";
   const isOpen = topNavEl?.classList.toggle("is-open");
   navToggleEl?.classList.toggle("is-open", isOpen);
   document.body.classList.toggle("nav-open", Boolean(isOpen));
   navToggleEl?.setAttribute("aria-expanded", String(Boolean(isOpen)));
-  navToggleEl?.setAttribute("aria-label", isOpen ? "Закрыть меню" : "Открыть меню");
+  navToggleEl?.setAttribute("aria-label", isOpen ? closeMenuLabel : openMenuLabel);
 }
 
 navToggleEl?.addEventListener("click", (event) => {
