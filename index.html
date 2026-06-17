@@ -38,18 +38,14 @@
       })();
     </script>
     <script>
-      // ---- Language resolver: localStorage > URL query > browser default ----
+      // ---- Language resolver: URL query > Russian default ----
       (function () {
-        var lang = localStorage.getItem("family-memory-book-lang");
         var urlLang = new URLSearchParams(window.location.search).get("lang");
+        var lang = "ru";
         if (urlLang === "en" || urlLang === "ru") {
           lang = urlLang;
-          localStorage.setItem("family-memory-book-lang", lang);
         }
-        if (!lang) {
-          lang = navigator.language && navigator.language.startsWith("en") ? "en" : "ru";
-          localStorage.setItem("family-memory-book-lang", lang);
-        }
+        localStorage.setItem("family-memory-book-lang", lang);
         window.__lang = lang;
         document.documentElement.lang = lang === "en" ? "en-US" : "ru";
       })();
