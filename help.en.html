@@ -1,0 +1,511 @@
+<!doctype html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>How to Use the Family Memory Book Site</title>
+    <meta
+      name="description"
+      content="A simple guide for relatives: how to view the family tree, open person cards, read memoirs, and browse photos and videos on the Family Memory Book site."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --bg: #f6f1e8;
+        --paper: #fffaf1;
+        --ink: #241b16;
+        --muted: #75675e;
+        --line: #dacdbe;
+        --accent: #8e3f2b;
+        --accent-dark: #5f2b22;
+        --shadow: 0 20px 60px rgba(55, 37, 24, 0.12);
+        --radius: 8px;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font-family: Georgia, "Times New Roman", serif;
+        line-height: 1.6;
+      }
+
+      a {
+        color: inherit;
+      }
+
+      .site-header {
+        position: sticky;
+        top: 0;
+        z-index: 10;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 24px;
+        padding: 16px clamp(18px, 4vw, 56px);
+        background: rgba(246, 241, 232, 0.94);
+        border-bottom: 1px solid var(--line);
+        backdrop-filter: blur(12px);
+      }
+
+      .brand {
+        font-weight: 700;
+        text-decoration: none;
+        letter-spacing: 0;
+      }
+
+      .top-nav {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 18px;
+        color: var(--muted);
+        font-size: 15px;
+      }
+
+      .top-nav a {
+        text-decoration: none;
+      }
+
+      .hero,
+      .quick-grid,
+      .help-step,
+      .faq,
+      .start-note {
+        margin: 18px clamp(18px, 6vw, 84px);
+        background: var(--paper);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        box-shadow: var(--shadow);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(300px, 0.92fr);
+        gap: 28px;
+        align-items: center;
+        padding: clamp(28px, 5vw, 52px);
+      }
+
+      .hero h1,
+      .help-step h2,
+      .faq h2,
+      .start-note h2 {
+        margin: 0;
+        line-height: 0.98;
+        font-weight: 700;
+      }
+
+      .hero h1 {
+        font-size: clamp(46px, 7vw, 86px);
+      }
+
+      .hero p,
+      .hero li,
+      .quick-grid p,
+      .help-step p,
+      .help-step li,
+      .faq p,
+      .start-note p {
+        color: var(--muted);
+      }
+
+      .hero p {
+        margin: 20px 0 0;
+        font-size: 20px;
+      }
+
+      .hero ul,
+      .help-step ul {
+        margin: 18px 0 0;
+        padding-left: 20px;
+      }
+
+      .hero-actions {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 12px;
+        margin-top: 26px;
+      }
+
+      .button {
+        display: inline-flex;
+        align-items: center;
+        min-height: 46px;
+        padding: 10px 18px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        font-weight: 700;
+        text-decoration: none;
+        transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+      }
+
+      .button:hover {
+        transform: translateY(-1px);
+        border-color: var(--accent);
+      }
+
+      .button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: #fffaf1;
+      }
+
+      .button.secondary {
+        background: transparent;
+      }
+
+      .hero img,
+      .help-step img {
+        display: block;
+        width: 100%;
+        height: auto;
+        border-radius: 6px;
+        border: 1px solid var(--line);
+      }
+
+      .hero-notes {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 10px;
+        margin-top: 12px;
+      }
+
+      .hero-notes article,
+      .quick-grid article,
+      .faq article {
+        padding: 14px;
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        background: #fffcf7;
+      }
+
+      .hero-notes h3,
+      .quick-grid h3,
+      .faq h3 {
+        margin: 0 0 6px;
+        font-size: 20px;
+        line-height: 1.15;
+      }
+
+      .quick-grid {
+        display: grid;
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+        gap: 1px;
+        padding: 1px;
+        background: var(--line);
+      }
+
+      .quick-grid article {
+        border: 0;
+        border-radius: 0;
+      }
+
+      .help-step {
+        display: grid;
+        grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
+        gap: 26px;
+        padding: 24px;
+      }
+
+      .help-step.reverse {
+        grid-template-columns: minmax(0, 1.05fr) minmax(0, 0.95fr);
+      }
+
+      .step-pill {
+        display: inline-grid;
+        place-items: center;
+        width: 38px;
+        height: 38px;
+        margin-bottom: 10px;
+        border-radius: 999px;
+        background: rgba(142, 63, 43, 0.12);
+        color: var(--accent);
+        font-size: 18px;
+        font-weight: 700;
+      }
+
+      .help-step h2 {
+        font-size: clamp(34px, 4.6vw, 54px);
+      }
+
+      .tip {
+        margin-top: 16px;
+        padding: 12px 14px;
+        border-left: 4px solid var(--accent);
+        background: #fcf4ea;
+        color: var(--muted);
+      }
+
+      .faq,
+      .start-note {
+        padding: 24px;
+      }
+
+      .faq h2,
+      .start-note h2 {
+        font-size: clamp(34px, 4vw, 52px);
+      }
+
+      .faq-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 12px;
+        margin-top: 18px;
+      }
+
+      .start-note {
+        text-align: center;
+      }
+
+      @media (max-width: 900px) {
+        .site-header,
+        .hero,
+        .help-step,
+        .help-step.reverse {
+          grid-template-columns: 1fr;
+        }
+
+        .site-header {
+          align-items: flex-start;
+          flex-direction: column;
+        }
+
+        .quick-grid,
+        .faq-grid,
+        .hero-notes {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      @media (max-width: 560px) {
+        .button {
+          justify-content: center;
+          flex: 1 1 100%;
+        }
+
+        .hero p {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="brand" href="index.html?lang=en">Family Memory Book</a>
+      <nav class="top-nav" aria-label="Help page navigation">
+        <a href="#start">Start Here</a>
+        <a href="#tree">Family Tree</a>
+        <a href="#memoirs">Memoirs</a>
+        <a href="#media">Photos and Videos</a>
+        <a href="#faq">Questions</a>
+      </nav>
+    </header>
+
+    <main id="start">
+      <section class="hero">
+        <div>
+          <h1>How to Use This Site</h1>
+          <p>
+            This is a simple guide for relatives. It shows, without technical language,
+            how to open the family tree, find a person, read memoirs, and view photographs or videos.
+          </p>
+          <ul>
+            <li>You do not need to install anything.</li>
+            <li>You can safely click around and explore the site.</li>
+            <li>If you are not sure where to begin, start with the family tree and person cards.</li>
+          </ul>
+          <div class="hero-actions">
+            <a class="button primary" href="index.html?lang=en">Open the Main Page</a>
+            <a class="button secondary" href="#tree">Go to the Steps</a>
+          </div>
+        </div>
+
+        <div>
+          <img src="assets/help/hero.png" alt="Main screen of the Family Memory Book site" />
+          <div class="hero-notes">
+            <article>
+              <h3>Family Tree</h3>
+              <p>Shows people and the family relationships between them.</p>
+            </article>
+            <article>
+              <h3>Memoirs</h3>
+              <p>Opens texts and recollections for reading.</p>
+            </article>
+            <article>
+              <h3>Photos and Videos</h3>
+              <p>Help you see the person and the materials connected with them.</p>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="quick-grid" aria-label="Quick tips">
+        <article>
+          <h3>Want to find a person?</h3>
+          <p>Open the Family Tree section and click the person you are looking for.</p>
+        </article>
+        <article>
+          <h3>Want to read?</h3>
+          <p>Go to the Memoirs section and choose the title of the text you want.</p>
+        </article>
+        <article>
+          <h3>Want to view photos?</h3>
+          <p>Open a person card or go to the Photo Archive section.</p>
+        </article>
+        <article>
+          <h3>Want to watch video?</h3>
+          <p>A video may be inside an album or may open on an external service.</p>
+        </article>
+      </section>
+
+      <section class="help-step" id="tree">
+        <div>
+          <span class="step-pill">1</span>
+          <h2>How to View the Family Tree</h2>
+          <p>
+            The family tree shows how people are connected: parents, spouses, children, and other relatives.
+          </p>
+          <ul>
+            <li>Open the Family Tree section.</li>
+            <li>Click the person you are interested in.</li>
+            <li>A card with details will open.</li>
+          </ul>
+          <div class="tip">
+            If the tree looks too large, that is normal. Click a specific person, and the site will make the view easier to understand.
+          </div>
+        </div>
+        <div>
+          <img src="assets/help/tree.png" alt="General view of the family tree" />
+        </div>
+      </section>
+
+      <section class="help-step reverse">
+        <div>
+          <img src="assets/help/person-card.png" alt="Person card with details, texts, photos, and videos" />
+        </div>
+        <div>
+          <span class="step-pill">2</span>
+          <h2>What Is Inside a Person Card</h2>
+          <p>A person card gathers the most important information about that person in one place.</p>
+          <ul>
+            <li>Name and dates.</li>
+            <li>Parents, spouses or partners, and children.</li>
+            <li>Related texts and memoirs.</li>
+            <li>Photo album and sometimes video.</li>
+          </ul>
+          <div class="tip">
+            If you want to view a person's photographs or videos, it is often easiest to do it directly from that person's card.
+          </div>
+        </div>
+      </section>
+
+      <section class="help-step">
+        <div>
+          <span class="step-pill">3</span>
+          <h2>Why the Tree Changes After Closing a Card</h2>
+          <p>
+            This is intentional. It makes it easier to understand the family. After you close a card, the tree refocuses around the selected person.
+          </p>
+          <ul>
+            <li>The most important relationships around that person remain visible.</li>
+            <li>It becomes easier to see parents, spouse or partner, and children.</li>
+            <li>This makes it easier to study one person and that branch of the family.</li>
+          </ul>
+          <div class="tip">
+            If you want to see more people again, choose another person or click Show All.
+          </div>
+        </div>
+        <div>
+          <img src="assets/help/tree-refocus.png" alt="Family tree after refocusing around the selected person" />
+        </div>
+      </section>
+
+      <section class="help-step reverse" id="memoirs">
+        <div>
+          <img src="assets/help/memoir-card.png" alt="Open memoir text" />
+        </div>
+        <div>
+          <span class="step-pill">4</span>
+          <h2>How to Read Memoirs and Recollections</h2>
+          <p>
+            The Memoirs section contains texts and recollections. They open in a separate window so they are easier to read.
+          </p>
+          <ul>
+            <li>Open the Memoirs section.</li>
+            <li>Click the title of the text you want.</li>
+            <li>The text will open in a large separate window.</li>
+          </ul>
+          <div class="tip">
+            If a person has related texts, you can use them to go to recollections about that person.
+          </div>
+        </div>
+      </section>
+
+      <section class="help-step" id="media">
+        <div>
+          <span class="step-pill">5</span>
+          <h2>How to View Photographs and Videos</h2>
+          <p>
+            Photos and videos are organized into albums. Sometimes a video is stored directly inside the site; sometimes it opens through an external service such as YouTube.
+          </p>
+          <ul>
+            <li>Open a person card or the Photo Archive section.</li>
+            <li>Click an album or preview image.</li>
+            <li>If it is a video, it may open as an embedded video or as a link.</li>
+          </ul>
+          <div class="tip">
+            If a new tab or separate window opens, that is normal: it means the video is stored on an external service.
+          </div>
+        </div>
+        <div>
+          <img src="assets/help/photos.png" alt="Photo archive with albums" />
+        </div>
+      </section>
+
+      <section class="faq" id="faq">
+        <h2>Frequently Asked Questions</h2>
+        <div class="faq-grid">
+          <article>
+            <h3>I am afraid I will break something.</h3>
+            <p>
+              Nothing bad will happen. You can safely view the site, click around, and explore. Ordinary actions will not damage anything.
+            </p>
+          </article>
+          <article>
+            <h3>I do not understand where to click first.</h3>
+            <p>
+              The simplest path is to open the family tree, click a familiar person, and then open that person's card.
+            </p>
+          </article>
+          <article>
+            <h3>Why did the tree look different after I closed a card?</h3>
+            <p>
+              This is not an error. The site intentionally rebuilds the tree around the selected person so that their branch of the family is easier to understand.
+            </p>
+          </article>
+          <article>
+            <h3>Where is the best place to look for photographs?</h3>
+            <p>
+              Either in a specific person's card, or in the Photo Archive section if you simply want to browse albums.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      <section class="start-note">
+        <h2>The Easiest Way to Begin</h2>
+        <p>
+          Open the family tree, click a familiar person, look at that person's card, and then go to texts, photographs, or videos. That is the easiest way to understand the site.
+        </p>
+      </section>
+    </main>
+  </body>
+</html>

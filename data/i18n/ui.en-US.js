@@ -9,6 +9,8 @@ window.UI_EN_US = {
     switchToEnglish: "Switch to English"
   },
   nav: {
+    toggle: "Open menu",
+    ariaLabel: "Main navigation",
     tree: "Family Tree",
     memoirs: "Memoirs",
     photos: "Photo Archive",
@@ -27,10 +29,13 @@ window.UI_EN_US = {
     memoirsTitle: "Memoirs",
     memoirsBody: "Read family recollections in their original structure, with an English adaptation for US-based readers.",
     photosTitle: "Photo Archive",
-    photosBody: "Browse family photographs connected to people and memories."
+    photosBody: "Browse family photographs connected to people and memories.",
+    helpTitle: "How to Use This Site",
+    helpBody: "A simple guide for relatives with screenshots and step-by-step instructions."
   },
   tree: {
     sectionTitle: "Family Tree",
+    sectionDescription: "Expand family branches and select a person to see connections and links to texts.",
     searchPlaceholder: "Search by name…",
     noResults: "No matching people found.",
     detailsTitle: "Person Details",
@@ -43,6 +48,8 @@ window.UI_EN_US = {
     relatedMemoirs: "Related Memoirs",
     openMemoir: "Open memoir section",
     showAll: "Show all",
+    collapseAll: "Back to Anna Sergeyevna",
+    selectPerson: "Select a card in the family tree.",
     close: "Close"
   },
   memoirs: {
@@ -57,6 +64,7 @@ window.UI_EN_US = {
   },
   photos: {
     sectionTitle: "Photo Archive",
+    sectionDescription: "Personal photo albums open person cards and are linked to the family tree.",
     album: "Album",
     photo: "Photo",
     previous: "Previous photo",
@@ -64,6 +72,9 @@ window.UI_EN_US = {
     close: "Close",
     counter: "Photo {current} of {total}",
     familyAlbumDescription: "Photographs from the family album."
+  },
+  footer: {
+    text: "Family Memory Book. Materials: family tree and DOCX «Memoirs Recollections (1)»."
   },
   publish: {
     button: "Publish Site",

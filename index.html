@@ -37,18 +37,36 @@
         appendStyle("styles.css");
       })();
     </script>
+    <script>
+      // ---- Language resolver: localStorage > URL query > browser default ----
+      (function () {
+        var lang = localStorage.getItem("family-memory-book-lang");
+        var urlLang = new URLSearchParams(window.location.search).get("lang");
+        if (urlLang === "en" || urlLang === "ru") {
+          lang = urlLang;
+          localStorage.setItem("family-memory-book-lang", lang);
+        }
+        if (!lang) {
+          lang = navigator.language && navigator.language.startsWith("en") ? "en" : "ru";
+          localStorage.setItem("family-memory-book-lang", lang);
+        }
+        window.__lang = lang;
+        document.documentElement.lang = lang === "en" ? "en-US" : "ru";
+      })();
+    </script>
   </head>
   <body>
     <header class="site-header">
-      <a class="brand" href="#top">Книга памяти семьи</a>
-      <button class="nav-toggle" type="button" aria-label="Открыть меню" aria-expanded="false">
+      <a class="brand" href="#top" data-i18n="siteTitle">Книга памяти семьи</a>
+      <button class="nav-toggle" type="button" data-i18n-aria="nav.toggle" aria-label="Открыть меню" aria-expanded="false">
         <span class="nav-toggle-icon"></span>
       </button>
-      <nav class="top-nav" aria-label="Главная навигация">
-        <a href="#tree">Родословная</a>
-        <a href="#memoirs">Мемуары</a>
-        <a href="#photos">Фотоархив</a>
-        <a href="help.html">Как пользоваться</a>
+      <nav class="top-nav" data-i18n-aria="nav.ariaLabel" aria-label="Главная навигация">
+        <a href="#tree" data-i18n="nav.tree">Родословная</a>
+        <a href="#memoirs" data-i18n="nav.memoirs">Мемуары</a>
+        <a href="#photos" data-i18n="nav.photos">Фотоархив</a>
+        <a href="help.html" data-i18n="nav.help" id="nav-help-link">Как пользоваться</a>
+        <a href="#" id="lang-switch" class="lang-switch" data-i18n="language.switchToEnglish">English</a>
       </nav>
     </header>
 
@@ -56,14 +74,14 @@
     <main id="top">
       <section class="hero">
         <div class="hero-text">
-          <h1>Книга памяти семьи</h1>
-          <p>
+          <h1 data-i18n="hero.title">Книга памяти семьи</h1>
+          <p data-i18n="hero.body">
             Родословная, фотографии и дословные русские воспоминания семьи:
             бережно разложенные по разделам, без правки текста мемуаров.
           </p>
           <div class="hero-actions">
-            <a class="button primary" href="#tree">Открыть древо</a>
-            <a class="button secondary" href="#memoirs">Читать мемуары</a>
+            <a class="button primary" href="#tree" data-i18n="hero.openTree">Открыть древо</a>
+            <a class="button secondary" href="#memoirs" data-i18n="hero.readMemoirs">Читать мемуары</a>
           </div>
         </div>
         <div class="hero-photo">
@@ -74,33 +92,33 @@
       <section class="section-band intro-grid" aria-label="Краткая навигация">
         <a href="#tree">
           <span>01</span>
-          <strong>Интерактивная родословная</strong>
-          <small>Раскрытие ветвей, карточки людей, переходы к воспоминаниям.</small>
+          <strong data-i18n="introCards.treeTitle">Интерактивная родословная</strong>
+          <small data-i18n="introCards.treeBody">Раскрытие ветвей, карточки людей, переходы к воспоминаниям.</small>
         </a>
         <a href="#photos">
           <span>02</span>
-          <strong>Фотоархив</strong>
-          <small>Все 15 изображений из исходного документа, без изменений.</small>
+          <strong data-i18n="introCards.photosTitle">Фотоархив</strong>
+          <small data-i18n="introCards.photosBody">Все 15 изображений из исходного документа, без изменений.</small>
         </a>
-        <a href="help.html">
+        <a href="help.html" id="intro-help-link">
           <span>03</span>
-          <strong>Как пользоваться сайтом</strong>
-          <small>Простая инструкция для родственников со скриншотами и шагами.</small>
+          <strong data-i18n="introCards.helpTitle">Как пользоваться сайтом</strong>
+          <small data-i18n="introCards.helpBody">Простая инструкция для родственников со скриншотами и шагами.</small>
         </a>
       </section>
 
       <section id="memoirs" class="section">
         <div class="section-heading">
-          <h2>Мемуары</h2>
-          <p>Русский текст опубликован дословно, разделами, без пересказа и редактирования.</p>
+          <h2 data-i18n="memoirs.sectionTitle">Мемуары</h2>
+          <p data-i18n="memoirs.sourceNote">Русский текст опубликован дословно, разделами, без пересказа и редактирования.</p>
         </div>
-        <div id="memoir-tabs" class="memoir-tabs" role="tablist" aria-label="Разделы мемуаров"></div>
+        <div id="memoir-tabs" class="memoir-tabs" role="tablist" data-i18n-aria="memoirs.sectionTitle" aria-label="Разделы мемуаров"></div>
       </section>
 
       <section id="tree" class="section">
         <div class="section-heading">
-          <h2>Родословная</h2>
-          <p>Раскрывайте ветви семьи и выбирайте человека, чтобы увидеть связи и ссылки на тексты.</p>
+          <h2 data-i18n="tree.sectionTitle">Родословная</h2>
+          <p data-i18n="tree.sectionDescription">Раскрывайте ветви семьи и выбирайте человека, чтобы увидеть связи и ссылки на тексты.</p>
         </div>
         <div class="tree-top-actions">
           <button
@@ -108,15 +126,16 @@
             class="button secondary"
             type="button"
             data-tree-action="expand-all"
+            data-i18n="tree.showAll"
           >
             Показать всё
           </button>
         </div>
         <div class="tree-layout">
-          <div class="tree-toolbar" aria-label="Управление родословной">
-            <input id="person-search" type="search" placeholder="Поиск по имени" />
-            <button id="expand-all" type="button" data-tree-action="expand-all">Показать всё</button>
-            <button id="collapse-all" type="button">К Анне Сергеевне</button>
+          <div class="tree-toolbar" data-i18n-aria="tree.sectionTitle" aria-label="Управление родословной">
+            <input id="person-search" type="search" data-i18n-placeholder="tree.searchPlaceholder" placeholder="Поиск по имени" />
+            <button id="expand-all" type="button" data-tree-action="expand-all" data-i18n="tree.showAll">Показать всё</button>
+            <button id="collapse-all" type="button" data-i18n="tree.collapseAll">К Анне Сергеевне</button>
           </div>
           <div class="tree-shell">
             <div id="family-tree" class="family-tree" aria-live="polite"></div>
@@ -126,43 +145,43 @@
 
       <section id="photos" class="section">
         <div class="section-heading">
-          <h2>Фотоархив</h2>
-          <p>Персональные фотоальбомы открывают карточки людей и связаны с родословным деревом.</p>
+          <h2 data-i18n="photos.sectionTitle">Фотоархив</h2>
+          <p data-i18n="photos.sectionDescription">Персональные фотоальбомы открывают карточки людей и связаны с родословным деревом.</p>
         </div>
         <div id="photo-grid" class="photo-grid"></div>
       </section>
     </main>
 
     <footer class="site-footer">
-      <p>Книга памяти семьи. Материалы: родословная и DOCX «Мемуары воспоминания (1)».</p>
+      <p data-i18n="footer.text">Книга памяти семьи. Материалы: родословная и DOCX «Мемуары воспоминания (1)».</p>
     </footer>
 
     <div id="person-modal" class="person-modal" hidden>
-      <button class="modal-backdrop" type="button" data-close-person aria-label="Закрыть карточку"></button>
-      <aside id="person-panel" class="person-panel" role="dialog" aria-modal="true" aria-label="Карточка человека">
-        <button class="modal-close" type="button" data-close-person aria-label="Закрыть">×</button>
+      <button class="modal-backdrop" type="button" data-close-person data-i18n-aria="tree.close" aria-label="Закрыть карточку"></button>
+      <aside id="person-panel" class="person-panel" role="dialog" aria-modal="true" data-i18n-aria="tree.detailsTitle" aria-label="Карточка человека">
+        <button class="modal-close" type="button" data-close-person data-i18n-aria="tree.close" aria-label="Закрыть">×</button>
         <div id="person-panel-content">
-          <p class="panel-empty">Выберите карточку в родословной.</p>
+          <p class="panel-empty" data-i18n="tree.selectPerson">Выберите карточку в родословной.</p>
         </div>
       </aside>
     </div>
 
     <div id="photo-modal" class="photo-modal" hidden>
-      <button class="modal-backdrop" type="button" data-close-photo aria-label="Закрыть фотографию"></button>
-      <figure class="photo-viewer" role="dialog" aria-modal="true" aria-label="Просмотр фотографии">
-        <button class="modal-close" type="button" data-close-photo aria-label="Закрыть">×</button>
-        <button class="photo-nav photo-prev" type="button" data-photo-prev aria-label="Предыдущая фотография">‹</button>
+      <button class="modal-backdrop" type="button" data-close-photo data-i18n-aria="photos.close" aria-label="Закрыть фотографию"></button>
+      <figure class="photo-viewer" role="dialog" aria-modal="true" data-i18n-aria="photos.sectionTitle" aria-label="Просмотр фотографии">
+        <button class="modal-close" type="button" data-close-photo data-i18n-aria="photos.close" aria-label="Закрыть">×</button>
+        <button class="photo-nav photo-prev" type="button" data-photo-prev data-i18n-aria="photos.previous" aria-label="Предыдущая фотография">‹</button>
         <img id="photo-viewer-image" src="" alt="" />
-        <button class="photo-nav photo-next" type="button" data-photo-next aria-label="Следующая фотография">›</button>
+        <button class="photo-nav photo-next" type="button" data-photo-next data-i18n-aria="photos.next" aria-label="Следующая фотография">›</button>
         <div id="photo-viewer-counter" class="photo-counter"></div>
         <figcaption id="photo-viewer-caption"></figcaption>
       </figure>
     </div>
 
     <div id="memoir-modal" class="memoir-modal" hidden>
-      <button class="modal-backdrop" type="button" data-close-memoir aria-label="Закрыть текст"></button>
-      <article class="memoir-dialog" role="dialog" aria-modal="true" aria-label="Текст мемуаров">
-        <button class="modal-close" type="button" data-close-memoir aria-label="Закрыть">×</button>
+      <button class="modal-backdrop" type="button" data-close-memoir data-i18n-aria="memoirs.close" aria-label="Закрыть текст"></button>
+      <article class="memoir-dialog" role="dialog" aria-modal="true" data-i18n-aria="memoirs.sectionTitle" aria-label="Текст мемуаров">
+        <button class="modal-close" type="button" data-close-memoir data-i18n-aria="memoirs.close" aria-label="Закрыть">×</button>
         <div id="memoir-modal-content"></div>
       </article>
     </div>
@@ -195,28 +214,38 @@
         }
 
         const withAssetVersion = window.__withAssetVersion || ((path) => path);
-        const scriptPaths = [
+        var lang = window.__lang || "ru";
+        var i18nScripts = [];
+        if (lang === "en") {
+          i18nScripts = [
+            "data/i18n/ui.en-US.js",
+            "data/i18n/family.en-US.js",
+            "data/i18n/memoirs.en-US.js",
+          ];
+        }
+        var scriptPaths = [
           "data/memoirs.js",
           "data/family.js",
           "data/photo-albums.js",
           "vendor/d3/d3.min.js",
           "vendor/family-chart/family-chart.min.js",
-          "app.js",
         ];
+        // Insert i18n scripts before app.js
+        var allScripts = i18nScripts.concat(scriptPaths).concat(["app.js"]);
 
         function appendScript(path) {
           return new Promise((resolve, reject) => {
             const script = document.createElement("script");
             script.src = withAssetVersion(path);
             script.onload = resolve;
-            script.onerror = () => reject(new Error(`Failed to load ${path}`));
+            script.onerror = () => reject(new Error("Failed to load " + path));
             document.body.appendChild(script);
           });
         }
 
-        scriptPaths
-          .reduce((chain, path) => chain.then(() => appendScript(path)), Promise.resolve())
-          .catch((error) => console.error("Asset bootstrap failed:", error));
+        allScripts
+          .reduce(function (chain, path) { return chain.then(function () { return appendScript(path); }); }, Promise.resolve())
+          .catch(function (error) { console.error("Asset bootstrap failed:", error); });
       })();
     </script>
   </body>
