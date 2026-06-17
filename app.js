@@ -66,23 +66,17 @@ function switchLanguage(lang) {
   if (lang !== "en" && lang !== "ru") return;
   localStorage.setItem("family-memory-book-lang", lang);
   var url = new URL(window.location.href);
-  if (lang === "en") {
-    url.searchParams.set("lang", "en");
-  } else {
-    url.searchParams.delete("lang");
-  }
+  // Always set ?lang= so shareable links work for both languages
+  url.searchParams.set("lang", lang);
   window.location.href = url.toString();
 }
 
-// Apply i18n on DOMContentLoaded (for static HTML elements)
-document.addEventListener("DOMContentLoaded", applyI18n);
-
-// Also apply after all scripts load (for dynamic elements)
-var origPushState = history.pushState;
-history.pushState = function () {
-  origPushState.apply(this, arguments);
+// Apply i18n reliably even if app.js loads after DOMContentLoaded
+if (document.readyState === "loading") {
+  document.addEventListener("DOMContentLoaded", applyI18n);
+} else {
   applyI18n();
-};
+}
 
 const family = window.FAMILY;
 const memoirs = window.MEMOIRS;
@@ -524,7 +518,7 @@ function showPerson(id) {
   panelContentEl.innerHTML = `
     <div class="person-modal-layout">
       <div class="person-details">
-        <h3>${person.name}</h3>
+        <h3>${personName(id)}</h3>
         <p class="dates">${person.dates || datesLabel}</p>
         ${notes.length ? `<ul class="fact-list">${notes.map(function (note) { return "<li>" + note + "</li>"; }).join("")}</ul>` : ""}
         ${person.parents?.length ? `<h4>${parentsLabel}</h4><div class="relation-list">${relatedList(person.parents)}</div>` : ""}
@@ -544,11 +538,14 @@ function renderMemoirTabs(activeId) {
   tabsEl.innerHTML = memoirSections
     .map(
       (section) => {
-        const author = memoirSectionAuthors[section.id];
+        var author = memoirSectionAuthors[section.id];
         var sectionTitle = section.title;
         if (__lang === "en" && __memoirsEn && __memoirsEn.sections) {
           var enSection = __memoirsEn.sections.find(function (s) { return s.id === section.id; });
-          if (enSection && enSection.title) sectionTitle = enSection.title;
+          if (enSection) {
+            if (enSection.title) sectionTitle = enSection.title;
+            if (enSection.author) author = enSection.author;
+          }
         }
         return `
         <button type="button" class="${section.id === activeId ? "is-active" : ""}" data-memoir="${section.id}" role="tab">
@@ -655,7 +652,7 @@ function buildTreeData() {
   return Object.entries(people).map(([id, person]) => ({
     id,
     data: {
-      name: person.name,
+      name: personName(id),
       dates: person.dates || "",
       notes: person.notes || [],
       gender: person.gender || "M",
@@ -1053,13 +1050,27 @@ function scheduleMarriageFanLayout(transitionTime = 0) {
   }, delay);
 }
 
+function personSearchableNames(id) {
+  // Returns an array of searchable name strings for a person:
+  // English displayName/shortName + Russian original name
+  var names = [];
+  var ruName = people[id]?.name || "";
+  if (ruName) names.push(ruName);
+  if (__lang === "en" && __familyEn.people && __familyEn.people[id]) {
+    var en = __familyEn.people[id];
+    if (en.displayName) names.push(en.displayName);
+    if (en.shortName) names.push(en.shortName);
+  }
+  return names;
+}
+
 function paintTreeSearchState() {
   const query = searchEl.value.trim().toLowerCase();
   const cards = treeEl.querySelectorAll(".card[data-person-id]");
 
   cards.forEach((card) => {
-    const person = people[card.dataset.personId];
-    const hidden = query && person && !person.name.toLowerCase().includes(query);
+    const searchable = personSearchableNames(card.dataset.personId);
+    const hidden = query && !searchable.some(function (name) { return name.toLowerCase().includes(query); });
     card.classList.toggle("is-dimmed", Boolean(hidden));
   });
 }
@@ -1070,8 +1081,10 @@ function findFirstPersonMatch(query) {
   }
 
   const normalized = query.toLowerCase();
-  const match = Object.entries(people).find(([, person]) => person.name.toLowerCase().includes(normalized));
-  return match?.[0] || "";
+  const match = Object.keys(people).find(function (id) {
+    return personSearchableNames(id).some(function (name) { return name.toLowerCase().includes(normalized); });
+  });
+  return match || "";
 }
 
 function syncSearchToTree() {
