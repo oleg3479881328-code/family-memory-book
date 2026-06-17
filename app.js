@@ -314,6 +314,12 @@ function albumCoverSrc(album) {
   return "";
 }
 
+function photoCaption(caption) {
+  // In EN mode, show original caption as-is (photos are from source document).
+  // If a translation is needed in the future, this function can be extended.
+  return caption || "";
+}
+
 function albumMediaSummary(album) {
   const parts = [];
   if (__lang === "en") {
