@@ -331,6 +331,10 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Марии Олеговны. Фото 11",
         "src": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/20241214_163917.jpg"
+      },
+      {
+        "caption": "Фотоальбом Марии Олеговны. Фото 12",
+        "src": "assets/photo-albums/maria-povalyukhina/Photo 1.jpg"
       }
     ],
     "portrait": "assets/photo-albums/maria-povalyukhina/Photos-3-001 (10)/Resized_2021160317_152849.jpg",
