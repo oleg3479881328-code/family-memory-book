@@ -1336,9 +1336,21 @@ window.PHOTO_ALBUMS = [
       {
         "caption": "Фотоальбом Анны Олеговны. Фото 29",
         "src": "assets/photo-albums/anna-povalyukhina/Аня, Туся.jpg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 30",
+        "src": "assets/photo-albums/anna-povalyukhina/WhatsApp Image 2026-06-18 at 2.49.50 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 31",
+        "src": "assets/photo-albums/anna-povalyukhina/WhatsApp Image 2026-06-18 at 2.54.30 PM.jpeg"
+      },
+      {
+        "caption": "Фотоальбом Анны Олеговны. Фото 32",
+        "src": "assets/photo-albums/anna-povalyukhina/WhatsApp Image 2026-06-18 at 2.54.48 PM.jpeg"
       }
     ],
-    "portrait": "assets/photo-albums/anna-povalyukhina/Photos-3-001 (23)/IMG-20260511-WA0034.jpg",
+    "portrait": "assets/photo-albums/anna-povalyukhina/WhatsApp Image 2026-06-18 at 2.49.50 PM.jpeg",
     "title": "Анна Олеговна Повалюхина"
   },
   {
